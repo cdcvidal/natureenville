@@ -2,7 +2,7 @@
 
 var Backbone = require('backbone');
 
-var homeAction = require('./home').action,
+var homeAction = require('./home/home').action,
     Router = Backbone.Router.extend({
         routes: {
             '': homeAction

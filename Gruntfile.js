@@ -8,12 +8,12 @@ module.exports = function(grunt) {
             },
             all: [
                 'Gruntfile.js',
-                'www/js/*.js',
+                'www/js/**/*.js',
             ]
         },
         browserify: {
             dev: {
-                src: ['www/js/*.js'],
+                src: ['www/js/**/*.js'],
                 dest: 'www/index.js',
                 options: {
                     browserifyOptions: {

@@ -1,9 +1,9 @@
 'use strict';
 
-var baseview = require('./baseview');
+var baseview = require('../baseview');
 
 var homeView = baseview.extend({
-        template: require('../tpl/home.html'),
+        template: require('./home.html'),
 
         serialize: function () {
             return {
