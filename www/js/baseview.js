@@ -1,7 +1,6 @@
 'use strict';
 
-var Backbone = require('backbone'),
-    templates = require('../templates').JST;
+var Backbone = require('backbone');
 
 module.exports = Backbone.View.extend({
 
@@ -23,7 +22,7 @@ module.exports = Backbone.View.extend({
 
         var data = this.serialize(),
             rendered,
-            rawHtml = templates[this.template](data);
+            rawHtml = this.template(data);
 
         // Re-use nice "noel" trick from LayoutManager
         rendered = this.$el.html(rawHtml).children();
