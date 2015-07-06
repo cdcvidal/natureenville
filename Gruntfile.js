@@ -12,7 +12,15 @@ module.exports = function(grunt) {
             ]
         },
         browserify: {
-            'www/index.js': ['www/js/*.js']
+            dev: {
+                src: ['www/js/*.js'],
+                dest: 'www/index.js',
+                options: {
+                    browserifyOptions: {
+                        debug: true // Enable (inline) source map
+                    }
+                }
+            }
         },
         jst: {
             compile: {
@@ -37,7 +45,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-jst');
 
-    grunt.registerTask('build', ['jshint', 'jst', 'browserify']);
+    grunt.registerTask('build', ['jshint', 'jst', 'browserify:dev']);
     grunt.registerTask('default', ['build']);
 };
 
