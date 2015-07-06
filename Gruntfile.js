@@ -11,6 +11,27 @@ module.exports = function(grunt) {
                 'www/js/**/*.js',
             ]
         },
+        watch: {
+            options: {
+                spawn: false
+            },
+            configFiles: {
+                files: ['Gruntfile.js'],
+                tasks: ['build']
+            },
+            js: {
+                files: [
+                    'www/js/**/*.js'
+                ],
+                tasks: ['build']
+            },
+            tpl: {
+                files: [
+                    'www/js/**/*.html'
+                ],
+                tasks: ['browserify:dev']
+            }
+        },
         browserify: {
             dev: {
                 src: ['www/js/**/*.js'],
@@ -29,6 +50,7 @@ module.exports = function(grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-browserify');
 
@@ -36,4 +58,4 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['build']);
 };
 
-// TODO: uglify (prod uniquement) + watch
+// TODO: uglify (prod uniquement)
