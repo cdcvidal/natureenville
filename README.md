@@ -19,9 +19,12 @@ un terminal, vous n'avez rien de plus à faire que :
     cordova run <platform>
 
 Pendant le développement, pour plus de facilité, vous pouvez tester
-l'application dans le navigateur avec Ripple :
+l'application dans le navigateur :
 
-    ripple emulate
+    grunt dev
+
+Note : la tâche `dev` ouvre l'appli dans votre navigateur avec `watch` +
+`livereload`. A terme, ça devrait être remplacé par Ripple emulator.
 
 *Merci de documenter brièvement ici les outils que vous ajouterez au fur et à
 mesure du développement*.
@@ -36,7 +39,7 @@ Créer une copie locale de la base de code :
 
 Installer les diverses dépendances du projet :
 
-    npm install -g cordova grunt-cli ripple-emulator
+    npm install -g cordova grunt-cli
     npm install
     cordova restore plugins --experimental
 

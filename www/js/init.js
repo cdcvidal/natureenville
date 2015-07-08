@@ -6,4 +6,9 @@ function init() {
     Backbone.history.start();
 }
 
-document.addEventListener("deviceready", init, false);
+if (window.cordova) {
+    document.addEventListener("deviceready", init, false);
+} else {
+    var $ = require('jquery');
+    $(document).ready(init);
+}

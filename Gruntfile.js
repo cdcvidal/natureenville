@@ -13,6 +13,7 @@ module.exports = function(grunt) {
         },
         watch: {
             options: {
+                livereload: true,
                 spawn: false
             },
             configFiles: {
@@ -30,6 +31,15 @@ module.exports = function(grunt) {
                     'www/js/**/*.html'
                 ],
                 tasks: ['browserify:dev']
+            }
+        },
+        connect: {
+            server: {
+                options: {
+                    base: 'www',
+                    open: true,
+                    livereload: true
+                }
             }
         },
         browserify: {
@@ -52,10 +62,15 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-browserify');
 
     grunt.registerTask('build', ['jshint', 'browserify:dev']);
+    grunt.registerTask('dev', ['build', 'connect', 'watch']);
     grunt.registerTask('default', ['build']);
 };
 
-// TODO: uglify (prod uniquement)
+/* TODO:
+ * - uglify (prod uniquement)
+ * - remplacer connect par ripple et enlever le test "if (window.cordova)" dans init.js
+ */
