@@ -1,10 +1,9 @@
 'use strict';
 
-var baseview = require('./baseview'),
-    $ = require('jquery');
+var baseview = require('../baseview');
 
 var homeView = baseview.extend({
-        template: 'home',
+        template: require('./home.html'),
 
         serialize: function () {
             return {

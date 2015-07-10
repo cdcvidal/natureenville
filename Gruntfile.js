@@ -8,37 +8,69 @@ module.exports = function(grunt) {
             },
             all: [
                 'Gruntfile.js',
-                'www/js/*.js',
+                'www/js/**/*.js',
             ]
         },
-        browserify: {
-            'www/index.js': ['www/js/*.js']
+        watch: {
+            options: {
+                livereload: true,
+                spawn: false
+            },
+            configFiles: {
+                files: ['Gruntfile.js'],
+                tasks: ['build']
+            },
+            js: {
+                files: [
+                    'www/js/**/*.js'
+                ],
+                tasks: ['build']
+            },
+            tpl: {
+                files: [
+                    'www/js/**/*.html'
+                ],
+                tasks: ['browserify:dev']
+            }
         },
-        jst: {
-            compile: {
+        connect: {
+            server: {
                 options: {
-                    processName: function(filepath) {
-                        // Remove 'www/tpl/' at the front and '.html' at the end
-                        return filepath.slice(8, -5);
-                    },
-                    templateSettings: {
-                        variable: 'data'
-                    },
-                    external: ['underscore']
-                },
-                files: {
-                    'www/templates.js': ['www/tpl/*.html']
+                    base: 'www',
+                    open: true,
+                    livereload: true
                 }
+            }
+        },
+        browserify: {
+            dev: {
+                src: ['www/js/**/*.js'],
+                dest: 'www/index.js',
+                options: {
+                    browserifyOptions: {
+                        debug: true // Enable (inline) source map
+                    }
+                }
+            },
+            options: {
+                transform: [
+                    ['node-underscorify', {templateSettings: {variable: 'data'}}]
+                ]
             }
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-browserify');
-    grunt.loadNpmTasks('grunt-contrib-jst');
 
-    grunt.registerTask('build', ['jshint', 'jst', 'browserify']);
+    grunt.registerTask('build', ['jshint', 'browserify:dev']);
+    grunt.registerTask('dev', ['build', 'connect', 'watch']);
     grunt.registerTask('default', ['build']);
 };
 
-// TODO: uglify (prod uniquement) + watch + node-underscorify
+/* TODO:
+ * - uglify (prod uniquement)
+ * - remplacer connect par ripple et enlever le test "if (window.cordova)" dans init.js
+ */
