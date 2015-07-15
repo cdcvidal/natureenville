@@ -12,6 +12,17 @@ module.exports = Backbone.View.extend({
     },
 
 
+    // Must be overridden by child classes
+    template: function () {
+        /*
+         * Usually, this function will be implemented in child views with
+         * something as simple as:
+         *     template = require('./home.html');
+         * See the grunt-broswerify task and node-underscorify transfrom for more information.
+         */
+        throw 'Views must implement a template function';
+    },
+
     // Can be overridden by child classes
     beforeRender: function () {},
     afterRender: function () {},
