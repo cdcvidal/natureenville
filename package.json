@@ -5,7 +5,9 @@
   "private": true,
   "dependencies": {
     "backbone": "^1.2.1",
-    "jquery": "^2.1.4"
+    "bootstrap": "^3.3.5",
+    "jquery": "^2.1.4",
+    "backbone-localstorage": "^0.3.2"
   },
   "devDependencies": {
     "browserify": "^10.2.4",
