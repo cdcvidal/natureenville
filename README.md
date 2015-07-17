@@ -41,7 +41,7 @@ Installer les diverses dépendances du projet :
 
     npm install -g cordova grunt-cli
     npm install
-    cordova restore plugins --experimental
+    cordova plugin restore --experimental
 
 Enfin, activer la plateforme de test qui vous convient (android ou ios) :
 
@@ -57,12 +57,12 @@ les autres développeurs de manière facile et cohérente.
 Pour cela, utilisez la CLI :
 
     cordova plugin add org.apache.cordova.plugin-name@x.y.z
-    cordova save plugins --experimental
+    cordova plugin save --experimental
 
 La seconde ligne ajoute une référence à ce plugin dans congig.xml. Les autres
 développeurs pourront se mettre à jour en tapant simplement :
 
-    cordova restore plugins --experimental
+    cordova plugin restore --experimental
 
 Référence: http://stackoverflow.com/a/25105731
 
