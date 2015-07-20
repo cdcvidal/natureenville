@@ -18,7 +18,10 @@ module.exports = function(grunt) {
             },
             configFiles: {
                 files: ['Gruntfile.js'],
-                tasks: ['build']
+                tasks: ['build'],
+                options: {
+                    reload: true
+                }
             },
             js: {
                 files: [
@@ -31,7 +34,14 @@ module.exports = function(grunt) {
                     'www/js/**/*.html'
                 ],
                 tasks: ['browserify:dev']
-            }
+            },
+            css: {
+                files: [
+                    'www/css/main.css',
+                    'www/css/page-container.css',
+                    'node_modules/bootstrap/dist/css/bootstrap.min.css'
+                ],
+            },
         },
         connect: {
             server: {
