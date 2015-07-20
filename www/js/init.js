@@ -1,7 +1,5 @@
 'use strict';
 var Backbone = require('backbone');
-var bootstrap = require('bootstrap');
-var $ = require('jquery');
 
 
 function init() {
