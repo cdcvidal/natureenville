@@ -4,4 +4,9 @@ node_modules
 www/index.js
 www/templates.js
 .DS_Store
+<<<<<<< HEAD
 npm-debug.log
+=======
+npm-debug.log
+
+>>>>>>> 3ac4c60876bb85d4ed20f850a8005405264d144e
