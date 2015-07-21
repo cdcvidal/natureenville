@@ -30,7 +30,7 @@
   "dependencies": {
     "jquery": "^2.1.4",
     "backbone": "^1.2.1",
-    "backbone-localstorage": "^0.3.2",
+    "backbone.localstorage": "^1.1.16",
     "bootstrap": "^3.3.5",
     "browserify-shim": "^3.8.9",
     "lodash": "^3.10.0"
