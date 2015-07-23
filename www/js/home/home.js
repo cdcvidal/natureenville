@@ -17,8 +17,7 @@ var homeView = baseview.extend({
 
 module.exports = {
     action: function() {
-        var v = new homeView();
-        v.render().$el.appendTo('#main');
+
     },
 
     view: homeView
