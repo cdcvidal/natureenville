@@ -5,7 +5,6 @@ Backbone.LocalStorage = require("backbone.localstorage");
 
 Poi = Backbone.Model.extend({
     defaults: function() {
-        var self = this;
       return {
         externalId: 0,
         longitude: 0,
@@ -35,14 +34,8 @@ Poi = Backbone.Model.extend({
         desc_es:'',
         desc_de:'',
         desc_it:'',
-        withchild: true,
-        period:{    poi_id: self.get(externalId),
-                    interval: [1,1,1,1,1,1,1],
-                    open_hour: 0,
-                    close_hour: 0,
-                    open_date: 21/07/2015,
-                    close_date: 21/07/2015
-                }
+        withchild: true ,
+        period: {}
 
       };
     },
@@ -57,7 +50,7 @@ PoiCollection = Backbone.Collection.extend({
 
     model: Poi,
 	url: '',
-	localStorage: new Backbone.LocalStorage("PoiCollection")
+	localStorage: new Backbone.LocalStorage("PoiCollection"),
 
 });
 
