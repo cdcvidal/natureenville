@@ -18,20 +18,24 @@ MagicTour = Backbone.Model.extend({
             option_temps:120, //durée en minutes
             option_days:1, //nb de jour
             option_distance:5000,
-            option_wild_child:true //avec ou sans enfant
+            option_with_child:true //avec ou sans enfant
       };
     },
 
     initialize: function () {
 
     },
+    url: 'http://dev.optitour.fr/magic/naturalsolution/magictour/',
 
+    parse: function(response, options){
+        console.log(response);
+    }
 
 });
 MagicTourCollection = Backbone.Collection.extend({
 
     model: MagicTour,
-	url: 'http://dev.optitour.fr/magic/naturalsolution/',
+	url: 'http://dev.optitour.fr/magic/naturalsolution/magictour/',
 	localStorage: new Backbone.LocalStorage("MagicTourCollection")
 
 });
