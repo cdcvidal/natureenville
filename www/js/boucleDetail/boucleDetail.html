@@ -1,0 +1,47 @@
+<div>
+  <!-- Fake Nav tabs -->
+  <ul class="nav nav-tabs" id="carto-tabs" role="tablist">
+    <li role="presentation" ><a href="#boucleCarte" aria-controls="carte" role="tab" data-toggle="tab">Carte</a></li>
+    <li role="presentation" class="active"><a>Détails</a></li>
+  </ul>
+
+  <!-- Fake Tab panes -->
+  <div class="tab-content">
+    <div class="tab-pane active" id="liste">
+    	<p class="text-center"></p>
+    	<% 
+    		var count = 1;
+    		var countStops = Number(data.parcours.attributes.nb_stops);
+			_.each(data.parcours.attributes.stops,function(item,i){
+		%>  		
+ 			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">
+			    	<%= count %>
+			    	<% if(count === 1){ %> 
+						Départ
+			    	<% }else if(count === countStops){ %>
+			    		Arrivée
+			    	<% }else { %>
+			    		<%= item.place_name %>
+			    	<% } %>
+			    </h3>
+			  </div>
+			  <div class="panel-body">
+ 				<%
+				_.each(item,function(stop,i){
+				%>
+
+				<p><%= i %> : <%= stop %></p>
+
+			<% 	}); %>
+				</div>
+			</div>
+		<% count++ ;%>	
+		<% 	}); %>
+		
+
+    	</div>
+	</div>
+  </div>
+</div>

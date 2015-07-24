@@ -6,10 +6,14 @@ var $ = require('jquery');
 
 var homeView = require('./home/home'),
 	profileView = require('./profile/profile'),
+	boucleDetailView = require('./boucleDetail/boucleDetail'),
+	boucleCarteView = require('./boucleCarte/boucleCarte'),
     Router = Backbone.Router.extend({
         routes: {
             '': "homeViewDisplay",
             'profile': "profileViewDisplay",
+            'boucleCarte': "boucleCarteViewDisplay",
+            'boucleDetail': "boucleDetailViewDisplay",
         },
 
 		homeViewDisplay: function(){
@@ -22,6 +26,14 @@ var homeView = require('./home/home'),
 			this.displayView(profileV);
         },
 
+        boucleDetailViewDisplay : function(){
+			var boucleDetailV = new boucleDetailView.view({model: window.magicTour});
+			this.displayView(boucleDetailV);
+        },
+        boucleCarteViewDisplay : function(){
+			var boucleCarteV = new boucleCarteView.view({model: window.magicTour});
+			this.displayView(boucleCarteV);
+        },
 
           _currentView: null,
 
