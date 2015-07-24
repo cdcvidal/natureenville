@@ -1,3 +1,7 @@
+.navbar-toggle{
+  float: left;
+}
+
 body {
   padding-top: 51px;  
 }
