@@ -3,7 +3,7 @@ var Backbone = require('backbone'),
 
 Backbone.LocalStorage = require("backbone.localstorage");
 
-Periode = Backbone.Model.extend({
+Period = Backbone.Model.extend({
     defaults: function() {
       return {
         poi_id: 0,
@@ -21,13 +21,17 @@ Periode = Backbone.Model.extend({
 
     },
 
+    getInfo: function () {
+        return this.get("poi_id") + " [open: " + this.get("open_hour") + "]";
+    }
+
 
 });
-PeriodeCollection = Backbone.Collection.extend({
+PeriodCollection = Backbone.Collection.extend({
 
-    model: Periode,
+    model: Period,
 	url: '',
-	localStorage: new Backbone.LocalStorage("PeriodeCollection"),
+	localStorage: new Backbone.LocalStorage("PeriodCollection"),
 
 
 });
@@ -35,6 +39,6 @@ PeriodeCollection = Backbone.Collection.extend({
 Backbone.$ = $;
 
 module.exports = {
-    Periode: Periode,
-    PeriodeCollection: PeriodeCollection
+    Period: Period,
+    PeriodCollection: PeriodCollection
 };
