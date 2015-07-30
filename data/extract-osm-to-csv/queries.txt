@@ -1,0 +1,14 @@
+﻿node(43.2,5.27,43.39,5.53)[natural=tree];out;
+    1094 features
+
+(way(43.2,5.27,43.39,5.53)[natural=tree_row];>;);out;
+    10 features
+
+(way(43.2,5.27,43.39,5.53)[landuse=allotments][name~"[Jj]ardin"];>;);out;
+    29 features
+
+Conversion en GeoJSON avec :
+    http://tyrasd.github.io/osmtogeojson/
+
+Prévisualisation avec :
+    http://overpass-api.de/api/convert?data=<query>&target=openlayers

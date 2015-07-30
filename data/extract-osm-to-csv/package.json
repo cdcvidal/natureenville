@@ -1,0 +1,17 @@
+{
+  "name": "JardinMarseilleOSM2CSV",
+  "version": "0.1.0",
+  "description": "Read GeoJSON coming from OSM and convert to CSV suitable for MagicTour",
+  "private": true,
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "csv": "^0.4.5",
+    "geojson-utils": "^1.1.0"
+  },
+  "devDependencies": {}
+}

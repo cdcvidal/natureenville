@@ -1,0 +1,24 @@
+{
+  "name": "JardinMarseilleDL",
+  "version": "0.1.0",
+  "description": "Download pictures of parks and gardens in Marseille from Flickr",
+  "private": true,
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "node-flickr": "^1.0.0",
+    "bluebird": "^2.9.34",
+    "csv": "^0.4.5"
+  },
+  "devDependencies": {},
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
