@@ -86,3 +86,18 @@ ou :
 Note : Comme pour les plugins et pour les mêmes raisons, il est important de
 fixer les versions des dépendances Javascript. Avec l'option `--save`, npm fixe
 automatiquement le numéro de version.
+
+
+TODO
+----
+lodash window._ ???
+css et font de Bootstrap
+module utilities pour geoloc  ? et date formater (moment.js)
+dependance circulaire router
+créer répertoire views(js+tpl) et js ?
+changer le menu left
+less
+
+
+
+
