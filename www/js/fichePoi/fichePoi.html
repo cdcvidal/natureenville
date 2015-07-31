@@ -1,0 +1,55 @@
+<div>
+	<!-- Slider main container -->
+	<div class="swiper-container">
+	    <!-- Additional required wrapper -->
+	    <div class="swiper-wrapper">
+	    	<% if(data.model.get('url_img1') || data.model.get('url_img2')){ %>
+	        <!-- Slides -->
+	        <div class="swiper-slide">Slide 1 <img src="<%= data.model.get('url_img1') %>" alt="image 1"/></div>
+	        <div class="swiper-slide">Slide 2 <img src="<%= data.model.get('url_img2') %>" alt="image 2"/></div>
+	        <% }else{ %>
+	        <div class="swiper-slide">Slide test <img src="http://api.tela-botanica.org/img:000327191XL.jpg" alt="image test"/></div>
+	        <% } %>
+	    </div>
+	    <!-- If we need pagination -->
+	    <div class="swiper-pagination"></div>   
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Description</h3>
+		</div>
+		<div class="panel-body">
+			<%= data.model.get('desc_fr') %>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Adresse</h3>
+		</div>
+		<div class="panel-body">
+			<%= console.log(data.model.attributes) %>
+			<%= data.model.get('street') %>
+			<%= data.model.get('postal_code') %>
+
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Horaires</h3>
+		</div>
+		<div class="panel-body">
+			<%= data.model.get('period').get('interval') %>
+			<span>Ouverture : </span> <%=  data.model.get('period').get('open_hour') %>
+			<span>fermeture : </span> <%= data.model.get('period').get('close_hour') %>
+		</div>
+	</div>
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+	  <div class="container">
+			<div class="btn-group btn-group-justified" role="group" aria-label="...">
+				<a href="#" class="btn btn-default" role="button">Left</a>
+			  	<a href="#" class="btn btn-default" role="button">Right</a>
+			</div>
+		</div>
+	</nav>
+	<p class="text-center intro-home"><%= data.msg %></p>
+</div>

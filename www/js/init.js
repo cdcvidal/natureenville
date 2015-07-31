@@ -6,6 +6,7 @@ var Backbone = require('backbone'),
 window._ = require('lodash');
 
 var magicTour = require('./models/magictour');
+var magicTourInstance = require('./models/magictour').instance;
 var magicTourRequest = require('./models/magictourrequest');
 
 var deferreds = [];
@@ -33,19 +34,17 @@ function init() {
         var currentMagicTour = new magicTour.MagicTour();
         var currentMagicTourrequest = new magicTourRequest.MagicTourRequest({
             user_id: 'f6f7d00b53428a390d04a63bd3d2f3e5f81b0f6e',
-            arr_x: geoModel.get('coords').longitude,
-            arr_y: geoModel.get('coords').latitude,
+            // arr_x: geoModel.get('coords').longitude,
+            // arr_y: geoModel.get('coords').latitude,
             option_date: moment().format("DD/MM/YYYY"),
-            dep_x: geoModel.get('coords').longitude,
-            dep_y: geoModel.get('coords').latitude,
+            // dep_x: geoModel.get('coords').longitude,
+            // dep_y: geoModel.get('coords').latitude,
         });
-console.log(currentMagicTourrequest);
         currentMagicTour.fetch({
             data: currentMagicTourrequest.attributes,
             type: 'POST',
             success: function(responseData) {
-                //TODO app variable
-                window.magicTour = responseData;
+                magicTourInstance.set(responseData.attributes);
                 var containerView = require('./container/container').instance;
                 containerView.render().$el.appendTo('.page-container');
                 Backbone.history.start();
