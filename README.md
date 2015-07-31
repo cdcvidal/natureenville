@@ -97,6 +97,8 @@ dependance circulaire router
 créer répertoire views(js+tpl) et js ?
 changer le menu left
 less
+manage Optimisation Request Error
+
 
 
 
