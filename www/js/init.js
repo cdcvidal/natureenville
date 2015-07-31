@@ -1,6 +1,8 @@
 'use strict';
 var Backbone = require('backbone'),
-    $ = require('jQuery');
+    $ = require('jQuery'),
+    moment = require('moment');
+
 window._ = require('lodash');
 
 var magicTour = require('./models/magictour');
@@ -31,21 +33,21 @@ function init() {
         var currentMagicTour = new magicTour.MagicTour();
         var currentMagicTourrequest = new magicTourRequest.MagicTourRequest({
             user_id: 'f6f7d00b53428a390d04a63bd3d2f3e5f81b0f6e',
-            arr_x: geoModel.get('longitude'),
-            arr_y: geoModel.get('latitude'),
-            option_date: new Date().format("dd/MM/yyyy"),
-            dep_x: geoModel.get('longitude'),
-            dep_y: geoModel.get('latitude'),
+            arr_x: geoModel.get('coords').longitude,
+            arr_y: geoModel.get('coords').latitude,
+            option_date: moment().format("DD/MM/YYYY"),
+            dep_x: geoModel.get('coords').longitude,
+            dep_y: geoModel.get('coords').latitude,
         });
-
+console.log(currentMagicTourrequest);
         currentMagicTour.fetch({
             data: currentMagicTourrequest.attributes,
             type: 'POST',
             success: function(responseData) {
                 //TODO app variable
                 window.magicTour = responseData;
-                var ContainerView = require('./container/container').action,
-                    containerView = new ContainerView();
+                var containerView = require('./container/container').instance;
+                containerView.render().$el.appendTo('.page-container');
                 Backbone.history.start();
             },
             error: function(error) {
@@ -105,28 +107,3 @@ function clearPosition() {
         navigator.geolocation.clearWatch(getPosition());
     }
 }
-
-
-/**
- * Formatage Date
- */
-
-Date.prototype.format = function(format) {
-    var o = {
-        "M+": this.getMonth() + 1, //month
-        "d+": this.getDate(), //day
-        "h+": this.getHours(), //hour
-        "m+": this.getMinutes(), //minute
-        "s+": this.getSeconds(), //second
-        "q+": Math.floor((this.getMonth() + 3) / 3), //quarter
-        "S": this.getMilliseconds() //millisecond
-    };
-
-    if (/(y+)/.test(format)) format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-    for (var k in o)
-        if (new RegExp("(" + k + ")").test(format))
-            format = format.replace(RegExp.$1,
-                RegExp.$1.length == 1 ? o[k] :
-                ("00" + o[k]).substr(("" + o[k]).length));
-    return format;
-};
