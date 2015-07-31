@@ -24,12 +24,8 @@ var ContainerView = baseview.extend({
         },
     });
 
+var instance = new ContainerView();
+
 module.exports = {
-    action: function() {
-        var v = new ContainerView();
-        v.render().$el.appendTo('.page-container');
-    },
-
-
-    view: ContainerView
+    instance: instance
 };
