@@ -1,0 +1,11 @@
+.tab-content {
+    /* FIXME: set 100% for all ancestors? */
+    height: 500px;
+}
+#map {
+    position: absolute;
+    top: 41px;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+}

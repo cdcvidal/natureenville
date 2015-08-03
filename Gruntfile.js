@@ -38,7 +38,8 @@ module.exports = function(grunt) {
             css: {
                 files: [
                     'www/css/main.css',
-                    'www/css/page-container.css'
+                    'www/css/page-container.css',
+                    'www/js/boucleCarte/boucleCarte.css'
                 ],
                 tasks: ['cssmin']
             },
@@ -52,9 +53,11 @@ module.exports = function(grunt) {
                 files: {
                     'www/index.css': [
                         './node_modules/bootstrap/dist/css/bootstrap.min.css',
+                        './node_modules/planet-maps/dist/ol.css',
                         './www/css/swiper.min.css',
                         './www/css/main.css',
-                        './www/css/page-container.css'
+                        './www/css/page-container.css',
+                        './www/js/boucleCarte/boucleCarte.css'
                     ]
                 }
             }
