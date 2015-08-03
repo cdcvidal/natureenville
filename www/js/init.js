@@ -40,7 +40,7 @@ function init() {
             success: function(responseData) {
                 magicTourInstance.set(responseData.attributes);
                 var containerView = require('./container/container').instance;
-                containerView.render().$el.appendTo('.page-container');
+                containerView.render().$el.appendTo('body');
                 Backbone.history.start();
             },
             error: function(error) {
