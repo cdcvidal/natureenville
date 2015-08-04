@@ -8,7 +8,8 @@ var baseview = require('../baseview'),
     $ = require('jquery'),
     ol = require('planet-maps/dist/ol-base'),
     bootstrap = require('bootstrap'),
-    dialog = require('bootstrap-dialog')
+    dialog = require('bootstrap-dialog'),
+    _ = require('lodash')
     ;
 
 /*
@@ -188,7 +189,10 @@ var boucleCarteView = baseview.extend({
     template: require('./boucleCarte.html'),
 
     events: {
-        'click .btn-interest': 'onBtnInterestClick'
+        'click .btn-interest': 'onBtnInterestClick',
+        'click .btn-position': 'onBtnPositionClick',
+        'click .btn-distance': 'onBtnDistanceClick',
+        'click .btn-time': 'onBtnTimeClick'
     },
 
     displayTrips: function() {
@@ -260,12 +264,55 @@ var boucleCarteView = baseview.extend({
 
         /* Not very beautyfull but it works */
 
+        var interests = {
+            parc: {
+                label: 'Parcs et Jardins'
+            },
+            avenue_bordee: {
+                label: 'Avenues Bordées'
+            },
+            lieu_insolite: {
+                label: 'Lieux insolites'
+            }
+        };
+
         var $ul = $('<ul />');
+        _.forEach(interests, function(interest, name) {
+            var $li = $('<li>'+interest.label+'</li>');
+            $ul.append($li);
+        });
 
         dialog.show({
             title: '<span class="glyphicon glyphicon-heart"></span> Centres d\'Intérêts',
-            message: 'Hi Apple!',
+            message: $ul,
             cssClass: 'bottom-sheet theme-orange'
+        });
+        e.preventDefault();
+    },
+
+    onBtnPositionClick: function(e) {
+        dialog.show({
+            title: '<span class="glyphicon glyphicon-map-marker"></span> Point de départ',
+            message: 'TODO',
+            cssClass: 'bottom-sheet theme-magenta'
+        });
+        e.preventDefault();
+    },
+
+    onBtnDistanceClick: function(e) {
+        dialog.show({
+            title: '<span class="glyphicon glyphicon-road"></span> Distance max.',
+            message: 'TODO',
+            cssClass: 'bottom-sheet theme-lime'
+        });
+        e.preventDefault();
+    },
+
+    onBtnTimeClick: function(e) {
+        dialog.show({
+            title: '<span class="glyphicon glyphicon-time"></span> Durée max.',
+            message: 'TODO',
+            cssClass: 'bottom-sheet theme-yellow'
         });
         e.preventDefault();
     }
