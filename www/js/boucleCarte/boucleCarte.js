@@ -3,7 +3,10 @@
 var baseview = require('../baseview'),
     currentPos = require('../current-position'),
     $ = require('jquery'),
-    ol = require('planet-maps/dist/ol-base');
+    ol = require('planet-maps/dist/ol-base'),
+    bootstrap = require('bootstrap'),
+    dialog = require('bootstrap-dialog')
+    ;
 
 var view = new ol.View({
         center: [0, 0],
@@ -28,6 +31,9 @@ var view = new ol.View({
 
 var boucleCarteView = baseview.extend({
         template: require('./boucleCarte.html'),
+        events: {
+            'click .btn-interest': 'onBtnInterestClick'
+        },
         initialize: function () {
         },
         afterRender: function () {
@@ -42,8 +48,20 @@ var boucleCarteView = baseview.extend({
             return {
                 parcours: this.model
             };
-        }
+        },
+        onBtnInterestClick: function(e) {
 
+            /* Not very beautyfull but it works */
+
+            var $ul = $('<ul />');
+
+            dialog.show({
+                title: '<span class="glyphicon glyphicon-heart"></span> Centres d\'Intérêts',
+                message: 'Hi Apple!',
+                cssClass: 'bottom-sheet theme-orange'
+            });
+            e.preventDefault();
+        }
     });
 
 module.exports = {

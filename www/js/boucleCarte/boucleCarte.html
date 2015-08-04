@@ -1,12 +1,45 @@
 <div>
-  <!-- Fake Nav tabs -->
-  <ul class="nav nav-tabs" id="carto-tabs" role="tablist">
-    <li role="presentation" class="active"><a>Carte</a></li>
-    <li role="presentation"><a href="#loop/details">Détails</a></li>
-  </ul>
-
-  <!-- Fake Tab panes -->
-  <div class="tab-content">
-    <div id="map" class="tab-pane active"></div>
-  </div>
+    <!-- Fake Nav tabs -->
+    <ul class="nav nav-tabs" id="carto-tabs" role="tablist">
+        <li role="presentation" class="active"><a>Carte</a></li>
+        <li role="presentation"><a href="#loop/details">Détails</a></li>
+    </ul>
+    <!-- Fake Tab panes -->
+    <div class="tab-content">
+        <div id="map" class="tab-pane active"></div>
+        <div class="dropup fab-dial floating bottom left">
+            <button class="btn btn-default dropdown-toggle btn-fab btn-lg bg-blue-light" type="button" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-cog"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a class="btn-interest" href="#">
+                        <span class="btn-fab bg-blue-light"><span class="glyphicon glyphicon-heart"></span></span>
+                        <span class="badge">Intérêt</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="thebtn" href="#">
+                        <span class="btn-fab bg-blue-light"><span class="glyphicon glyphicon-map-marker"></span></span>
+                        <span class="badge">Départ</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="thebtn" href="#">
+                        <span class="btn-fab bg-blue-light"><span class="glyphicon glyphicon-road"></span></span>
+                        <span class="badge">Distance max.</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="thebtn" href="#">
+                        <span class="btn-fab bg-blue-light"><span class="glyphicon glyphicon-time"></span></span>
+                        <span class="badge">Durée max.</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <button class="btn btn-default btn-fab btn-lg bg-orange-light floating bottom right" type="button">
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+    </div>
 </div>

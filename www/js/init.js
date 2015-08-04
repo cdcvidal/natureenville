@@ -29,6 +29,8 @@ function init() {
 
     moment.locale('fr');
 
+    console.log(bootstrap);
+
     $.when.apply(null, deferreds).done(function() {
         var currentMagicTour = new magicTour.MagicTour();
         var currentMagicTourrequest = new magicTourRequest.MagicTourRequest({
@@ -42,7 +44,7 @@ function init() {
         
         currentMagicTour.fetch({
             data: currentMagicTourrequest.attributes,
-            type: 'POST',
+            //type: 'POST',
             success: function(responseData) {
                 magicTourInstance.set(responseData.attributes);
                 var containerView = require('./container/container').instance;

@@ -6,6 +6,7 @@
   "browser": {
     "jquery-ns": "./www/vendor/ns/jquery-ns.js",
     "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js",
+    "bootstrap-dialog": "./www/vendor/bootstrap-dialog/js/bootstrap-dialog.js",
     "swiper": "./node_modules/swiper/dist/js/swiper.min.js"
   },
   "browserify": {
@@ -20,6 +21,11 @@
       ]
     },
     "bootstrap": {
+      "depends": [
+        "jquery:jQuery"
+      ]
+    },
+    "bootstrap-dialog": {
       "depends": [
         "jquery:jQuery"
       ]
