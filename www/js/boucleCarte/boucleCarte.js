@@ -25,12 +25,57 @@ function getScaleFactor(resolution) {
         return 8;
     }
 }
+function colorFromType(poiType) {
+    // Assign a color for a POI type
+    var color = [0,0,0]; // Defaults to black
+    switch (poiType) {
+        // General type 1
+        case 7:
+            color = [149, 228, 46];
+            break;
+        // General type 2
+        case 3:
+            color = [15, 253, 96];
+            break;
+        // General type 3
+        case 1:
+        case 2:
+        case 11:
+        case 12:
+        case 13:
+            color = [245, 0, 87];
+            break;
+        // General type 4
+        case 10:
+            color = [237, 100, 18];
+            break;
+        // General type 5
+        case 6:
+            color = [0, 176, 255];
+            break;
+        // General type 6
+        case 9:
+            color = [176, 0, 255]; // Not part of Vivien's design
+            break;
+        // General type 7
+        case 4:
+        case 5:
+            color = [46, 149, 228]; // Not part of Vivien's design
+            break;
+        // General type 8
+        case 8:
+            color = [153, 153, 153]; // Not part of Vivien's design
+            break;
+    }
+    return color;
+}
 
 /*
  * OpenLayers map configuration
  */
 var view = new ol.View(), // Map visible area (parameters will be set during view rendering)
     tripSource = new ol.source.Vector(), // Datasource for trips
+    poiSource = new ol.source.Vector(), // Datasource for POIs
     wktParser = new ol.format.WKT(), // WKT parser will decode geometries from the 
     map = new ol.Map({
         layers: [
@@ -92,6 +137,42 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
                     });
                     return styles;
                 }
+            }),
+            // Layer 3: POIs
+            new ol.layer.Vector({
+                source: poiSource,
+                style: function(feature, resolution) {
+                    var sf = getScaleFactor(resolution),
+                        color = colorFromType(parseInt(feature.l.place_type)); // FIXME: why using this ".l"??? Looks like a bug in OL? Or in planet-maps build?
+                    if (resolution > 50) {
+                        // Do not display POI
+                        return [];
+                    } else if (resolution > 5) {
+                        // Display POI as a simple small circle
+                        return [new ol.style.Style({
+                            image: new ol.style.Circle({
+                                radius: 2*sf,
+                                fill: new ol.style.Fill({
+                                    color: color.concat(1)
+                                })
+                            })
+                        })];
+                    } else {
+                        // Display POI with semi-opaque fill + plain edge
+                        return [new ol.style.Style({
+                            image: new ol.style.Circle({
+                                radius: 2*sf,
+                                fill: new ol.style.Fill({
+                                    color: color.concat(0.5)
+                                }),
+                                stroke: new ol.style.Stroke({
+                                    color: color.concat(1),
+                                    width: 1*sf
+                                })
+                            })
+                        })];
+                    }
+                }
             })
         ],
         view: view
@@ -127,14 +208,36 @@ var boucleCarteView = baseview.extend({
             }
         },
 
+        displayPOIs: function() {
+            // Clear vector layer beforehand
+            poiSource.clear();
+
+            var features,
+                pois = this.model.get('stops');
+
+            if (pois) {
+                // Iterate over POIs, parse them and build ol.Feature for OL display
+                features = pois.map(function (poi, idx, arr) {
+                    return new ol.Feature({
+                        geometry: wktParser.readGeometry(poi.geom).transform('EPSG:4326', 'EPSG:3857'), // Convert GPX/WGS84 coordinates to Spherical Mercator (which is the basemap projection)
+                        place_type: poi.place_type,
+                        place_name: poi.place_name
+                    });
+                });
+                // Add features to the vector layer
+                poiSource.addFeatures(features);
+            }
+        },
+
         centerOnCurrentPosition: function () {
             view.setZoom(15);
             view.setCenter(ol.proj.transform([currentPos.get('longitude'), currentPos.get('latitude')], 'EPSG:4326', 'EPSG:3857'));
         },
 
         afterRender: function () {
-            // show trips
+            // show trips and POIs
             this.displayTrips();
+            this.displayPOIs();
 
             // Attach map to the DOM (to the #map element)
             map.setTarget('map');
