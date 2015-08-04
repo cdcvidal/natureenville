@@ -57,6 +57,7 @@ module.exports = function(grunt) {
                         './www/css/swiper.min.css',
                         './www/css/main.css',
                         './www/css/page-container.css',
+                        './www/css/page-profile.css',
                         './www/js/boucleCarte/boucleCarte.css'
                     ]
                 }
