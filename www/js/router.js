@@ -7,10 +7,10 @@ var _ = require('lodash');
 var poi = require('./models/poi');
 var magicTourInstance = require('./models/magictour').instance;
 var userInstance = require('./models/user').instance;
+var controller = require('./controller');
 
 
-var homeView = require('./home/home'),
-    profileView = require('./profile/profile'),
+var profileView = require('./profile/profile'),
     boucleDetailView = require('./boucleDetail/boucleDetail'),
     boucleCarteView = require('./boucleCarte/boucleCarte'),
     fichePoiView = require('./fichePoi/fichePoi'),
@@ -24,9 +24,7 @@ var homeView = require('./home/home'),
         },
 
         homeViewDisplay: function() {
-            $('body').alterClass('section-*', 'section-home');
-            var homeV = new homeView.view();
-            this.displayView(homeV);
+            controller.homeViewDisplay();
         },
 
         profileViewDisplay: function() {
@@ -83,4 +81,6 @@ var homeView = require('./home/home'),
         },
     });
 
-module.exports = new Router();
+var router = new Router();
+
+module.exports = router;

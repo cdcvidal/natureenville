@@ -93,7 +93,7 @@ TODO
 lodash window._ ???
 css et font de Bootstrap
 module utilities pour geoloc  ? et date formater (moment.js)
-dependance circulaire router
+porter router vers controller (voir homeViewDisplay)
 créer répertoire views(js+tpl) et js ?
 changer le menu left
 less

@@ -59,6 +59,7 @@ module.exports = function(grunt) {
                         './www/vendor/bootstrap-dialog/css/bootstrap-dialog.css',
                         './www/css/main.css',
                         './www/css/page-container.css',
+                        './www/css/page-profile.css',
                         './www/js/boucleCarte/boucleCarte.css'
                     ]
                 }
