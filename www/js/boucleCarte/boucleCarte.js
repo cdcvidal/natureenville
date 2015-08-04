@@ -9,6 +9,24 @@ var baseview = require('../baseview'),
     ol = require('planet-maps/dist/ol-base');
 
 /*
+ * Utilities
+ */
+function getScaleFactor(resolution) {
+    // Compute a scale factor depending on resolution
+    if (resolution > 10) {
+        return 2;
+    } else if (resolution > 2) {
+        return 3;
+    } else if (resolution > 0.1) {
+        return 5;
+    } else if (resolution > 0.05) {
+        return 6;
+    } else {
+        return 8;
+    }
+}
+
+/*
  * OpenLayers map configuration
  */
 var view = new ol.View(), // Map visible area (parameters will be set during view rendering)
@@ -26,12 +44,54 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
             // Layer 2: Trips
             new ol.layer.Vector({
                 source: tripSource,
-                style: new ol.style.Style({
-                    stroke: new ol.style.Stroke({
-                        color: '#46b992',
-                        width: 3
-                    })
-                })
+                style: function(feature, resolution) {
+                    var g = feature.getGeometry(),
+                        sf = getScaleFactor(resolution),
+                        styles = [
+                            new ol.style.Style({
+                                stroke: new ol.style.Stroke({
+                                    color: '#46b992',
+                                    width: 1*sf
+                                })
+                            })
+                        ],
+                        dist = 0;
+
+                    if (resolution > 5) {
+                        // Do not draw any arrow above this resolution
+                        return styles;
+                    }
+
+                    g.forEachSegment(function(start, end) {
+                        var dx = end[0] - start[0],
+                            dy = end[1] - start[1],
+                            rotation = Math.atan2(dy, dx);
+
+                        // Compute cumulative length
+                        dist += Math.sqrt(dx*dx + dy*dy);
+                        if (dist < 3000/(sf*sf)) {
+                            // Do not draw before a certain distance threshold 
+                            return;
+                        } else {
+                            // Reset distance accumulator
+                            dist = 0;
+                            // Draw an arrow at the end of this segment
+                            styles.push(
+                                new ol.style.Style({
+                                    geometry: new ol.geom.Point(end),
+                                    image: new ol.style.Icon({
+                                        src: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="6" height="6"><polyline points="2,1 4,3 2,5" fill="none" stroke="#46b992" stroke-width="1" /></svg>',
+                                        anchor: [0.5, 0.5],
+                                        scale: 1*sf,
+                                        rotateWithView: false,
+                                        rotation: -rotation
+                                    })
+                                })
+                            );
+                        }
+                    });
+                    return styles;
+                }
             })
         ],
         view: view
