@@ -6,6 +6,7 @@ var _ = require('lodash');
 
 var poi = require('./models/poi');
 var magicTourInstance = require('./models/magictour').instance;
+var userInstance = require('./models/user').instance;
 
 
 var homeView = require('./home/home'),
@@ -29,7 +30,9 @@ var homeView = require('./home/home'),
         },
 
         profileViewDisplay: function() {
-            var profileV = new profileView.view();
+            var profileV = new profileView.view({
+                    model: userInstance
+                });
             this.displayView(profileV);
         },
 

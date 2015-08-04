@@ -7,16 +7,11 @@ var profileView = baseview.extend({
 
         serialize: function () {
             return {
-                msg: 'Profile!'
+                model: this.model
             };
         }
     });
 
 module.exports = {
-    action: function() {
-        console.log();
-        var v = new profileView();
-        v.render().$el.appendTo('#main');
-    },
     view: profileView
 };
