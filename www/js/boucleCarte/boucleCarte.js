@@ -72,18 +72,28 @@ var boucleCarteView = baseview.extend({
             }
         },
 
-        afterRender: function () {
-            // center on current position only at first render, otherwiser reload map at previous location
-            if (! view.getCenter()) {
-                view.setZoom(15);
-                view.setCenter(ol.proj.transform([currentPos.get('longitude'), currentPos.get('latitude')], 'EPSG:4326', 'EPSG:3857'));
-            }
+        centerOnCurrentPosition: function () {
+            view.setZoom(15);
+            view.setCenter(ol.proj.transform([currentPos.get('longitude'), currentPos.get('latitude')], 'EPSG:4326', 'EPSG:3857'));
+        },
 
+        afterRender: function () {
             // show trips
             this.displayTrips();
 
             // Attach map to the DOM (to the #map element)
             map.setTarget('map');
+
+            // At first render, compute a visible area and display it, otherwiser reload map with the previous visibla area
+            if (! view.getCenter()) {
+                if (tripSource.getFeatures().length > 0) {
+                    // Make trip visible
+                    view.fit(tripSource.getExtent(), map.getSize());
+                } else {
+                    // Make user's current position visible
+                    this.centerOnCurrentPosition();
+                }
+            }
         },
 
         serialize: function () {
