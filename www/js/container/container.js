@@ -5,6 +5,9 @@ var $ = require('jquery'),
     Backbone = require('backbone'),
     _ = require('lodash');
 
+var router = require('../router');
+
+
 Backbone.$ = $;
 
 var ContainerView = baseview.extend({
@@ -30,8 +33,7 @@ var ContainerView = baseview.extend({
         },
 
         goToprofile: function(){
-            window.location.href = '#profile';
-            window.location.replace('#profile');
+            router.navigate('#profile',{trigger: true});
         }
     });
 

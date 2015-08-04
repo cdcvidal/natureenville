@@ -12,6 +12,7 @@ var jqueryNs = require('jquery-ns');
 var magicTour = require('./models/magictour');
 var magicTourInstance = require('./models/magictour').instance;
 var magicTourRequest = require('./models/magictourrequest');
+var badgesInstanceColl = require('./models/badges').instanceColl;
 
 var deferreds = [];
 
@@ -28,6 +29,8 @@ function init() {
     deferreds.push(currentPos.promise());
 
     moment.locale('fr');
+
+    console.log(badgesInstanceColl);
 
     $.when.apply(null, deferreds).done(function() {
         var currentMagicTour = new magicTour.MagicTour();
