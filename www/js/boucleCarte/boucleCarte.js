@@ -76,7 +76,7 @@ function colorFromType(poiType) {
 var view = new ol.View(), // Map visible area (parameters will be set during view rendering)
     tripSource = new ol.source.Vector(), // Datasource for trips
     poiSource = new ol.source.Vector(), // Datasource for POIs
-    wktParser = new ol.format.WKT(), // WKT parser will decode geometries from the 
+    wktParser = new ol.format.WKT(), // WKT parser will decode geometries from the MagicTour data
     map = new ol.Map({
         layers: [
             // Layer 1: Basemap
@@ -182,82 +182,82 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
  * Backbone view
  */
 var boucleCarteView = baseview.extend({
-        template: require('./boucleCarte.html'),
+    template: require('./boucleCarte.html'),
 
-        displayTrips: function() {
-            // Clear vector layer beforehand
-            tripSource.clear();
+    displayTrips: function() {
+        // Clear vector layer beforehand
+        tripSource.clear();
 
-            var features,
-                trips = this.model.get('trip');
+        var features,
+            trips = this.model.get('trip');
 
-            if (trips) {
-                // Iterate over trip segments and prepare them for OL display
-                features = trips.map(function (trip, idx, arr) {
+        if (trips) {
+            // Iterate over trip segments and prepare them for OL display
+            features = trips.map(function (trip, idx, arr) {
 
-                    // Parse a segment and build an OL feature
-                    var feature = wktParser.readFeature(trip.geom);
+                // Parse a segment and build an OL feature
+                var feature = wktParser.readFeature(trip.geom);
 
-                    // Convert GPX/WGS84 coordinates to Spherical Mercator (which is the basemap projection)
-                    feature.getGeometry().transform('EPSG:4326', 'EPSG:3857');
+                // Convert GPX/WGS84 coordinates to Spherical Mercator (which is the basemap projection)
+                feature.getGeometry().transform('EPSG:4326', 'EPSG:3857');
 
-                    return feature;
-                });
-                // Add features to the vector layer
-                tripSource.addFeatures(features);
-            }
-        },
-
-        displayPOIs: function() {
-            // Clear vector layer beforehand
-            poiSource.clear();
-
-            var features,
-                pois = this.model.get('stops');
-
-            if (pois) {
-                // Iterate over POIs, parse them and build ol.Feature for OL display
-                features = pois.map(function (poi, idx, arr) {
-                    return new ol.Feature({
-                        geometry: wktParser.readGeometry(poi.geom).transform('EPSG:4326', 'EPSG:3857'), // Convert GPX/WGS84 coordinates to Spherical Mercator (which is the basemap projection)
-                        place_type: poi.place_type,
-                        place_name: poi.place_name
-                    });
-                });
-                // Add features to the vector layer
-                poiSource.addFeatures(features);
-            }
-        },
-
-        centerOnCurrentPosition: function () {
-            view.setZoom(15);
-            view.setCenter(ol.proj.transform([currentPos.get('longitude'), currentPos.get('latitude')], 'EPSG:4326', 'EPSG:3857'));
-        },
-
-        afterRender: function () {
-            // show trips and POIs
-            this.displayTrips();
-            this.displayPOIs();
-
-            // Attach map to the DOM (to the #map element)
-            map.setTarget('map');
-
-            // At first render, compute a visible area and display it, otherwiser reload map with the previous visibla area
-            if (! view.getCenter()) {
-                if (tripSource.getFeatures().length > 0) {
-                    // Make trip visible
-                    view.fit(tripSource.getExtent(), map.getSize());
-                } else {
-                    // Make user's current position visible
-                    this.centerOnCurrentPosition();
-                }
-            }
-        },
-
-        serialize: function () {
-            return {};
+                return feature;
+            });
+            // Add features to the vector layer
+            tripSource.addFeatures(features);
         }
-    });
+    },
+
+    displayPOIs: function() {
+        // Clear vector layer beforehand
+        poiSource.clear();
+
+        var features,
+            pois = this.model.get('stops');
+
+        if (pois) {
+            // Iterate over POIs, parse them and build ol.Feature for OL display
+            features = pois.map(function (poi, idx, arr) {
+                return new ol.Feature({
+                    geometry: wktParser.readGeometry(poi.geom).transform('EPSG:4326', 'EPSG:3857'), // Convert GPX/WGS84 coordinates to Spherical Mercator (which is the basemap projection)
+                    place_type: poi.place_type,
+                    place_name: poi.place_name
+                });
+            });
+            // Add features to the vector layer
+            poiSource.addFeatures(features);
+        }
+    },
+
+    centerOnCurrentPosition: function () {
+        view.setZoom(15);
+        view.setCenter(ol.proj.transform([currentPos.get('longitude'), currentPos.get('latitude')], 'EPSG:4326', 'EPSG:3857'));
+    },
+
+    afterRender: function () {
+        // show trips and POIs
+        this.displayTrips();
+        this.displayPOIs();
+
+        // Attach map to the DOM (to the #map element)
+        map.setTarget('map');
+
+        // At first render, compute a visible area and display it, otherwiser reload map with the previous visibla area
+        if (! view.getCenter()) {
+            if (tripSource.getFeatures().length > 0) {
+                // Make trip visible
+                view.fit(tripSource.getExtent(), map.getSize());
+            } else {
+                // Make user's current position visible
+                this.centerOnCurrentPosition();
+            }
+        }
+    },
+
+    serialize: function () {
+        return {};
+    }
+});
 
 module.exports = {
     view: boucleCarteView
