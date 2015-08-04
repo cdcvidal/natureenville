@@ -17,7 +17,8 @@ var ContainerView = baseview.extend({
         },
         events: {
             'click [data-toggle=sidenav]': 'toggleSideNav',
-            'click .sidenav': 'onSideNavClick'
+            'click .sidenav': 'onSideNavClick',
+            'click .header-js' : 'goToprofile'
         },
 
         toggleSideNav: function(){
@@ -27,6 +28,11 @@ var ContainerView = baseview.extend({
         onSideNavClick: function(){
             $('body').removeClass('show-sidenav');
         },
+
+        goToprofile: function(){
+            window.location.href = '#profile';
+            window.location.replace('#profile');
+        }
     });
 
 var instance = new ContainerView();
