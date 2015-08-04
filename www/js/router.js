@@ -10,6 +10,9 @@ var userInstance = require('./models/user').instance;
 var controller = require('./controller');
 
 
+var badgesInstanceColl = require('./models/badge').instanceColl;
+
+
 var profileView = require('./profile/profile'),
     boucleDetailView = require('./boucleDetail/boucleDetail'),
     boucleCarteView = require('./boucleCarte/boucleCarte'),
@@ -29,7 +32,8 @@ var profileView = require('./profile/profile'),
 
         profileViewDisplay: function() {
             var profileV = new profileView.view({
-                    model: userInstance
+                    model: userInstance,
+                    collection: badgesInstanceColl
                 });
             this.displayView(profileV);
         },

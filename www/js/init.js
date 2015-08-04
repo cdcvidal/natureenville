@@ -3,17 +3,16 @@ var Backbone = require('backbone'),
     $ = require('jQuery'),
     currentPos = require('./current-position'),
     moment = require('moment'),
-    momentFr = require('moment/locale/fr');
-
-window._ = require('lodash');
+    momentFr = require('moment/locale/fr'),
+    _ = require('lodash');
 
 var bootstrap = require('bootstrap');
 var jqueryNs = require('jquery-ns');
 var magicTour = require('./models/magictour');
 var magicTourInstance = require('./models/magictour').instance;
 var magicTourRequest = require('./models/magictourrequest');
-// var badgesInstanceColl = require('./models/badge').instanceColl;
-// var badgesColl = require('./models/badge').BadgeCollection;
+var badgesInstanceColl = require('./models/badge').instanceColl;
+var badgesColl = require('./models/badge').BadgeCollection;
 
 var deferreds = [];
 
@@ -30,6 +29,25 @@ function init() {
     deferreds.push(currentPos.promise());
 
     moment.locale('fr');
+
+    var bC = new badgesColl();
+    bC.fetch({
+        success : function(response){
+                if(response.length === 0){
+                    console.log('bC fetch response',response);
+                    badgesInstanceColl.fetch({
+                        ajaxSync: true,
+                        success : function(response){
+                            _.forEach(response.models,function(n,key){
+                                badgesInstanceColl.add(n).save();
+                            });
+                        }
+                    });
+                }else{
+                    badgesInstanceColl.fetch();
+                }
+        }
+    });
 
     $.when.apply(null, deferreds).done(function() {
         var currentMagicTour = new magicTour.MagicTour();

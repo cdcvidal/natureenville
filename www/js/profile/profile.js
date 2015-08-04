@@ -7,7 +7,8 @@ var profileView = baseview.extend({
 
         serialize: function () {
             return {
-                model: this.model
+                model: this.model,
+                collection: this.collection
             };
         }
     });
