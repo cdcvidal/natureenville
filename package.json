@@ -32,6 +32,7 @@
     "node-underscorify": "0.0.14",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-contrib-connect": "^0.10.1",
+    "grunt-contrib-cssmin": "^0.13.0",
     "grunt-contrib-jshint": "^0.11.2"
   },
   "dependencies": {
@@ -42,6 +43,7 @@
     "jquery": "^2.1.4",
     "lodash": "^3.10.0",
     "moment": "^2.10.6",
+    "planet-maps": "^1.6.0",
     "swiper": "^3.1.0"
   }
 }

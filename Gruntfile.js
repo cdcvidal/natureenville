@@ -39,9 +39,28 @@ module.exports = function(grunt) {
             css: {
                 files: [
                     'www/css/page-container.css',
-                    'node_modules/bootstrap/dist/css/bootstrap.min.css'
+                    'www/js/boucleCarte/boucleCarte.css'
                 ],
+                tasks: ['cssmin']
             },
+        },
+        cssmin: {
+            options: {
+                sourceMap: true,
+                roundingPrecision: -1
+            },
+            target: {
+                files: {
+                    'www/index.css': [
+                        './node_modules/bootstrap/dist/css/bootstrap.min.css',
+                        './node_modules/planet-maps/dist/ol.css',
+                        './www/css/swiper.min.css',
+                        './www/css/main.css',
+                        './www/css/page-container.css',
+                        './www/js/boucleCarte/boucleCarte.css'
+                    ]
+                }
+            }
         },
         connect: {
             server: {
@@ -72,10 +91,11 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-browserify');
 
-    grunt.registerTask('build', ['jshint', 'browserify:dev']);
+    grunt.registerTask('build', ['jshint', 'cssmin', 'browserify:dev']);
     grunt.registerTask('dev', ['build', 'connect', 'watch']);
     grunt.registerTask('default', ['build']);
 };

@@ -1,6 +1,7 @@
 'use strict';
 var Backbone = require('backbone'),
     $ = require('jQuery'),
+    currentPos = require('./current-position'),
     moment = require('moment'),
     momentFr = require('moment/locale/fr');
 
@@ -18,20 +19,13 @@ var deferreds = [];
 function init() {
     //Manage geolocation when the application goes to the background
     document.addEventListener('resume', function() {
-        getPosition();
+        currentPos.watch();
     }, false);
     document.addEventListener('pause', function() {
-        clearPosition();
+        currentPos.unwatch();
     }, false);
-    var GeoModel = Backbone.Model.extend();
-    var geoModel = new GeoModel();
-    getPosition(geoModel);
-    var geoldfd = $.Deferred();
-    // Wait first response of Geolocation API before starting app
-    geoModel.once('change:coords', function() {
-        this.resolve(console.log(geoModel.attributes));
-    }, geoldfd);
-    deferreds.push(geoldfd);
+    currentPos.watch();
+    deferreds.push(currentPos.promise());
 
     moment.locale('fr');
 
@@ -39,11 +33,11 @@ function init() {
         var currentMagicTour = new magicTour.MagicTour();
         var currentMagicTourrequest = new magicTourRequest.MagicTourRequest({
             user_id: 'f6f7d00b53428a390d04a63bd3d2f3e5f81b0f6e',
-            // arr_x: geoModel.get('coords').longitude,
-            // arr_y: geoModel.get('coords').latitude,
+            // arr_x: currentPos.get('longitude'),
+            // arr_y: currentPos.get('latitude'),
             option_date: moment().format("DD/MM/YYYY"),
-            // dep_x: geoModel.get('coords').longitude,
-            // dep_y: geoModel.get('coords').latitude,
+            // dep_x: currentPos.get('longitude'),
+            // dep_y: currentPos.get('latitude')
         });
         
         currentMagicTour.fetch({
@@ -52,7 +46,7 @@ function init() {
             success: function(responseData) {
                 magicTourInstance.set(responseData.attributes);
                 var containerView = require('./container/container').instance;
-                containerView.render().$el.appendTo('.app-container');
+                containerView.render().$el.appendTo('body');
                 Backbone.history.start();
             },
             error: function(error) {
@@ -62,53 +56,8 @@ function init() {
     });
 }
 
-
-
-
 if (window.cordova) {
     document.addEventListener("deviceready", init, false);
 } else {
     $(document).ready(init);
-}
-
-//TODO module utilities
-/**
- * geolocation
- */
-
-function getPosition(geoModel) {
-    var options = {
-            enableHighAccuracy: false,
-            maximumAge: 10000,
-            timeout: 60000
-        },
-        geolocId = navigator.geolocation.watchPosition(
-            function(position) {
-                geoModel.set({
-                    'coords': position.coords
-                });
-                $('#geoloc').remove();
-            },
-            function(error) {
-                geoModel.clear();
-                console.log('ERROR(' + error.code + '): ' + error.message);
-                if (error.code === 2 || error.code === 1 || error.code === 0) {
-                    alert('PAS DE POSITION: ' + error.code);
-                }
-                clearPosition(geolocId);
-                getPosition();
-            },
-            options
-
-        );
-    var timeout = setTimeout(function() {
-        navigator.geolocation.clearWatch(geolocId);
-    }, 5000);
-    return geolocId;
-}
-
-function clearPosition() {
-    if (getPosition()) {
-        navigator.geolocation.clearWatch(getPosition());
-    }
 }
