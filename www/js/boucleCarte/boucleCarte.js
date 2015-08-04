@@ -188,13 +188,9 @@ var boucleCarteView = baseview.extend({
         // Clear vector layer beforehand
         tripSource.clear();
 
-        var features,
-            trips = this.model.get('trip');
-
-        if (trips) {
+        var trips = this.model.get('trip') || [],
             // Iterate over trip segments and prepare them for OL display
             features = trips.map(function (trip, idx, arr) {
-
                 // Parse a segment and build an OL feature
                 var feature = wktParser.readFeature(trip.geom);
 
@@ -203,19 +199,15 @@ var boucleCarteView = baseview.extend({
 
                 return feature;
             });
-            // Add features to the vector layer
-            tripSource.addFeatures(features);
-        }
+        // Add features to the vector layer
+        tripSource.addFeatures(features);
     },
 
     displayPOIs: function() {
         // Clear vector layer beforehand
         poiSource.clear();
 
-        var features,
-            pois = this.model.get('stops');
-
-        if (pois) {
+        var pois = this.model.get('stops') || [],
             // Iterate over POIs, parse them and build ol.Feature for OL display
             features = pois.map(function (poi, idx, arr) {
                 return new ol.Feature({
@@ -224,9 +216,8 @@ var boucleCarteView = baseview.extend({
                     place_name: poi.place_name
                 });
             });
-            // Add features to the vector layer
-            poiSource.addFeatures(features);
-        }
+        // Add features to the vector layer
+        poiSource.addFeatures(features);
     },
 
     centerOnCurrentPosition: function () {
