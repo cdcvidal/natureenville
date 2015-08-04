@@ -1,1 +1,20 @@
-<p>Profile</p>
+<div>
+	<div class='row' >
+		<div class='resume-container col-xs-12'>
+			<div>
+				<img src="<% if(typeof data.model.get('photo')){ %>
+								<%= data.model.get('photo') %>
+							<% }else{ %>
+								<%= "../ " %>
+							<% } %>" 
+				 class="img-rounded">
+			</div>
+			<div>
+				<p class='text-center'><%= data.model.get('nickMame') %></p>
+				<p class='text-center'><%= data.model.get('mail') %></p>
+			</div>
+		</div>
+		<div class='badge-container col-xs-12'>
+		</div>
+	</div>
+</div>

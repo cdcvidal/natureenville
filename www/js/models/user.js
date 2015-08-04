@@ -9,6 +9,7 @@ User = Backbone.Model.extend({
       return {
         nickMame: 'Nickname',
         mail: '',
+        photo: '',
       };
     },
 
@@ -26,8 +27,10 @@ UserCollection = Backbone.Collection.extend({
 
 });
 
+var instance = new User();
 
 module.exports = {
+    instance: instance,
     User: User,
     UserCollection: UserCollection
 };
