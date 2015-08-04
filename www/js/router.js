@@ -17,12 +17,13 @@ var homeView = require('./home/home'),
         routes: {
             '': "homeViewDisplay",
             'profile': "profileViewDisplay",
-            'boucleCarte': "boucleCarteViewDisplay",
-            'boucleDetail': "boucleDetailViewDisplay",
+            'loop/map': "boucleCarteViewDisplay",
+            'loop/details': "boucleDetailViewDisplay",
             'fiche/:poiId': "ficheViewDisplay",
         },
 
         homeViewDisplay: function() {
+            $('body').alterClass('section-*', 'section-home');
             var homeV = new homeView.view();
             this.displayView(homeV);
         },
@@ -33,18 +34,21 @@ var homeView = require('./home/home'),
         },
 
         boucleDetailViewDisplay: function() {
+            $('body').alterClass('section-*', 'section-loop section-loop-map');
             var boucleDetailV = new boucleDetailView.view({
                 model: magicTourInstance
             });
             this.displayView(boucleDetailV);
         },
         boucleCarteViewDisplay: function() {
+            $('body').alterClass('section-*', 'section-loop section-loop-details');
             var boucleCarteV = new boucleCarteView.view({
                 model: magicTourInstance
             });
             this.displayView(boucleCarteV);
         },
         ficheViewDisplay: function(poiId) {
+            $('body').alterClass('section-*', 'section-poi');
             var currentPOI = _.find(magicTourInstance.attributes.stops, function(item) {
                 return item.poi_id == poiId;
             });

@@ -4,6 +4,7 @@
   "description": "TODO",
   "private": true,
   "browser": {
+    "jquery-ns": "./www/vendor/ns/jquery-ns.js",
     "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js",
     "swiper": "./node_modules/swiper/dist/js/swiper.min.js"
   },
@@ -13,6 +14,11 @@
     ]
   },
   "browserify-shim": {
+    "jquery-ns": {
+      "depends": [
+        "jquery:jQuery"
+      ]
+    },
     "bootstrap": {
       "depends": [
         "jquery:jQuery"

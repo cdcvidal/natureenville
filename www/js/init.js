@@ -1,10 +1,13 @@
 'use strict';
 var Backbone = require('backbone'),
     $ = require('jQuery'),
-    moment = require('moment');
+    moment = require('moment'),
+    momentFr = require('moment/locale/fr');
 
 window._ = require('lodash');
 
+var bootstrap = require('bootstrap');
+var jqueryNs = require('jquery-ns');
 var magicTour = require('./models/magictour');
 var magicTourInstance = require('./models/magictour').instance;
 var magicTourRequest = require('./models/magictourrequest');
@@ -30,6 +33,8 @@ function init() {
     }, geoldfd);
     deferreds.push(geoldfd);
 
+    moment.locale('fr');
+
     $.when.apply(null, deferreds).done(function() {
         var currentMagicTour = new magicTour.MagicTour();
         var currentMagicTourrequest = new magicTourRequest.MagicTourRequest({
@@ -40,13 +45,14 @@ function init() {
             // dep_x: geoModel.get('coords').longitude,
             // dep_y: geoModel.get('coords').latitude,
         });
+        
         currentMagicTour.fetch({
             data: currentMagicTourrequest.attributes,
-            type: 'POST',
+            //type: 'POST',
             success: function(responseData) {
                 magicTourInstance.set(responseData.attributes);
                 var containerView = require('./container/container').instance;
-                containerView.render().$el.appendTo('.page-container');
+                containerView.render().$el.appendTo('.app-container');
                 Backbone.history.start();
             },
             error: function(error) {

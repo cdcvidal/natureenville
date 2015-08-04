@@ -8,19 +8,24 @@ var $ = require('jquery'),
 Backbone.$ = $;
 
 var ContainerView = baseview.extend({
-        template: require('./page-container.html'),
+        template: require('./app-container.html'),
 
         serialize: function () {
             return {
                 msg: 'Container!'
             };
         },
-         events:{
-            'click [data-toggle=offcanvas]': 'toggleCanvas',
+        events: {
+            'click [data-toggle=sidenav]': 'toggleSideNav',
+            'click .sidenav': 'onSideNavClick'
         },
 
-        toggleCanvas: function(){
-            $('.row-offcanvas').toggleClass('active');
+        toggleSideNav: function(){
+            $('body').toggleClass('show-sidenav');
+        },
+
+        onSideNavClick: function(){
+            $('body').removeClass('show-sidenav');
         },
     });
 

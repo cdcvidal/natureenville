@@ -1,30 +1,27 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="eu.naturalsolutions.natureenville" version="0.1.0" android-versionCode="1" ios-CFBundleVersion="0.1.0" xmlns="http://www.w3.org/ns/widgets">
-
+<widget android-versionCode="1" id="eu.naturalsolutions.natureenville" ios-CFBundleVersion="0.1.0" version="0.1.0" xmlns="http://www.w3.org/ns/widgets">
     <name>Nature en ville</name>
     <description>
-        <!-- TODO -->
     </description>
     <author email="contact@natural-solutions.eu" href="http://www.natural-solutions.eu/">Natural Solutions</author>
-
     <content src="index.html" />
-
-    <plugin name="cordova-plugin-whitelist" version="1" />
-    <access origin="*" /><!-- TODO: whitelist required domains only -->
-
-    <hook type="before_prepare" src="scripts/runGruntDefaultTask.js" />
-
-    <preference name="DisallowOverscroll" value="true"/>
+    <access origin="*" />
+    <hook src="scripts/runGruntDefaultTask.js" type="before_prepare" />
+    <preference name="DisallowOverscroll" value="true" />
     <preference name="Orientation" value="portrait" />
     <preference name="prerendered-icon" value="true" />
     <preference name="iosPersistentFileLocation" value="Compatibility" />
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
-
-    <!-- Icons and splashscreeen, see: https://cordova.apache.org/docs/en/edge/config_ref_images.md.html#Icons%20and%20Splash%20Screens -->
     <platform name="android">
-        <!-- TODO -->
     </platform>
     <platform name="ios">
-        <!-- TODO -->
     </platform>
+    <plugin name="cordova-plugin-geolocation" spec="^1.0.1" />
+    <plugin name="cordova-plugin-camera" spec="^1.2.0" />
+    <plugin name="cordova-plugin-device" spec="^1.0.1" />
+    <plugin name="cordova-plugin-file" spec="^2.1.0" />
+    <plugin name="com.ionic.keyboard" spec="^1.0.4" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^1.0.1" />
+    <plugin name="nl.x-services.plugins.socialsharing" spec="^4.3.19" />
+    <plugin name="cordova-plugin-network-information" spec="^1.0.1" />
 </widget>

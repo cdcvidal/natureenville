@@ -1,49 +1,69 @@
-<div>
+<div class="page page-loop page-loop-details page-details page-details-loop scrollable with-header">
   <!-- Fake Nav tabs -->
-  <ul class="nav nav-tabs" id="carto-tabs" role="tablist">
-    <li role="presentation" ><a href="#boucleCarte" aria-controls="carte" role="tab" data-toggle="tab">Carte</a></li>
+  <ul class="nav nav-tabs page-nav-tabs" id="carto-tabs" role="tablist">
+    <li role="presentation" ><a href="#loop/map">Carte</a></li>
     <li role="presentation" class="active"><a>Détails</a></li>
   </ul>
 
-  <!-- Fake Tab panes -->
-  <div class="tab-content">
-    <div class="tab-pane active" id="liste">
-    	<p class="text-center"></p>
-    	<% 
-    		var count = 1;
-    		var countStops = Number(data.parcours.attributes.nb_stops);
-			_.each(data.parcours.attributes.stops,function(item,i){
-		%>  		
- 			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						<%= count %>
-						<% if(count === 1){ %> 
-							Départ
-						<% }else if(count === countStops){ %>
-							Arrivée
-						<% }else { %>
-							<%= item.place_name %>
-						<% } %>
-					</h3>			
+  <div class="container">
+	  <!-- Fake Tab panes -->
+	  <div class="tab-content">
+	    <div class="tab-pane active" id="liste">
+	    	<!-- <p class="text-center"></p> -->
+	    	<% 
+	    		var count = 1;
+	    		var countStops = Number(data.parcours.attributes.nb_stops);
+				_.each(data.parcours.attributes.stops,function(item, itemIndex){
+			%>  		
+	 			<div class="panel panel-default">
+					<div class="panel-heading clearfix" data-toggle="collapse">
+						<a class="panel-title" role="button" data-toggle="collapse" href="#collapse-poi-<%= itemIndex %>">
+						  <%= count %>
+							<% if(count === 1){ %> 
+								Départ
+							<% }else if(count === countStops){ %>
+								Arrivée
+							<% }else { %>
+								<%= item.place_name %>
+							<% } %>
+						</a>
+						<span class="open-status-icons pull-right">
+							<span class="status-open glyphicon glyphicon-chevron-up"></span>
+							<span class="status-closed glyphicon glyphicon-chevron-down"></span>
+						</span>	
+					</div>
+					<div id="collapse-poi-<%= itemIndex %>" class="panel-collapse collapse">
+						<div class="container">
+							<div>
+								<%= data.formatPoiPosition(item) %>
+							</div>
+							<!--
+							<%
+							_.each(item,function(stop,i){
+							%>
+								<p><%= i %> : <%= stop %></p>
+							<% 	}); %>
+							-->
+							<% if(item.desc){ %> 
+							<div class="row description">
+								<%= item.desc %>
+							</div>
+							<% } %>
+							<% if(item.poi_id){ %>
+							<div class="row actions">
+								<a class="btn btn-block" href="#fiche/<%=item.poi_id %>" role="button">Voir le détail</a>
+							</div>
+							<% } %>
+						</div>
+					</div>
 				</div>
-				<div class="panel-body">
-					<%
-					_.each(item,function(stop,i){
-					%>
-						<p><%= i %> : <%= stop %></p>
-					<% 	}); %>
-					<% if(item.poi_id){ %> 
-						<a class="btn btn-default btn-lg btn-block" href="#fiche/<%=item.poi_id %>" role="button">Voir le détail</a>
-					<% } %>
-				</div>
-			</div>
-		<% count++ ;%>	
-		<% 	}); %>
-		
+			<% count++ ;%>	
+			<% 	}); %>
+			
 
-    	</div>
-	</div>
+	    	</div>
+		</div>
+	  </div>
   </div>
 </div>
 		

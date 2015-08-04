@@ -25,7 +25,8 @@ module.exports = function(grunt) {
             },
             js: {
                 files: [
-                    'www/js/**/*.js'
+                    'www/js/**/*.js',
+                    'www/vendor/**/*'
                 ],
                 tasks: ['build']
             },
@@ -37,7 +38,6 @@ module.exports = function(grunt) {
             },
             css: {
                 files: [
-                    'www/css/main.css',
                     'www/css/page-container.css',
                     'node_modules/bootstrap/dist/css/bootstrap.min.css'
                 ],

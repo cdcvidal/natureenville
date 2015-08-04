@@ -7,7 +7,7 @@ var homeView = baseview.extend({
         template: require('./home.html'),
         initialize: function () {
         },
-        events:{
+        events: {
 
         },
         serialize: function () {
