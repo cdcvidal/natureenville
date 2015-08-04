@@ -12,7 +12,8 @@ var jqueryNs = require('jquery-ns');
 var magicTour = require('./models/magictour');
 var magicTourInstance = require('./models/magictour').instance;
 var magicTourRequest = require('./models/magictourrequest');
-var badgesInstanceColl = require('./models/badges').instanceColl;
+// var badgesInstanceColl = require('./models/badge').instanceColl;
+// var badgesColl = require('./models/badge').BadgeCollection;
 
 var deferreds = [];
 
@@ -30,7 +31,15 @@ function init() {
 
     moment.locale('fr');
 
-    console.log(badgesInstanceColl);
+    //TODO 
+    // var respB = badgesInstanceColl.fetch({
+    //     ajaxSync: true,
+    //     success : function(response){
+    //         console.log(response);
+    //         var bC = new badgesColl();
+    //         bC.add(response.models).save();
+    //     }
+    // });
 
     $.when.apply(null, deferreds).done(function() {
         var currentMagicTour = new magicTour.MagicTour();
@@ -45,7 +54,7 @@ function init() {
         
         currentMagicTour.fetch({
             data: currentMagicTourrequest.attributes,
-            type: 'POST',
+            //type: 'POST',
             success: function(responseData) {
                 magicTourInstance.set(responseData.attributes);
                 var containerView = require('./container/container').instance;
