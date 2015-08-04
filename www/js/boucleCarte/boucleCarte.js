@@ -19,13 +19,8 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
             // Layer 1: Basemap
             new ol.layer.Tile({
                 source: new ol.source.XYZ({
-                    attributions: new ol.Attribution({
-                        html: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors.'
-                    }),
-                    crossOrigin: 'anonymous',
-                    opaque: true,
-                    maxZoom: 19,
-                    url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+                    url: 'http://{a-d}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+                    attributions: [new ol.Attribution({ html: ['&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'] })]
                 })
             }),
             // Layer 2: Trips
