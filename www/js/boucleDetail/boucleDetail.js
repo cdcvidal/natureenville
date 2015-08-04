@@ -2,6 +2,7 @@
 
 var baseview = require('../baseview');
 var $ = require('jquery');
+var utilities = require('../utilities');
 
 var boucleDetailView = baseview.extend({
         template: require('./boucleDetail.html'),
@@ -14,7 +15,7 @@ var boucleDetailView = baseview.extend({
             return {
                 parcours: this.model,
                 formatPoiPosition: function(stop) {
-                    return stop.place_name;
+                    return utilities.formatMinutes(stop.departure);
                 }
             };
         },

@@ -21,8 +21,8 @@ var MagicTour = Backbone.Model.extend({
 
     },
 
-    //url: 'http://dev.optitour.fr/magic/naturalsolution/magictour/',
-    url: './data/tours.json',
+    url: 'http://dev.optitour.fr/magic/naturalsolution/magictour/',
+    //url: './data/tours.json',
 
     parse: function(response, options){
         console.log('parse', response);

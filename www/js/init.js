@@ -42,7 +42,7 @@ function init() {
         
         currentMagicTour.fetch({
             data: currentMagicTourrequest.attributes,
-            //type: 'POST',
+            type: 'POST',
             success: function(responseData) {
                 magicTourInstance.set(responseData.attributes);
                 var containerView = require('./container/container').instance;
