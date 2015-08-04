@@ -12,7 +12,8 @@ var jqueryNs = require('jquery-ns');
 var magicTour = require('./models/magictour');
 var magicTourInstance = require('./models/magictour').instance;
 var magicTourRequest = require('./models/magictourrequest');
-var badgesInstanceColl = require('./models/badges').instanceColl;
+// var badgesInstanceColl = require('./models/badge').instanceColl;
+// var badgesColl = require('./models/badge').BadgeCollection;
 
 var deferreds = [];
 
