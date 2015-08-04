@@ -1,20 +1,21 @@
 <div>
-	<div class='row' >
-		<div class='resume-container col-xs-12'>
-			<div>
-				<img src="<% if(typeof data.model.get('photo')){ %>
-								<%= data.model.get('photo') %>
-							<% }else{ %>
-								<%= "../ " %>
-							<% } %>" 
-				 class="img-rounded">
+	<div class='profile' >
+		<header class="header">
+                <div class="inner">
+                    <div class="photo" style= 	<% if(data.model.get('photo')){ %>
+                    			<%= "background-image:url(data.model.get('photo'))" %>
+												<% }else{ %>
+                    	"background-image:url('./images/120x120.jpg');"
+                    							<% } %>
+                    	>
+                    </div>
+                    <div class="names text-center"><%= data.model.get('nickMame') %></div>
+                    <div class="email text-center"><%= data.model.get('mail') %></div>
+                </div>
+        </header>
+		<div class='badge-container row'>
+			<div class='col-xs-12'>
 			</div>
-			<div>
-				<p class='text-center'><%= data.model.get('nickMame') %></p>
-				<p class='text-center'><%= data.model.get('mail') %></p>
-			</div>
-		</div>
-		<div class='badge-container col-xs-12'>
 		</div>
 	</div>
 </div>
