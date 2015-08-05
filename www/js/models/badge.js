@@ -28,7 +28,6 @@ BadgeCollection = Backbone.Collection.extend({
 	localStorage: new Backbone.LocalStorage("BadgeCollection"),
 
     parse: function(response) {
-        console.log('parseBadgesColl', response);
         return response;
     }
 
