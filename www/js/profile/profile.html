@@ -1,45 +1,43 @@
-<div>
-	<% var _ = require('lodash'); %>
-	<div class='profile' >
-		<header class="header">
-                <div class="inner">
-                    <div class="photo" style= 	<% if(data.model.get('photo')){ %>
-                    			<%= "background-image:url(data.model.get('photo'))" %>
-												<% }else{ %>
-                    	"background-image:url('./images/120x120.jpg');"
-                    							<% } %>
-                    	>
-                    </div>
-                    <div class="names text-center"><%= data.model.get('nickMame') %></div>
-                    <div class="email text-center"><%= data.model.get('mail') %></div>
+<% var _ = require('lodash'); %>
+<div class="page page-profile scrollable with-header" >
+	<header class="header">
+            <div class="inner">
+                <div class="photo" style= 	<% if(data.model.get('photo')){ %>
+                			<%= "background-image:url(data.model.get('photo'))" %>
+											<% }else{ %>
+                	"background-image:url('./images/120x120.jpg');"
+                							<% } %>
+                	>
                 </div>
-        </header>
-		<div class='badge-container row'>
-			<div class='col-xs-12'>
-				<% if(data !== undefined && data.collection.length > 0) { %>
-			      <% var groups =_.groupBy(data.collection.models,function(type){
-			          return type.get('type');
-			        });
-			          _.each(groups,function(group,i){
-			            var currentType = group[0].get('type')
-			        %>
-			          <div class="row">
-			          <div class="col-xs-12 col-sm-12 col-md-12">
-			          </div>
-			          <%  
-			          _.each(group,function(item,key,list){
-		
-			          %>
-			            <div class="col-md-2 col-xs-4">
-			              <img src= "<%= item.get('imageUrl') %>" alt="<%= item.get('title') %>" class="img-responsive mes-badges <% if(!item.get('active')){ %> <%= "disabled interface-disabled-badge" %> <%}%>" />
-			            </div>
-			          <% }); %>
-			          </div>
-			          <% if(i){ %> <%="<hr>"%> <%}%>  
+                <div class="names"><%= data.model.get('nickMame') %></div>
+                <div class="email"><%= data.model.get('mail') %></div>
+            </div>
+    </header>
+	<div class="badge-container row">
+		<div class="col-xs-12">
+			<% if(data !== undefined && data.collection.length > 0) { %>
+		      <% var groups =_.groupBy(data.collection.models,function(type){
+		          return type.get('type');
+		        });
+		          _.each(groups,function(group,i){
+		            var currentType = group[0].get('type')
+		        %>
+		          <div class="row">
+		          <div class="col-xs-12 col-sm-12 col-md-12">
+		          </div>
+		          <%  
+		          _.each(group,function(item,key,list){
+	
+		          %>
+		            <div class="col-md-2 col-xs-4">
+		              <img src= "<%= item.get('imageUrl') %>" alt="<%= item.get('title') %>" class="img-responsive mes-badges <% if(!item.get('active')){ %> <%= "disabled interface-disabled-badge" %> <%}%>" />
+		            </div>
+		          <% }); %>
+		          </div>
+		          <% if(i){ %> <%="<hr>"%> <%}%>  
 
-			       <% }) %>
-			    <% } %>
-			</div>
+		       <% }) %>
+		    <% } %>
 		</div>
 	</div>
 </div>

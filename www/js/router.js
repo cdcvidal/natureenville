@@ -31,6 +31,7 @@ var profileView = require('./profile/profile'),
         },
 
         profileViewDisplay: function() {
+            $('body').alterClass('section-*', 'section-loop section-profile');
             var profileV = new profileView.view({
                     model: userInstance,
                     collection: badgesInstanceColl
