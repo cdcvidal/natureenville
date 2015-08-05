@@ -1,4 +1,17 @@
-[
+[	{
+		"name": "Bienvenue",
+		"activate": 0,
+		"imageUrl": "./images/badges/bienvenue.svg",
+		"type":"bienvenue",
+		"description":" Badge obtenu à l'inscription au programme.'"
+	},
+	{
+		"name": "Marseille",
+		"activate": 0,
+		"imageUrl": "./images/badges/marseille.svg",
+		"type":"ville",
+		"description":" Badge obtenu à la première contribution pour la ville de Marseille.'"
+	},
 	{
 		"name": "Première contribution",
 		"activate": 0,
@@ -7,10 +20,157 @@
 		"description":" Badge obtenu à la première contribution "
 	},
 	{
+		"name": "5 contributions",
+		"activate": 0,
+		"imageUrl": "./images/badges/05_contribution.svg",
+		"type":"contribution",
+		"description":" Badge obtenu à la 5 contributions "
+	},
+	{
+		"name": "15 contributions",
+		"activate": 0,
+		"imageUrl": "./images/badges/15_contribution.svg",
+		"type":"contribution",
+		"description":" Badge obtenu à la 15 contributions "
+	},
+	{
+		"name": "30 contributions",
+		"activate": 0,
+		"imageUrl": "./images/badges/30_contribution.svg",
+		"type":"contribution",
+		"description":" Badge obtenu à la 30 contributions "
+	},
+	{
+		"name": "50 contributions",
+		"activate": 0,
+		"imageUrl": "./images/badges/50_contribution.svg",
+		"type":"contribution",
+		"description":" Badge obtenu à la 50 contributions "
+	},
+	{
+		"name": "80 contributions",
+		"activate": 0,
+		"imageUrl": "./images/badges/80_contribution.svg",
+		"type":"contribution",
+		"description":" Badge obtenu à la 80 contributions "
+	},
+	{
 		"name": "1er arrondissement",
 		"activate": 0,
 		"imageUrl": "./images/badges/1Ardt_MARSEILLE.svg",
 		"type":"arrondissement",
 		"description":" Badge obtenu à la première contribution dans le 1er arrondissement de Marseille."
-	}
+	},
+	{
+		"name": "2e arrondissement",
+		"activate": 0,
+		"imageUrl": "./images/badges/2Ardt_MARSEILLE.svg",
+		"type":"arrondissement",
+		"description":" Badge obtenu à la première contribution dans le 2e arrondissement de Marseille."
+	},
+	{
+		"name": "3e arrondissement",
+		"activate": 0,
+		"imageUrl": "./images/badges/3Ardt_MARSEILLE.svg",
+		"type":"arrondissement",
+		"description":" Badge obtenu à la première contribution dans le 3e arrondissement de Marseille."
+	},
+	{
+		"name": "4e arrondissement",
+		"activate": 0,
+		"imageUrl": "./images/badges/4Ardt_MARSEILLE.svg",
+		"type":"arrondissement",
+		"description":" Badge obtenu à la première contribution dans le 4e arrondissement de Marseille."
+	},
+	{
+		"name": "5e arrondissement",
+		"activate": 0,
+		"imageUrl": "./images/badges/5Ardt_MARSEILLE.svg",
+		"type":"arrondissement",
+		"description":" Badge obtenu à la première contribution dans le 5e arrondissement de Marseille."
+	},
+	{
+		"name": "6e arrondissement",
+		"activate": 0,
+		"imageUrl": "./images/badges/6Ardt_MARSEILLE.svg",
+		"type":"arrondissement",
+		"description":" Badge obtenu à la première contribution dans le 6e arrondissement de Marseille."
+	},
+	{
+		"name": "7e arrondissement",
+		"activate": 0,
+		"imageUrl": "./images/badges/7Ardt_MARSEILLE.svg",
+		"type":"arrondissement",
+		"description":" Badge obtenu à la première contribution dans le 7e arrondissement de Marseille."
+	},
+	{
+		"name": "8e arrondissement",
+		"activate": 0,
+		"imageUrl": "./images/badges/8Ardt_MARSEILLE.svg",
+		"type":"arrondissement",
+		"description":" Badge obtenu à la première contribution dans le 8e arrondissement de Marseille."
+	},
+	{
+		"name": "9e arrondissement",
+		"activate": 0,
+		"imageUrl": "./images/badges/9Ardt_MARSEILLE.svg",
+		"type":"arrondissement",
+		"description":" Badge obtenu à la première contribution dans le 9e arrondissement de Marseille."
+	},
+	{
+		"name": "10e arrondissement",
+		"activate": 0,
+		"imageUrl": "./images/badges/10Ardt_MARSEILLE.svg",
+		"type":"arrondissement",
+		"description":" Badge obtenu à la première contribution dans le 10e arrondissement de Marseille."
+	},
+	{
+		"name": "11e arrondissement",
+		"activate": 0,
+		"imageUrl": "./images/badges/11Ardt_MARSEILLE.svg",
+		"type":"arrondissement",
+		"description":" Badge obtenu à la première contribution dans le 11e arrondissement de Marseille."
+	},
+	{
+		"name": "12e arrondissement",
+		"activate": 0,
+		"imageUrl": "./images/badges/12Ardt_MARSEILLE.svg",
+		"type":"arrondissement",
+		"description":" Badge obtenu à la première contribution dans le 12e arrondissement de Marseille."
+	},
+	{
+		"name": "13e arrondissement",
+		"activate": 0,
+		"imageUrl": "./images/badges/13Ardt_MARSEILLE.svg",
+		"type":"arrondissement",
+		"description":" Badge obtenu à la première contribution dans le 13e arrondissement de Marseille."
+	},
+	{
+		"name": "14e arrondissement",
+		"activate": 0,
+		"imageUrl": "./images/badges/14Ardt_MARSEILLE.svg",
+		"type":"arrondissement",
+		"description":" Badge obtenu à la première contribution dans le 14e arrondissement de Marseille."
+	},
+	{
+		"name": "15e arrondissement",
+		"activate": 0,
+		"imageUrl": "./images/badges/15Ardt_MARSEILLE.svg",
+		"type":"arrondissement",
+		"description":" Badge obtenu à la première contribution dans le 15e arrondissement de Marseille."
+	},
+	{
+		"name": "16e arrondissement",
+		"activate": 0,
+		"imageUrl": "./images/badges/16Ardt_MARSEILLE.svg",
+		"type":"arrondissement",
+		"description":" Badge obtenu à la première contribution dans le 16e arrondissement de Marseille."
+	},
+	{
+		"name": "Tous les arrondissements de la ville de Marseille",
+		"activate": 0,
+		"imageUrl": "./images/badges/TOUSArdt_MARSEILLE.svg",
+		"type":"arrondissement",
+		"description":" Badge obtenu pour une contribution dans chaque arrondissement de la ville de Marseille.'"
+	},
 ]
