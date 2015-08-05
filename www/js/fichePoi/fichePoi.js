@@ -10,13 +10,9 @@ var fichePoiView = baseview.extend({
     template: require('./fichePoi.html'),
     initialize: function () {
         //moment.locale('fr');
-        /*$('.burgerJs').hide();
-        $('.navbar-brand').before("<a href='#boucleDetail' type='button' class='navbar-toggle arrowLeftJs'><span class='glyphicon glyphicon-menu-left'></span></a>");
-        $('.navbar-brand').text(this.model.get('name_fr'));*/
     },
     serialize: function () {
         var self = this;
-        console.log(self.model.get('period').get('interval'));
         var openingDays = [];
         _.forEach(self.model.get('period').get('interval'), function(isOpen, index) {
             if ( isOpen )
@@ -41,14 +37,8 @@ var fichePoiView = baseview.extend({
         });*/
     },
     remove: function() {
-        /*$('.arrowLeftJs').remove();
-        $('.burgerJs').show();
-        $('.navbar-brand').text('Mon jardin en ville');*/
         baseview.prototype.remove.apply(this, arguments);
     }
-
-
-
 });
 
 module.exports = {
