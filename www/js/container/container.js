@@ -21,7 +21,8 @@ var ContainerView = baseview.extend({
         events: {
             'click [data-toggle=sidenav]': 'toggleSideNav',
             'click .sidenav': 'onSideNavClick',
-            'click .header-js' : 'goToprofile'
+            'click .header-js' : 'goToprofile',
+            'click .btn-back' : 'historyBack'
         },
 
         toggleSideNav: function(){
@@ -34,6 +35,9 @@ var ContainerView = baseview.extend({
 
         goToprofile: function(){
             router.navigate('#profile',{trigger: true});
+        },
+        historyBack: function(){
+            window.history.back();
         }
     });
 
