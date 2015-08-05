@@ -1,0 +1,20 @@
+.disabled,.disabled a {
+	cursor: default !important;
+	pointer-events: none;
+}
+
+.btn.disabled,
+input[readonly],
+select[readonly] {
+    color: gray;
+}
+
+.interface-disabled {
+    opacity: 0.3;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
