@@ -24,10 +24,15 @@ var profileView = require('./profile/profile'),
             'loop/map': "boucleCarteViewDisplay",
             'loop/details': "boucleDetailViewDisplay",
             'fiche/:poiId': "ficheViewDisplay",
+            'contribution': 'contributionViewDisplay'
         },
 
         homeViewDisplay: function() {
             controller.homeViewDisplay();
+        },
+
+        contributionViewDisplay: function() {
+            controller.contributionViewDisplay();
         },
 
         profileViewDisplay: function() {
@@ -40,14 +45,14 @@ var profileView = require('./profile/profile'),
         },
 
         boucleDetailViewDisplay: function() {
-            $('body').alterClass('section-*', 'section-loop section-loop-map');
+            $('body').alterClass('section-*', 'section-loop section-loop-details');
             var boucleDetailV = new boucleDetailView.view({
                 model: magicTourInstance
             });
             this.displayView(boucleDetailV);
         },
         boucleCarteViewDisplay: function() {
-            $('body').alterClass('section-*', 'section-loop section-loop-details');
+            $('body').alterClass('section-*', 'section-loop section-loop-map');
             var boucleCarteV = new boucleCarteView.view({
                 model: magicTourInstance
             });
