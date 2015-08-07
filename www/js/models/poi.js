@@ -56,9 +56,14 @@ PoiCollection = Backbone.Collection.extend({
 
 });
 
+var instance = new Poi();
+var instancePoiCollection = new PoiCollection();
+
 Backbone.$ = $;
 
 module.exports = {
+    instance: instance,
+    instancePoiCollection: instancePoiCollection,
     Poi: Poi,
     PoiCollection: PoiCollection
 };
