@@ -1,4 +1,4 @@
-[	{
+[{
 		"name": "Bienvenue",
 		"activate": 0,
 		"imageUrl": "./images/badges/bienvenue.svg",
@@ -172,5 +172,5 @@
 		"imageUrl": "./images/badges/TOUSArdt_MARSEILLE.svg",
 		"type":"arrondissement",
 		"description":" Badge obtenu pour une contribution dans chaque arrondissement de la ville de Marseille.'"
-	},
+	}
 ]
