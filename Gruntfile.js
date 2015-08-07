@@ -54,7 +54,7 @@ module.exports = function(grunt) {
             },
             target: {
                 files: {
-                    'www/index.css': [
+                    'www/css/index.css': [
                         './node_modules/bootstrap/dist/css/bootstrap.min.css',
                         './node_modules/planet-maps/dist/ol.css',
                         './www/css/swiper.min.css',
@@ -91,6 +91,15 @@ module.exports = function(grunt) {
                     ['node-underscorify', {templateSettings: {variable: 'data'}}]
                 ]
             }
+        },
+        copy: {
+            fonts: {
+                expand: true,
+                src: ['./node_modules/bootstrap/fonts/*'],
+                dest: 'www/fonts/',
+                filter: 'isFile',
+                flatten: true
+            },
         }
     });
 
@@ -99,8 +108,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-browserify');
+    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('build', ['jshint', 'cssmin', 'browserify:dev']);
+    grunt.registerTask('build', ['jshint', 'cssmin', 'browserify:dev','copy']);
     grunt.registerTask('dev', ['build', 'connect', 'watch']);
     grunt.registerTask('default', ['build']);
 };
