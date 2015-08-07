@@ -2,14 +2,26 @@
 
 var $ = require('jquery');
 
-var homeView = require('./home/home');
+var homeView = require('./home/home'),
+    contributionView = require('./contribution/contribution');
+
+var poi = require('./models/poi');
 
 var Controller = function(){
     var self = this;
 	self.homeViewDisplay = function () {
-            $('body').alterClass('section-*', 'section-home');
-            var homeV = new homeView.view();
-            self.displayView(homeV);
+        $('body').alterClass('section-*', 'section-home');
+        var homeV = new homeView.view();
+        self.displayView(homeV);
+    };
+
+    self.contributionViewDisplay = function () {
+        $('body').alterClass('section-*', 'section-contribution');
+        var poiM = new poi.Poi();
+        var contributionV = new contributionView.view({
+            model: poiM
+        });
+        self.displayView(contributionV);
     };
 
 
