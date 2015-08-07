@@ -1,0 +1,132 @@
+<% data.collection %>
+<%  var _ = require('lodash'); %>
+<div id="poi-form" class="page page-contribution scrollable with-header">
+    <form>
+        <h2>description</h2>
+        <div class="control-group">
+            <label class="control-label"></label>
+            <div class="controls">
+                <div class="row-fluid img-preview"> <img class="editor-picture-img" src="" >
+                    <input type="file" accept="image/*" capture="" id="input-picture"> 
+                </div>
+                <div class="help-inline"></div>
+                <div class="help-block"></div>
+            </div>
+        </div>
+        <div data-fields="name,type_id,street,postal_code,desc">
+            <div>
+                <label for="c2_name">Name</labesl>
+                <div> <span data-editor=""><input id="c2_name" name="name" type="text"><%= data.model.get('name') %></span>
+                    <div data-error=""></div>
+                    <div></div>
+                </div>
+            </div>
+            <div>
+                <label for="c2_type_id">Type_id</label>
+                <div> <span data-editor="">
+                	<select id="c2_type_id" name="type_id">
+                		<% _.each(data.typepoiinstance.attributes,function(type,key){ %>
+                			<option value="<%= type.type_id %>"><%= type.name_fr %></option> 
+                		<% }); %>
+
+                	</select></span>
+                    <div data-error=""></div>
+                    <div></div>
+                </div>
+            </div>
+            <div>
+                <label for="c2_street">Street</label>
+                <div> <span data-editor=""><input id="c2_street" name="street" type="text"></span>
+                    <div data-error=""></div>
+                    <div></div>
+                </div>
+            </div>
+            <div>
+                <label for="c2_postal_code">Postal_code</label>
+                <div> <span data-editor=""><input id="c2_postal_code" name="postal_code" type="number" step="any"></span>
+                    <div data-error=""></div>
+                    <div></div>
+                </div>
+            </div>
+            <div>
+                <label for="c2_desc">Desc</label>
+                <div> <span data-editor=""><textarea id="c2_desc" name="desc"></textarea></span>
+                    <div data-error=""></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <h2>géolocalisation</h2>
+        <div data-fields="longitude,latitude">
+            <div>
+                <label for="c2_longitude">Longitude</label>
+                <div> <span data-editor=""><input id="c2_longitude" name="longitude" type="number" step="any"></span>
+                    <div data-error=""></div>
+                    <div></div>
+                </div>
+            </div>
+            <div>
+                <label for="c2_latitude">Latitude</label>
+                <div> <span data-editor=""><input id="c2_latitude" name="latitude" type="number" step="any"></span>
+                    <div data-error=""></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <h2>Informations optionnelles</h2>
+        <div data-fields="visit_time_min,visit_time_max,price_min,price_max,phone,mail,withchild">
+            <div>
+                <label for="c2_visit_time_min">Visit_time_min</label>
+                <div> <span data-editor=""><select id="c2_visit_time_min" name="visit_time_min"><option>5 min</option><option>10 min</option><option>20 min</option><option>30 min</option><option>60 min</option><option>1h30</option><option>2h</option><option>3h</option></select></span>
+                    <div data-error=""></div>
+                    <div></div>
+                </div>
+            </div>
+            <div>
+                <label for="c2_visit_time_max">Visit_time_max</label>
+                <div> <span data-editor=""><select id="c2_visit_time_max" name="visit_time_max"><option>10 min</option><option>20 min</option><option>30 min</option><option>60 min</option><option>1h30</option><option>2h</option><option>3h</option><option>4h</option></select></span>
+                    <div data-error=""></div>
+                    <div></div>
+                </div>
+            </div>
+            <div>
+                <label for="c2_price_min">Price_min</label>
+                <div> <span data-editor=""><select id="c2_price_min" name="price_min"><option>gratuit</option><option>1€</option><option>2€</option><option>3€</option><option>5€</option><option>10€</option><option>20€</option><option>50€</option></select></span>
+                    <div data-error=""></div>
+                    <div></div>
+                </div>
+            </div>
+            <div>
+                <label for="c2_price_max">Price_max</label>
+                <div> <span data-editor=""><select id="c2_price_max" name="price_max"><option>1€</option><option>2€</option><option>3€</option><option>5€</option><option>10€</option><option>20€</option><option>50€</option><option>100€</option></select></span>
+                    <div data-error=""></div>
+                    <div></div>
+                </div>
+            </div>
+            <div>
+                <label for="c2_phone">Phone</label>
+                <div> <span data-editor=""><input id="c2_phone" name="phone" type="text"></span>
+                    <div data-error=""></div>
+                    <div></div>
+                </div>
+            </div>
+            <div>
+                <label for="c2_mail">Mail</label>
+                <div> <span data-editor=""><input id="c2_mail" name="mail" type="text"></span>
+                    <div data-error=""></div>
+                    <div></div>
+                </div>
+            </div>
+            <div>
+                <label for="c2_withchild">Withchild</label>
+                <div> <span data-editor=""><input id="c2_withchild" name="withchild" type="text"></span>
+                    <div data-error=""></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="submit" class="btn btn-primary submit" name="Ajouter" value="Ajouter">
+        </div>
+    </form>
+</div>
