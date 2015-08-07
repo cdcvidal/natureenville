@@ -1,5 +1,7 @@
 var Backbone = require('backbone'),
-    $ = require('jquery');
+    $ = require('jquery'),
+    moment = require('moment')
+    ;
 
 Backbone.LocalStorage = require("backbone.localstorage");
 
@@ -10,8 +12,8 @@ Period = Backbone.Model.extend({
         interval: [1,1,1,1,1,1,1],
         open_hour: 0,
         close_hour: 0,
-        open_date: 21/07/2015,
-        close_date: 21/07/2015
+        open_date:  moment().format("DD/MM/YYYY"),
+        close_date:  moment().format("DD/MM/YYYY")
                 
 
       };
