@@ -2,8 +2,8 @@ platforms
 plugins
 node_modules
 www/index.js
-www/index.css
-www/index.css.map
+www/css/index.css
+www/css/index.css.map
 www/templates.js
 .DS_Store
 npm-debug.log
