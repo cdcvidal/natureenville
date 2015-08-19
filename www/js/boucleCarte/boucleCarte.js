@@ -300,11 +300,39 @@ var boucleCarteView = baseview.extend({
     },
 
     onBtnDistanceClick: function(e) {
+        /*
+         * TODO:
+         * - R/W link with currentMagicTourrequest0
+         * - set up icons
+         *      .bootstrap-dialog-title span
+         *      .slider-handle.custom + handle: 'custom'
+         */
+        var Slider = require('bootstrap-slider'),
+            $html = $('<p id="distance-form">1 <input type="text" /> 20</p>'),
+            slider = new Slider($html.find('input').get(0), {
+                min: 1,
+                max: 20,
+                tooltip: 'always',
+                tooltip_position: 'bottom',
+                formatter: function(val) {
+                    return val + ' Km';
+                }
+            });
+
         dialog.show({
-            title: '<span class="glyphicon glyphicon-road"></span> Distance max.',
-            message: 'TODO',
-            cssClass: 'bottom-sheet theme-lime'
+            title: '<span class="glyphicon glyphicon-road"></span> Distance maximale',
+            message: $html,
+            cssClass: 'bottom-sheet theme-lime',
+            onshown: function() {
+                /*
+                 * initial tooltip positionning is wrong because $elt.offsetWidth is 0
+                 * offsetWidth is 0 because slider is in this modal which has not been attached to the DOM yet
+                 * hence, set the value (trigger tooltip positionning) on event shown.bs.modal
+                 */
+                slider.setValue(5);
+            }
         });
+
         e.preventDefault();
     },
 

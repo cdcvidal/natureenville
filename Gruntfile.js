@@ -55,6 +55,7 @@ module.exports = function(grunt) {
             target: {
                 files: {
                     'www/css/index.css': [
+                        './node_modules/bootstrap-slider/css/bootstrap-slider.css',
                         './node_modules/bootstrap/dist/css/bootstrap.min.css',
                         './node_modules/planet-maps/dist/ol.css',
                         './www/css/swiper.min.css',

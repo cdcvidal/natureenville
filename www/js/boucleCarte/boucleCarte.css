@@ -2,10 +2,43 @@
     /* FIXME: set 100% for all ancestors? */
     height: 500px;
 }
+
+/* Map positionning */
+
 #map {
     position: absolute;
     top: 41px;
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+/* Slider for distance form */
+
+#distance-form {
+    text-align: center;
+}
+#distance-form .slider {
+    width: 75%;
+    margin: 1em;
+}
+#distance-form .slider.slider-horizontal .slider-track {
+    height: 6px;
+    margin-top: -3px;
+}
+#distance-form .slider.slider-horizontal .slider-handle {
+    margin-top: -7px;
+}
+#distance-form .slider .slider-selection {
+    background: #8BE129;
+}
+#distance-form .slider .tooltip-main {
+    margin-top: 0px;
+}
+#distance-form .slider .tooltip-arrow {
+    display: none;
+}
+#distance-form .slider .tooltip-inner {
+    background-color: transparent;
+    border-radius: initial;
 }
