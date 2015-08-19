@@ -261,33 +261,8 @@ var boucleCarteView = baseview.extend({
     },
 
     onBtnInterestClick: function(e) {
-
-        /* Not very beautyfull but it works */
-
-        var interests = {
-            parc: {
-                label: 'Parcs et Jardins'
-            },
-            avenue_bordee: {
-                label: 'Avenues Bordées'
-            },
-            lieu_insolite: {
-                label: 'Lieux insolites'
-            }
-        };
-
-        var $ul = $('<ul />');
-        _.forEach(interests, function(interest, name) {
-            var $li = $('<li>'+interest.label+'</li>');
-            $ul.append($li);
-        });
-
-        dialog.show({
-            title: '<span class="glyphicon glyphicon-heart"></span> Centres d\'Intérêts',
-            message: $ul,
-            cssClass: 'bottom-sheet theme-orange'
-        });
         e.preventDefault();
+        require('./interestForm.js').open();
     },
 
     onBtnPositionClick: function(e) {
