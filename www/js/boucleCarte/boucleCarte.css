@@ -79,3 +79,18 @@
     content: "\2713"; /* TODO: prettify, change char or font or both */
     color: #3EB088;
 }
+
+/* Time form */
+
+#time-form .swiper-wrapper {
+    margin-top: -10em;
+    margin-bottom: -10em;
+}
+#time-form .swiper-slide {
+    height: 2em;
+    font-size: 2em;
+    text-align: center;
+}
+#time-form .swiper-slide-active {
+    color: #FFD104;
+}

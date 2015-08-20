@@ -280,12 +280,8 @@ var boucleCarteView = baseview.extend({
     },
 
     onBtnTimeClick: function(e) {
-        dialog.show({
-            title: '<span class="glyphicon glyphicon-time"></span> Durée max.',
-            message: 'TODO',
-            cssClass: 'bottom-sheet theme-yellow'
-        });
         e.preventDefault();
+        require('./timeForm.js').open();
     }
 });
 
