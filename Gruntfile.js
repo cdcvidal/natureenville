@@ -58,7 +58,7 @@ module.exports = function(grunt) {
                         './node_modules/bootstrap-slider/css/bootstrap-slider.css',
                         './node_modules/bootstrap/dist/css/bootstrap.min.css',
                         './node_modules/planet-maps/dist/ol.css',
-                        './www/css/swiper.min.css',
+                        './node_modules/swiper/dist/css/swiper.min.css',
                         './www/vendor/bootstrap-dialog/css/bootstrap-dialog.css',
                         './www/css/general.css',
                         './www/css/page-container.css',
