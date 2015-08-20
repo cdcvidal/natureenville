@@ -3,13 +3,11 @@ var Backbone = require('backbone'),
     $ = require('jQuery'),
     currentPos = require('./current-position'),
     moment = require('moment'),
-    momentFr = require('moment/locale/fr'),
-    _ = require('lodash');
+    momentFr = require('moment/locale/fr');
 
 var bootstrap = require('bootstrap');
 var jqueryNs = require('jquery-ns');
 var magicTourInstance = require('./models/magictour').instance;
-var magicTourRequest = require('./models/magictourrequest');
 var badgesInstanceColl = require('./models/badge').instanceColl;
 var badgesColl = require('./models/badge').BadgeCollection;
 
@@ -37,7 +35,7 @@ function init() {
                     badgesInstanceColl.fetch({
                         ajaxSync: true,
                         success : function(response){
-                            _.forEach(response.models,function(n,key){
+                            response.models.forEach(function(n, key){
                                 badgesInstanceColl.add(n).save();
                             });
                         }
@@ -49,7 +47,7 @@ function init() {
     });
 
     $.when.apply(null, deferreds).then(function() {
-        var currentMagicTourrequest = new magicTourRequest.MagicTourRequest({
+        magicTourInstance.setRequestParams({
             user_id: 'f6f7d00b53428a390d04a63bd3d2f3e5f81b0f6e',
             // arr_x: currentPos.get('longitude'),
             // arr_y: currentPos.get('latitude'),
@@ -57,9 +55,7 @@ function init() {
             // dep_x: currentPos.get('longitude'),
             // dep_y: currentPos.get('latitude')
         });
-        
         return magicTourInstance.fetch({
-            data: currentMagicTourrequest.attributes,
             //type: 'POST',
         });
     }).done(function (responseData) {

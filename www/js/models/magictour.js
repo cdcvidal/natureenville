@@ -1,7 +1,9 @@
 'use strict';
 
 var Backbone = require('backbone'),
-    $ = require('jquery');
+    $ = require('jquery'),
+    _ = require('lodash'),
+    MagicTourRequest = require('./magictourrequest').MagicTourRequest;
 
 
 Backbone.LocalStorage = require("backbone.localstorage");
@@ -17,8 +19,20 @@ var MagicTour = Backbone.Model.extend({
       };
     },
 
-    initialize: function () {
+    initialize: function() {
+        this.request = new MagicTourRequest();
+    },
 
+    setRequestParams: function(params) {
+        this.request.set(params);
+        return this;
+    },
+
+    fetch: function(options) {
+        // Automatically include request params
+        options = _.extend({data: this.request.attributes}, options);
+        // Relay to original Backbone fetch method
+        return Backbone.Model.prototype.fetch.call(this, options);
     },
 
     //url: 'http://dev.optitour.fr/magic/naturalsolution/magictour/',
