@@ -48,7 +48,7 @@ function init() {
         }
     });
 
-    $.when.apply(null, deferreds).done(function() {
+    $.when.apply(null, deferreds).then(function() {
         var currentMagicTourrequest = new magicTourRequest.MagicTourRequest({
             user_id: 'f6f7d00b53428a390d04a63bd3d2f3e5f81b0f6e',
             // arr_x: currentPos.get('longitude'),
@@ -58,18 +58,16 @@ function init() {
             // dep_y: currentPos.get('latitude')
         });
         
-        magicTourInstance.fetch({
+        return magicTourInstance.fetch({
             data: currentMagicTourrequest.attributes,
             //type: 'POST',
-            success: function(responseData) {
-                var containerView = require('./container/container').instance;
-                containerView.render().$el.appendTo('body');
-                Backbone.history.start();
-            },
-            error: function(error) {
-                console.log(error);
-            }
         });
+    }).done(function (responseData) {
+        var containerView = require('./container/container').instance;
+        containerView.render().$el.appendTo('body');
+        Backbone.history.start();
+    }).fail(function (error) {
+        console.log(error);
     });
 }
 
