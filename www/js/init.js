@@ -8,7 +8,6 @@ var Backbone = require('backbone'),
 
 var bootstrap = require('bootstrap');
 var jqueryNs = require('jquery-ns');
-var magicTour = require('./models/magictour');
 var magicTourInstance = require('./models/magictour').instance;
 var magicTourRequest = require('./models/magictourrequest');
 var badgesInstanceColl = require('./models/badge').instanceColl;
@@ -50,7 +49,6 @@ function init() {
     });
 
     $.when.apply(null, deferreds).done(function() {
-        var currentMagicTour = new magicTour.MagicTour();
         var currentMagicTourrequest = new magicTourRequest.MagicTourRequest({
             user_id: 'f6f7d00b53428a390d04a63bd3d2f3e5f81b0f6e',
             // arr_x: currentPos.get('longitude'),
@@ -60,11 +58,10 @@ function init() {
             // dep_y: currentPos.get('latitude')
         });
         
-        currentMagicTour.fetch({
+        magicTourInstance.fetch({
             data: currentMagicTourrequest.attributes,
             //type: 'POST',
             success: function(responseData) {
-                magicTourInstance.set(responseData.attributes);
                 var containerView = require('./container/container').instance;
                 containerView.render().$el.appendTo('body');
                 Backbone.history.start();
