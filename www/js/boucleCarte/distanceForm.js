@@ -4,6 +4,7 @@
  * Dependencies
  */
 var Slider = require('bootstrap-slider'),
+    _ = require('lodash'),
     DialogView = require('./dialogView');
 
 
@@ -31,8 +32,13 @@ var DistanceFormView = DialogView.extend({
                 return val + ' Km';
             }
         });
+        this.slider.on('slideStop', _.bind(this.onSlide, this));
 
         DialogView.prototype.initialize.call(this, attributes, options);
+    },
+
+    onSlide: function(val) {
+        this.model.set('option_distance', val*1000);
     },
 
     afterRender: function() {
@@ -41,7 +47,8 @@ var DistanceFormView = DialogView.extend({
          * offsetWidth is 0 because slider is in this modal which has not been attached to the DOM yet
          * hence, set the value (trigger tooltip positionning) on event shown.bs.modal
          */
-        this.slider.setValue(5);
+        var distance = Math.round(this.model.get('option_distance')/1000);
+        this.slider.setValue(distance);
     }
 });
 
@@ -49,7 +56,6 @@ module.exports = DistanceFormView;
 
 /*
  * TODO:
- * - R/W link with currentMagicTourrequest0
  * - set up icons
  *      .bootstrap-dialog-title span
  *      .slider-handle.custom + handle: 'custom'

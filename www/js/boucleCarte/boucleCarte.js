@@ -273,7 +273,7 @@ var boucleCarteView = baseview.extend({
     onBtnDistanceClick: function(e) {
         e.preventDefault();
         var DistanceFormView = require('./distanceForm.js'),
-            dialog = new DistanceFormView();
+            dialog = new DistanceFormView({model: this.model.request});
         dialog.render();
     },
 
