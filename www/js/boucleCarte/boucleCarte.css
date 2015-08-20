@@ -94,3 +94,22 @@
 #time-form .swiper-slide-active {
     color: #FFD104;
 }
+
+/* Position form */
+
+#position-form {
+    text-align: center;
+}
+#position-form input {
+    width: 80%;
+    border: none;
+    border-bottom: 1px solid #888;
+    background-color: transparent;
+    margin: 0.2em;
+    padding: 0.2em;
+}
+#position-form span {
+    color: #F4004F;
+    top: 0.4em;
+    left: -0.4em;
+}

@@ -266,12 +266,8 @@ var boucleCarteView = baseview.extend({
     },
 
     onBtnPositionClick: function(e) {
-        dialog.show({
-            title: '<span class="glyphicon glyphicon-map-marker"></span> Point de départ',
-            message: 'TODO',
-            cssClass: 'bottom-sheet theme-magenta'
-        });
         e.preventDefault();
+        require('./positionForm.js').open();
     },
 
     onBtnDistanceClick: function(e) {
