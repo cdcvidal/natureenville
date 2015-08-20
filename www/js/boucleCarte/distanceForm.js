@@ -3,42 +3,49 @@
 /*
  * Dependencies
  */
-var $ = require('jquery'),
-    Slider = require('bootstrap-slider'),
-    Dialog = require('bootstrap-dialog');
+var Slider = require('bootstrap-slider'),
+    DialogView = require('./dialogView');
 
-/*
- * (Basic) template
- */
-var $html = $('<p id="distance-form">1 <input type="text" /> 20</p>');
 
-/*
- * Slider configuration
- */
-var slider = new Slider($html.find('input').get(0), {
-        min: 1,
-        max: 20,
-        tooltip: 'always',
-        tooltip_position: 'bottom',
-        formatter: function(val) {
-            return val + ' Km';
-        }
-    });
+var DistanceFormView = DialogView.extend({
 
-// Module export a dialog ready to be opened
-module.exports = new Dialog({
-    title: '<span class="glyphicon glyphicon-road"></span> Distance maximale',
-    message: $html,
-    cssClass: 'bottom-sheet theme-lime',
-    onshown: function() {
+    tagName: 'p',
+    id: 'distance-form',
+
+    dialogOptions: {
+        title: '<span class="glyphicon glyphicon-road"></span> Distance maximale',
+        cssClass: 'bottom-sheet theme-lime'
+    },
+
+    initialize: function (attributes, options) {
+        // Generate HTML content
+        this.el.innerHTML = '1 <input type="text" /> 20';
+
+        // Configure slider
+        this.slider = new Slider(this.$el.find('input').get(0), {
+            min: 1,
+            max: 20,
+            tooltip: 'always',
+            tooltip_position: 'bottom',
+            formatter: function(val) {
+                return val + ' Km';
+            }
+        });
+
+        DialogView.prototype.initialize.call(this, attributes, options);
+    },
+
+    afterRender: function() {
         /*
          * initial tooltip positionning is wrong because $elt.offsetWidth is 0
          * offsetWidth is 0 because slider is in this modal which has not been attached to the DOM yet
          * hence, set the value (trigger tooltip positionning) on event shown.bs.modal
          */
-        slider.setValue(5);
+        this.slider.setValue(5);
     }
 });
+
+module.exports = DistanceFormView;
 
 /*
  * TODO:
