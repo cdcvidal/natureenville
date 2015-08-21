@@ -262,7 +262,9 @@ var boucleCarteView = baseview.extend({
 
     onBtnInterestClick: function(e) {
         e.preventDefault();
-        require('./interestForm.js').open();
+        var InterestFormView = require('./interestForm.js'),
+            dialog = new InterestFormView();
+        dialog.render();
     },
 
     onBtnPositionClick: function(e) {

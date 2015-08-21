@@ -4,7 +4,7 @@
  * Dependencies
  */
 var $ = require('jquery'),
-    Dialog = require('bootstrap-dialog');
+    DialogView = require('./dialogView');
 
 /*
  * Data
@@ -25,31 +25,39 @@ var interests = {
     }
 };
 
-/*
- * Handle item selection
- */
-function onClick(evt) {
-    /*jshint validthis: true */
-    $(this).toggleClass('active');
-}
+var InterestFormView = DialogView.extend({
 
-/*
- * Template, sort of...
- */
-var $ul = $('<ul id="interest-form" />'),
-    k, $li;
-for (k in interests) {
-    $li = $('<li class="interest-' + interests[k].code + '">' + interests[k].label + '</li>');
-    $li.on('click', onClick);
-    $ul.append($li);
-}
+    tagName: 'ul',
+    id: 'interest-form',
 
-// Module export a dialog ready to be opened
-module.exports = new Dialog({
-    title: '<span class="glyphicon glyphicon-heart"></span> Centres d\'Intérêts',
-    message: $ul,
-    cssClass: 'bottom-sheet theme-orange'
+    events: {
+        'click li': 'onClick'
+    },
+
+    dialogOptions: {
+        title: '<span class="glyphicon glyphicon-heart"></span> Centres d\'Intérêts',
+        cssClass: 'bottom-sheet theme-orange'
+    },
+
+    initialize: function(attributes, options) {
+        // Generate HTML content
+        var k, $li;
+        for (k in interests) {
+            $li = $('<li class="interest-' + interests[k].code + '">' + interests[k].label + '</li>');
+            $li.appendTo(this.$el);
+        }
+
+        DialogView.prototype.initialize.call(this, attributes, options);
+    },
+
+    onClick: function(evt) {
+        // Handle item selection
+        var $li = $(evt.target);
+        $li.toggleClass('active');
+    }
 });
+
+module.exports = InterestFormView;
 
 /*
  * TODO:
