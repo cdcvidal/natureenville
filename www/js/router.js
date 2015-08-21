@@ -6,7 +6,7 @@ var _ = require('lodash');
 
 var poi = require('./models/poi');
 var magicTour = require('./models/magictour');
-var userInstance = require('./models/user').instance;
+var user = require('./models/user');
 var controller = require('./controller');
 
 
@@ -38,7 +38,7 @@ var profileView = require('./profile/profile'),
         profileViewDisplay: function() {
             $('body').alterClass('section-*', 'section-loop section-profile');
             var profileV = new profileView.view({
-                    model: userInstance,
+                    model: user,
                     collection: badgesInstanceColl
                 });
             this.displayView(profileV);

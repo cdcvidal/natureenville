@@ -1,11 +1,10 @@
 var Backbone = require('backbone'),
-    period = require('./period');
+    Period = require('./period');
 
 Backbone.LocalStorage = require("backbone.localstorage");
 
-Poi = Backbone.Model.extend({
-    defaults: function() {
-      return {
+var Poi = Backbone.Model.extend({
+    defaults: {
         externalId: 0,
         longitude: 0,
         latitude: 0,
@@ -36,30 +35,23 @@ Poi = Backbone.Model.extend({
         desc_it:'',
         withchild: true ,
         period: {}
-
-      };
     },
 
     initialize: function () {
-        var Mperiod = new period.Period();
-        this.set("period",Mperiod);
+        this.set("period", new Period());
     },
 
 });
-PoiCollection = Backbone.Collection.extend({
 
+var PoiCollection = Backbone.Collection.extend({
     model: Poi,
-	url: '',
-	localStorage: new Backbone.LocalStorage("PoiCollection"),
-
+    url: '',
+    localStorage: new Backbone.LocalStorage("PoiCollection"),
 });
 
-var instance = new Poi();
-var instancePoiCollection = new PoiCollection();
-
 module.exports = {
-    instance: instance,
-    instancePoiCollection: instancePoiCollection,
+    instance: new Poi(),
+    instancePoiCollection: new PoiCollection(),
     Poi: Poi,
     PoiCollection: PoiCollection
 };

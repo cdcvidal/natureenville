@@ -8,7 +8,7 @@ var Backbone = require('backbone'),
 ;
 
 var poi = require('../models/poi').instance;
-var typepoi = require('../models/typepoi').instance;
+var typepoi = require('../models/typepoi');
 var poiCollection = require('../models/poi').instancePoiCollection;
 
 
