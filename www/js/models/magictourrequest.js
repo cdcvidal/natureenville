@@ -38,6 +38,18 @@ var MagicTourRequest = Backbone.Model.extend({
 
     url: 'http://dev.optitour.fr/magic/naturalsolution/magictour/',
 
+    getTimeLabel: function() {
+        var t = parseInt(this.get('option_temps')),
+            step = this.timeSteps.filter(function(ts) {
+                return ts.value === t;
+            });
+        if (step.length) {
+            return step[0].label;
+        } else {
+            return '';
+        }
+    },
+
     getDistanceKm: function() {
         return Math.round(this.get('option_distance') / 1000);
     }

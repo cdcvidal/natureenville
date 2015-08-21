@@ -250,6 +250,7 @@ var boucleCarteView = baseview.extend({
 
     updateButtonLabels: function () {
         this.$el.find('.btn-distance .badge').text(this.model.request.getDistanceKm() + ' Km');
+        this.$el.find('.btn-time .badge').text(this.model.request.getTimeLabel());
     },
 
     afterRender: function () {
