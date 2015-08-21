@@ -83,8 +83,9 @@
 /* Time form */
 
 #time-form .swiper-wrapper {
-    margin-top: -10em;
-    margin-bottom: -10em;
+    /* I'm not sure why this work... Might be wrong on different screen size */
+    margin-top: 0em;
+    margin-bottom: -20em;
 }
 #time-form .swiper-slide {
     height: 2em;
