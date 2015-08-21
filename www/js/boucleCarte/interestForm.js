@@ -4,26 +4,8 @@
  * Dependencies
  */
 var $ = require('jquery'),
+    generalTypes = require('../models/generaltypepoi'),
     DialogView = require('./dialogView');
-
-/*
- * Data
- * FIXME: would rather come from a reference data module or something like that
- */
-var interests = {
-    parc: {
-        label: 'Parcs et Jardins',
-        code: 3
-    },
-    avenue_bordee: {
-        label: 'Avenues Bordées',
-        code: 1
-    },
-    lieu_insolite: {
-        label: 'Lieux insolites',
-        code: 4
-    }
-};
 
 var InterestFormView = DialogView.extend({
 
@@ -43,17 +25,17 @@ var InterestFormView = DialogView.extend({
 
     initialize: function(attributes, options) {
         // Decode request data
-        this.req = JSON.parse(this.model.get('etype_einflu'));
+        var req = this.req = JSON.parse(this.model.get('etype_einflu')),
+            $el = this.$el;
 
         // Generate HTML content
-        var k, $li;
-        for (k in interests) {
-            $li = $('<li class="interest-' + interests[k].code + '" data-code="' + interests[k].code + '">' + interests[k].label + '</li>');
-            if (interests[k].code in this.req && parseInt(this.req[interests[k].code]) > 0) {
+        generalTypes.each(function(gType) {
+            var $li = $('<li class="interest-' + gType.id + '" data-id="' + gType.id + '">' + gType.get('name_fr') + '</li>');
+            if (gType.id in req && parseInt(req[gType.id]) > 0) {
                 $li.addClass('active');
             }
-            $li.appendTo(this.$el);
-        }
+            $li.appendTo($el);
+        });
 
         DialogView.prototype.initialize.call(this, attributes, options);
     },
@@ -69,7 +51,7 @@ var InterestFormView = DialogView.extend({
         // Handle item selection
         var $li = $(evt.target);
         $li.toggleClass('active');
-        this.req[$li.data('code')] = $li.hasClass('active') * 1; // Cast true/false to a weight of 1/0
+        this.req[$li.data('id')] = $li.hasClass('active') * 1; // Cast true/false to a weight of 1/0
 
         this.changed = true;
     }
@@ -79,6 +61,5 @@ module.exports = InterestFormView;
 
 /*
  * TODO:
- * - Move interests data structure to a shared module
  * - set up icons and fonts
  */
