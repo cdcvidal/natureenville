@@ -5,7 +5,7 @@ var $ = require('jquery');
 var _ = require('lodash');
 
 var poi = require('./models/poi');
-var magicTourInstance = require('./models/magictour').instance;
+var magicTour = require('./models/magictour');
 var userInstance = require('./models/user').instance;
 var controller = require('./controller');
 
@@ -47,20 +47,20 @@ var profileView = require('./profile/profile'),
         boucleDetailViewDisplay: function() {
             $('body').alterClass('section-*', 'section-loop section-loop-details');
             var boucleDetailV = new boucleDetailView.view({
-                model: magicTourInstance
+                model: magicTour
             });
             this.displayView(boucleDetailV);
         },
         boucleCarteViewDisplay: function() {
             $('body').alterClass('section-*', 'section-loop section-loop-map');
             var boucleCarteV = new boucleCarteView.view({
-                model: magicTourInstance
+                model: magicTour
             });
             this.displayView(boucleCarteV);
         },
         ficheViewDisplay: function(poiId) {
             $('body').alterClass('section-*', 'section-poi');
-            var currentPOI = _.find(magicTourInstance.attributes.stops, function(item) {
+            var currentPOI = _.find(magicTour.attributes.stops, function(item) {
                 return item.poi_id == poiId;
             });
 

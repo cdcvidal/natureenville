@@ -3,21 +3,21 @@
 var Backbone = require('backbone'),
     $ = require('jquery'),
     _ = require('lodash'),
-    MagicTourRequest = require('./magictourrequest').MagicTourRequest;
-
+    MagicTourRequest = require('./magictourrequest');
 
 Backbone.LocalStorage = require("backbone.localstorage");
 
 var MagicTour = Backbone.Model.extend({
-    defaults: function() {
-        return {
-            nb_stops: "2",
-            stops: [],
-            t_length: "0",
-            time: "0",
-            trip: []
-      };
+    defaults: {
+        nb_stops: "2",
+        stops: [],
+        t_length: "0",
+        time: "0",
+        trip: []
     },
+
+    //url: 'http://dev.optitour.fr/magic/naturalsolution/magictour/',
+    url: './data/tours.json',
 
     initialize: function() {
         this.request = new MagicTourRequest();
@@ -38,11 +38,7 @@ var MagicTour = Backbone.Model.extend({
         return Backbone.Model.prototype.fetch.call(this, options);
     },
 
-    //url: 'http://dev.optitour.fr/magic/naturalsolution/magictour/',
-    url: './data/tours.json',
-
     parse: function(response, options){
-        console.log('parse', response);
         if(response.success){
             if(response.tours){
                 return response.tours[0];
@@ -53,25 +49,11 @@ var MagicTour = Backbone.Model.extend({
             return defaultTour;
         }
     }
-
-});
-var MagicTourCollection = Backbone.Collection.extend({
-
-    model: MagicTour,
-	url: 'http://dev.optitour.fr/magic/naturalsolution/magictour/',
-	localStorage: new Backbone.LocalStorage("MagicTourCollection")
-
 });
 
 Backbone.$ = $;
 
-var instance = new MagicTour();
-
-module.exports = {
-    instance: instance,
-    MagicTour: MagicTour,
-    MagicTourCollection: MagicTourCollection
-};
+module.exports = new MagicTour();
 
 
 var defaultTour = {
