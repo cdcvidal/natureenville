@@ -8,8 +8,6 @@ var $ = require('jquery'),
 var router = require('../router');
 
 
-Backbone.$ = $;
-
 var ContainerView = baseview.extend({
         template: require('./app-container.html'),
 

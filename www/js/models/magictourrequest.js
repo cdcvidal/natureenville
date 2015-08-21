@@ -1,7 +1,6 @@
 'use strict';
 
-var Backbone = require('backbone'),
-    $ = require('jquery');
+var Backbone = require('backbone');
 
 Backbone.LocalStorage = require("backbone.localstorage");
 
@@ -24,7 +23,5 @@ var MagicTourRequest = Backbone.Model.extend({
 
     url: 'http://dev.optitour.fr/magic/naturalsolution/magictour/',
 });
-
-Backbone.$ = $;
 
 module.exports = MagicTourRequest;

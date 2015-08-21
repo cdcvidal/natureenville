@@ -1,8 +1,6 @@
 'use strict';
 
-var Backbone = require('backbone'),
-    $ = require('jquery');
-
+var Backbone = require('backbone');
 
 var TypePoi = Backbone.Model.extend({
     defaults: function() {
@@ -33,8 +31,6 @@ var TypePoiCollection = Backbone.Collection.extend({
     model: TypePoi,
 
 });
-
-Backbone.$ = $;
 
 var instance = new TypePoi();
 

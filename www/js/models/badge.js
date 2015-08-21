@@ -1,7 +1,5 @@
-var Backbone = require('backbone'),
-    $ = require('jquery');
+var Backbone = require('backbone');
 
-Backbone.$ = $;
 Backbone.LocalStorage = require("backbone.localstorage");
 
 Badge = Backbone.Model.extend({

@@ -1,7 +1,6 @@
 'use strict';
 
 var Backbone = require('backbone'),
-    $ = require('jquery'),
     _ = require('lodash'),
     MagicTourRequest = require('./magictourrequest');
 
@@ -50,8 +49,6 @@ var MagicTour = Backbone.Model.extend({
         }
     }
 });
-
-Backbone.$ = $;
 
 module.exports = new MagicTour();
 

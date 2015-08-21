@@ -1,13 +1,11 @@
 'use strict';
 
 var baseview = require('../baseview');
-var $ = require('jquery'),
-    Backbone = require('backbone'),
+var Backbone = require('backbone'),
     _ = require('lodash'),
     bootstrap = require('bootstrap'),
     dialog = require('bootstrap-dialog')
 ;
-Backbone.$ = $;
 
 var poi = require('../models/poi').instance;
 var typepoi = require('../models/typepoi').instance;
@@ -34,11 +32,11 @@ var contributionView = baseview.extend({
 
     onSubmit: function(e){
         e.preventDefault();
-        var name = $("input[name*='name']", this.$el).val();
-        var type_id = $("input[name*='type_id']", this.$el).val();
-        var street = $("input[name*='street']", this.$el).val();
-        var postal_code = $("input[name*='postal_code']", this.$el).val();
-        var desc = $("input[name*='desc']", this.$el).val();
+        var name = this.$el.find("input[name*='name']").val();
+        var type_id = this.$el.find("input[name*='type_id']").val();
+        var street = this.$el.find("input[name*='street']").val();
+        var postal_code = this.$el.find("input[name*='postal_code']").val();
+        var desc = this.$el.find("input[name*='desc']").val();
         var picture = this.getValue();
 
         this.model.set({
@@ -111,7 +109,7 @@ var contributionView = baseview.extend({
             };
             var copiedFile = function(fileEntry) {
                 console.log(fileEntry.nativeURL);
-                $('.editor-picture-img').attr('src', fileEntry.nativeURL);
+                this.$el.find('.editor-picture-img').attr('src', fileEntry.nativeURL);
             };
             var gotFileEntry = function(fileEntry) {
                 console.log("got image file entry: " + fileEntry.nativeURL);

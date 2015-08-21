@@ -1,7 +1,5 @@
 var Backbone = require('backbone'),
-    $ = require('jquery');
-
-var period = require('./period');
+    period = require('./period');
 
 Backbone.LocalStorage = require("backbone.localstorage");
 
@@ -58,8 +56,6 @@ PoiCollection = Backbone.Collection.extend({
 
 var instance = new Poi();
 var instancePoiCollection = new PoiCollection();
-
-Backbone.$ = $;
 
 module.exports = {
     instance: instance,

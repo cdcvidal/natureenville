@@ -1,5 +1,4 @@
 var Backbone = require('backbone'),
-    $ = require('jquery'),
     moment = require('moment')
     ;
 
@@ -37,8 +36,6 @@ PeriodCollection = Backbone.Collection.extend({
 
 
 });
-
-Backbone.$ = $;
 
 module.exports = {
     Period: Period,
