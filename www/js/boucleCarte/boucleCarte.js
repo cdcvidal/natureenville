@@ -281,7 +281,9 @@ var boucleCarteView = baseview.extend({
 
     onBtnTimeClick: function(e) {
         e.preventDefault();
-        require('./timeForm.js').open();
+        var TimeFormView = require('./timeForm.js'),
+            dialog = new TimeFormView();
+        dialog.render();
     }
 });
 

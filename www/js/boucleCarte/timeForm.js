@@ -4,7 +4,7 @@
  * Dependencies
  */
 var $ = require('jquery'),
-    Dialog = require('bootstrap-dialog'),
+    DialogView = require('./dialogView'),
     Swiper = require('swiper');
 
 /*
@@ -26,29 +26,33 @@ var timeSteps = [
     {value: 120, label: '2h'}
 ];
 
-/*
- * Template, sort of...
- */
-var i,
-    $container = $('<div id="time-form" class="swiper-container"><div class="swiper-wrapper"></div></div>'),
-    $wrapper = $container.find('.swiper-wrapper'),
-    mySwiper;
-for (i in timeSteps) {
-    $('<div class="swiper-slide" data-value="' + timeSteps[i].value + '">' + timeSteps[i].label + '</div>').appendTo($wrapper);
-}
 
-/*
- * Swiper configuration
- */
+var TimeFormView = DialogView.extend({
 
-// Module export a dialog ready to be opened
-module.exports = new Dialog({
-    title: '<span class="glyphicon glyphicon-time"></span> Durée maximale',
-    message: $container,
-    cssClass: 'bottom-sheet theme-yellow',
-    onshown: function(dialog) {
-        // Swiper could be initialized before DOM attachment, but it would require static width/height then...
-        mySwiper = new Swiper($container.get(0), {
+    tagName: 'div',
+    id: 'time-form',
+    className: 'swiper-container',
+
+    dialogOptions: {
+        title: '<span class="glyphicon glyphicon-time"></span> Durée maximale',
+        cssClass: 'bottom-sheet theme-yellow',
+    },
+
+    initialize: function(attributes, options) {
+        // Generate HTML content
+        var i, $wrapper = $('<div class="swiper-wrapper"></div>');
+        $wrapper.appendTo(this.$el);
+        for (i in timeSteps) {
+            $('<div class="swiper-slide" data-value="' + timeSteps[i].value + '">' + timeSteps[i].label + '</div>').appendTo($wrapper);
+        }
+
+        DialogView.prototype.initialize.call(this, attributes, options);
+    },
+
+    afterRender: function() {
+        // Swiper configuration
+        // Note: the swiper could be initialized before DOM attachment, but it would require static width/height then...
+        this.swiper = new Swiper(this.el, {
             direction: 'vertical',
             loop: false,
             centeredSlides: true,
@@ -70,8 +74,12 @@ module.exports = new Dialog({
     }
 });
 
+module.exports = TimeFormView;
+
 /*
  * TODO:
  * - R/W link with currentMagicTourrequest
+ * - Move time data structure to a shared module?
  * - fix sizing/positionning (need Vincent's help)
  */
+ 
