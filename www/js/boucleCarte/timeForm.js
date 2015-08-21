@@ -8,25 +8,6 @@ var $ = require('jquery'),
     DialogView = require('./dialogView'),
     Swiper = require('swiper');
 
-/*
- * Data
- * FIXME: would rather come from a reference data module or something like that
- */
-var timeSteps = [
-    {value: 10, label: '10min'},
-    {value: 15, label: '15min'},
-    {value: 20, label: '20min'},
-    {value: 25, label: '25min'},
-    {value: 30, label: '30min'},
-    {value: 40, label: '40min'},
-    {value: 50, label: '50min'},
-    {value: 60, label: '1h'},
-    {value: 75, label: '1h15'},
-    {value: 90, label: '1h30'},
-    {value: 105, label: '1h45'},
-    {value: 120, label: '2h'}
-];
-
 
 var TimeFormView = DialogView.extend({
 
@@ -43,7 +24,9 @@ var TimeFormView = DialogView.extend({
 
     initialize: function(attributes, options) {
         // Generate HTML content
-        var i, $wrapper = $('<div class="swiper-wrapper"></div>');
+        var i,
+            timeSteps = this.model.timeSteps,
+            $wrapper = $('<div class="swiper-wrapper"></div>');
         $wrapper.appendTo(this.$el);
         for (i in timeSteps) {
             $('<div class="swiper-slide" data-value="' + timeSteps[i].value + '">' + timeSteps[i].label + '</div>').appendTo($wrapper);
@@ -61,7 +44,7 @@ var TimeFormView = DialogView.extend({
     afterRender: function() {
         // Find index of the requested time
         var req = parseInt(this.model.get('option_temps')),
-            stepIndex = _.findIndex(timeSteps, function(s) {
+            stepIndex = _.findIndex(this.model.timeSteps, function(s) {
                 return s.value === req;
             }) || 0;
 
@@ -85,7 +68,7 @@ var TimeFormView = DialogView.extend({
             runCallbacksOnInit: false,
             onSlideChangeEnd: _.bind(function(swiper) {
                 this.changed = true;
-                this.model.set('option_temps', timeSteps[swiper.activeIndex].value);
+                this.model.set('option_temps', this.model.timeSteps[swiper.activeIndex].value);
             }, this)
         });
     }
@@ -95,7 +78,6 @@ module.exports = TimeFormView;
 
 /*
  * TODO:
- * - Move time data structure to a shared module?
  * - fix sizing/positionning (need Vincent's help)
  */
  

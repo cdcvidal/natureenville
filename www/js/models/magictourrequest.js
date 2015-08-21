@@ -21,6 +21,21 @@ var MagicTourRequest = Backbone.Model.extend({
         option_with_child:"true"
     },
 
+    timeSteps: [
+        {value: 10, label: '10min'},
+        {value: 15, label: '15min'},
+        {value: 20, label: '20min'},
+        {value: 25, label: '25min'},
+        {value: 30, label: '30min'},
+        {value: 40, label: '40min'},
+        {value: 50, label: '50min'},
+        {value: 60, label: '1h'},
+        {value: 75, label: '1h15'},
+        {value: 90, label: '1h30'},
+        {value: 105, label: '1h45'},
+        {value: 120, label: '2h'}
+    ],
+
     url: 'http://dev.optitour.fr/magic/naturalsolution/magictour/',
 
     getDistanceKm: function() {
