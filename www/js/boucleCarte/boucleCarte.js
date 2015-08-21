@@ -263,7 +263,7 @@ var boucleCarteView = baseview.extend({
     onBtnInterestClick: function(e) {
         e.preventDefault();
         var InterestFormView = require('./interestForm.js'),
-            dialog = new InterestFormView();
+            dialog = new InterestFormView({model: this.model.request});
         dialog.render();
     },
 

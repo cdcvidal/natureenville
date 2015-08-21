@@ -40,10 +40,16 @@ var InterestFormView = DialogView.extend({
     },
 
     initialize: function(attributes, options) {
+        // Decode request data
+        this.req = JSON.parse(this.model.get('etype_einflu'));
+
         // Generate HTML content
         var k, $li;
         for (k in interests) {
-            $li = $('<li class="interest-' + interests[k].code + '">' + interests[k].label + '</li>');
+            $li = $('<li class="interest-' + interests[k].code + '" data-code="' + interests[k].code + '">' + interests[k].label + '</li>');
+            if (interests[k].code in this.req && parseInt(this.req[interests[k].code]) > 0) {
+                $li.addClass('active');
+            }
             $li.appendTo(this.$el);
         }
 
@@ -54,6 +60,8 @@ var InterestFormView = DialogView.extend({
         // Handle item selection
         var $li = $(evt.target);
         $li.toggleClass('active');
+        this.req[$li.data('code')] = $li.hasClass('active') * 1; // Cast true/false to a weight of 1/0
+        this.model.set('etype_einflu', JSON.stringify(this.req));
     }
 });
 
@@ -62,6 +70,5 @@ module.exports = InterestFormView;
 /*
  * TODO:
  * - Move interests data structure to a shared module
- * - R/W link with currentMagicTourrequest0
  * - set up icons and fonts
  */
