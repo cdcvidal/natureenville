@@ -197,6 +197,7 @@ var boucleCarteView = baseview.extend({
 
     initialize: function () {
         this.listenTo(this.model, 'change', this.reload);
+        this.listenTo(this.model.request, 'change', this.updateButtonLabels);
         baseview.prototype.initialize.call(this, arguments);
     },
 
@@ -247,7 +248,13 @@ var boucleCarteView = baseview.extend({
         view.setCenter(ol.proj.transform([currentPos.get('longitude'), currentPos.get('latitude')], 'EPSG:4326', 'EPSG:3857'));
     },
 
+    updateButtonLabels: function () {
+        this.$el.find('.btn-distance .badge').text(this.model.request.getDistanceKm() + ' Km');
+    },
+
     afterRender: function () {
+        this.updateButtonLabels();
+
         // show trips and POIs
         this.displayTrips();
         this.displayPOIs();
