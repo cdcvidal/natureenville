@@ -22,6 +22,10 @@ var MagicTourRequest = Backbone.Model.extend({
     },
 
     url: 'http://dev.optitour.fr/magic/naturalsolution/magictour/',
+
+    getDistanceKm: function() {
+        return Math.round(this.get('option_distance') / 1000);
+    }
 });
 
 module.exports = MagicTourRequest;

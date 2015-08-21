@@ -56,8 +56,7 @@ var DistanceFormView = DialogView.extend({
          * offsetWidth is 0 because slider is in this modal which has not been attached to the DOM yet
          * hence, set the value (trigger tooltip positionning) on event shown.bs.modal
          */
-        var distance = Math.round(this.model.get('option_distance')/1000);
-        this.slider.setValue(distance);
+        this.slider.setValue(this.model.getDistanceKm());
     }
 });
 
