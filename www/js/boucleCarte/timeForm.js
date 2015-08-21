@@ -4,6 +4,7 @@
  * Dependencies
  */
 var $ = require('jquery'),
+    _ = require('lodash'),
     DialogView = require('./dialogView'),
     Swiper = require('swiper');
 
@@ -50,6 +51,12 @@ var TimeFormView = DialogView.extend({
     },
 
     afterRender: function() {
+        // Find index of the requested time
+        var req = parseInt(this.model.get('option_temps')),
+            stepIndex = _.findIndex(timeSteps, function(s) {
+                return s.value === req;
+            }) || 0;
+
         // Swiper configuration
         // Note: the swiper could be initialized before DOM attachment, but it would require static width/height then...
         this.swiper = new Swiper(this.el, {
@@ -57,7 +64,7 @@ var TimeFormView = DialogView.extend({
             loop: false,
             centeredSlides: true,
             slidesPerView: 'auto',
-            initialSlide: 5, // TODO
+            initialSlide: stepIndex,
             mousewheelControl: true,
             effect: 'coverflow',
             coverflow: {
@@ -67,9 +74,9 @@ var TimeFormView = DialogView.extend({
                 modifier: -1,
                 slideShadows : false
             },
-            onSlideChangeEnd: function(swiper) {
-                // Do something with timeSteps[swiper.activeIndex]
-            }
+            onSlideChangeEnd: _.bind(function(swiper) {
+                this.model.set('option_temps', timeSteps[swiper.activeIndex].value);
+            }, this)
         });
     }
 });
@@ -78,7 +85,6 @@ module.exports = TimeFormView;
 
 /*
  * TODO:
- * - R/W link with currentMagicTourrequest
  * - Move time data structure to a shared module?
  * - fix sizing/positionning (need Vincent's help)
  */
