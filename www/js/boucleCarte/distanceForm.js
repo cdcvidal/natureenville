@@ -13,6 +13,8 @@ var DistanceFormView = DialogView.extend({
     tagName: 'p',
     id: 'distance-form',
 
+    changed: false,
+
     dialogOptions: {
         title: '<span class="glyphicon glyphicon-road"></span> Distance maximale',
         cssClass: 'bottom-sheet theme-lime'
@@ -38,7 +40,14 @@ var DistanceFormView = DialogView.extend({
     },
 
     onSlide: function(val) {
+        this.changed = true;
         this.model.set('option_distance', val*1000);
+    },
+
+    onClose: function (dialog) {
+        if (this.changed) {
+            this.model.trigger('reload');
+        }
     },
 
     afterRender: function() {

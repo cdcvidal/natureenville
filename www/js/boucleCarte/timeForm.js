@@ -34,6 +34,8 @@ var TimeFormView = DialogView.extend({
     id: 'time-form',
     className: 'swiper-container',
 
+    changed: false,
+
     dialogOptions: {
         title: '<span class="glyphicon glyphicon-time"></span> Durée maximale',
         cssClass: 'bottom-sheet theme-yellow',
@@ -48,6 +50,12 @@ var TimeFormView = DialogView.extend({
         }
 
         DialogView.prototype.initialize.call(this, attributes, options);
+    },
+
+    onClose: function (dialog) {
+        if (this.changed) {
+            this.model.trigger('reload');
+        }
     },
 
     afterRender: function() {
@@ -74,7 +82,9 @@ var TimeFormView = DialogView.extend({
                 modifier: -1,
                 slideShadows : false
             },
+            runCallbacksOnInit: false,
             onSlideChangeEnd: _.bind(function(swiper) {
+                this.changed = true;
                 this.model.set('option_temps', timeSteps[swiper.activeIndex].value);
             }, this)
         });

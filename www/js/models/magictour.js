@@ -21,6 +21,9 @@ var MagicTour = Backbone.Model.extend({
 
     initialize: function() {
         this.request = new MagicTourRequest();
+        this.listenTo(this.request, 'reload', function() {
+            this.fetch();
+        });
     },
 
     setRequestParams: function(params) {

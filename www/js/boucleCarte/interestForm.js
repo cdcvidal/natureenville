@@ -30,6 +30,8 @@ var InterestFormView = DialogView.extend({
     tagName: 'ul',
     id: 'interest-form',
 
+    changed: false,
+
     events: {
         'click li': 'onClick'
     },
@@ -56,12 +58,20 @@ var InterestFormView = DialogView.extend({
         DialogView.prototype.initialize.call(this, attributes, options);
     },
 
+    onClose: function (dialog) {
+        if (this.changed) {
+            this.model.set('etype_einflu', JSON.stringify(this.req));
+            this.model.trigger('reload');
+        }
+    },
+
     onClick: function(evt) {
         // Handle item selection
         var $li = $(evt.target);
         $li.toggleClass('active');
         this.req[$li.data('code')] = $li.hasClass('active') * 1; // Cast true/false to a weight of 1/0
-        this.model.set('etype_einflu', JSON.stringify(this.req));
+
+        this.changed = true;
     }
 });
 

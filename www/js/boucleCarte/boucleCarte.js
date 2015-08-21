@@ -195,6 +195,11 @@ var boucleCarteView = baseview.extend({
         'click .btn-time': 'onBtnTimeClick'
     },
 
+    initialize: function () {
+        this.listenTo(this.model, 'change', this.reload);
+        baseview.prototype.initialize.call(this, arguments);
+    },
+
     displayTrips: function() {
         // Clear vector layer beforehand
         tripSource.clear();
@@ -229,6 +234,12 @@ var boucleCarteView = baseview.extend({
             });
         // Add features to the vector layer
         poiSource.addFeatures(features);
+    },
+
+    reload: function () {
+        this.displayTrips();
+        this.displayPOIs();
+        view.fit(tripSource.getExtent(), map.getSize());
     },
 
     centerOnCurrentPosition: function () {

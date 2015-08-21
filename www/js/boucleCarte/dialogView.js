@@ -15,12 +15,14 @@ var DialogView = Backbone.View.extend({
     initialize: function (attributes, options) {
         this.dialogOptions.message = this.el;
         this.dialogOptions.onshown = _.bind(this.afterRender, this);
+        this.dialogOptions.onhidden = _.bind(this.onClose, this);
         this.dialog = new Dialog(this.dialogOptions);
     },
 
     // Can be overridden by child classes
     beforeRender: function () {},
     afterRender: function () {},
+    onClose: function (dialog) {},
 
     render: function() {
         this.beforeRender();
