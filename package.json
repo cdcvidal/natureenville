@@ -7,7 +7,8 @@
     "jquery-ns": "./www/vendor/ns/jquery-ns.js",
     "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js",
     "bootstrap-dialog": "./www/vendor/bootstrap-dialog/js/bootstrap-dialog.js",
-    "swiper": "./node_modules/swiper/dist/js/swiper.min.js"
+    "swiper": "./node_modules/swiper/dist/js/swiper.min.js",
+    "geocomplete":"./www/vendor/geocomplete/jquery.geocomplete.js"
   },
   "browserify": {
     "transform": [
