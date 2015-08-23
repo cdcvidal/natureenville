@@ -41,6 +41,28 @@ var Poi = Backbone.Model.extend({
         this.set("period", new Period());
     },
 
+    // Ensure that each poi created has name, longitude, latitude, type_id, street, postal_code.
+    validate: function(attrs, options) {
+        if (!attrs.name) {
+          return "L'information name est manquante";
+        }
+        // if (!attrs.longitude) {
+        //   return "L'information longitude est manquante";
+        // }
+        // if (!attrs.latitude) {
+        //   return "L'information latitude est manquante";
+        // }
+        // if (!attrs.type_id) {
+        //   return "L'information type du POI est manquante";
+        // }
+        // if (!attrs.street) {
+        //   return "L'information rue est manquante";
+        // }
+        // if (!attrs.postal_code) {
+        //   return "L'information code postal est manquante";
+        // }
+    }
+
 });
 
 var PoiCollection = Backbone.Collection.extend({
