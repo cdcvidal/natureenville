@@ -1,20 +1,14 @@
         <div id="poi-form" class="page page-contribution scrollable with-header">
+            <div class="header row img-preview"> 
+                <img class="editor-picture-img " src="">
+                <input type="file" accept="image/*" capture="" id="input-picture" >
+            </div>
             <form>
-                <h2>description</h2>
-                <div class="form-group">
-                    <label class="control-label"></label>
-                    <div class="controls">
-                        <div class="row-fluid img-preview"> <img class="editor-picture-img" src="">
-                            <input type="file" accept="image/*" capture="" id="input-picture">
-                        </div>
-                        <div class="help-inline"></div>
-                        <div class="help-block"></div>
-                    </div>
-                </div>
+                <h2>Description</h2>
                 <fieldset>
                     <div class="form-group">
-                        <label for="c2_name">Name</label>
-                        <input id="c2_name" name="name" type="text" class="form-control">
+                        <label for="name">Nom</label>
+                        <input id="name" name="name" type="text" class="form-control" placeholder="Nom du point d'intérêt">
                         <%= data.model.get('name') %>
                     </div>
                     <div class="form-group">
@@ -28,34 +22,30 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="c2_street">Street</label>
-                        <input id="c2_street" name="street" type="text" class="form-control">
+                        <label for="geoloc">Adresse</label>
+                        <input id="geoloc" name="Adresse" class="form-control" type="text" placeholder="Entrer l'adresse du point d'intérêt" size="90" >
                     </div>
                     <div class="form-group">
-                        <label for="c2_postal_code">Code postal</label>
-                        <input id="c2_postal_code" name="postal_code" type="number" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="c2_desc">Description</label>
-                        <textarea id="c2_desc" name="desc" class="form-control" rows="4"></textarea>
+                        <label for="desc">Description</label>
+                        <textarea id="desc" name="desc" class="form-control" rows="4" placeholder="Quelques lignes pour le décrire"></textarea>
                     </div>
                 </fieldset>
                 <h2>géolocalisation</h2>
                 <fieldset>
                     <div class="form-group">
-                        <label for="c2_longitude">Longitude</label>
-                        <input id="c2_longitude" name="longitude" type="number" class="form-control">
+                        <label for="longitude">Longitude</label>
+                        <input id="longitude" name="longitude" type="number" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="c2_latitude">Latitude</label>
-                        <input id="c2_latitude" name="latitude" type="number" step="any">
+                        <label for="latitude">Latitude</label>
+                        <input id="latitude" name="latitude" type="number" step="any">
                     </div>
                 </fieldset>
                 <h2>Informations optionnelles</h2>
                 <fieldset>
                     <div class="form-group">
-                        <label for="c2_visit_time_min">Temps minimum de la visite</label>
-                        <select id="c2_visit_time_min" name="visit_time_min" class="form-control">
+                        <label for="visit_time_min">Temps minimum de la visite</label>
+                        <select id="visit_time_min" name="visit_time_min" class="form-control">
                             <option value='5'>5 min</option>
                             <option value='10'>10 min</option>
                             <option value='20'>20 min</option>
@@ -67,8 +57,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="c2_visit_time_max">Temps maximum de la visite</label>
-                        <select id="c2_visit_time_max" name="visit_time_max" class="form-control">
+                        <label for="visit_time_max">Temps maximum de la visite</label>
+                        <select id="visit_time_max" name="visit_time_max" class="form-control">
                             <option value='10'>10 min</option>
                             <option value='20'>20 min</option>
                             <option value='30'>30 min</option>
@@ -80,8 +70,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="c2_price_min">Prix minimum</label>
-                        <select id="c2_price_min" name="price_min">
+                        <label for="price_min">Prix minimum</label>
+                        <select id="price_min" name="price_min" class="form-control">
                             <option value='0'>gratuit</option>
                             <option value='1'>1€</option>
                             <option value='2'>2€</option>
@@ -93,8 +83,9 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="c2_price_max">Prix maximum</label>
-                        <select id="c2_price_max" name="price_max">
+                        <label for="price_max">Prix maximum</label>
+                        <select id="price_max" name="price_max" class="form-control">
+                            <option value='0'>gratuit</option>
                             <option value='1'>1€</option>
                             <option value='2'>2€</option>
                             <option value='3'>3€</option>
@@ -106,12 +97,12 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="c2_phone">Téléphone</label>
-                        <input id="c2_phone" name="phone" type="tel" class="form-control">
+                        <label for="phone">Téléphone</label>
+                        <input id="phone" name="phone" type="tel" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="c2_mail">Email</label>
-                        <input id="c2_mail" name="mail" type="email" class="form-control">
+                        <label for="mail">Email</label>
+                        <input id="mail" name="mail" type="email" class="form-control">
                     </div>
                     <div class="form-group">
                         <div class="checkbox">
