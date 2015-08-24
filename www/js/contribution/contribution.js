@@ -2,6 +2,7 @@
 
 var baseview = require('../baseview');
 var Backbone = require('backbone'),
+    $ = require('jquery'),
     _ = require('lodash'),
     bootstrap = require('bootstrap'),
     dialog = require('bootstrap-dialog'),
