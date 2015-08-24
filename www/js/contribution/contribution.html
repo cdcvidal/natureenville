@@ -12,19 +12,11 @@
                         <%= data.model.get('name') %>
                     </div>
                     <div class="form-group">
-<<<<<<< HEAD
-                        <label for="c2_type_id">Type de POI</label>
-                        <select id="c2_type_id" name="type_id" class="form-control">
-                            <% data.typepoiinstance.each(function(poitype, key){ %>
-                                <option value="<%= poitype.id %>">
-                                    <%= poitype.get('name_fr') %>
-=======
                         <label for="type_id">Type de POI</label>
                         <select id="type_id" name="type_id" class="form-control">
-                            <% _.each(data.typepoiinstance.attributes,function(type,key){ %>
-                                <option value="<%= type.type_id %>">
-                                    <%= type.name_fr %>
->>>>>>> fe33d03454a72ee126151758a8d3f83600e8c39a
+                            <% data.typepoiinstance.each(function(poitype, key){ %>
+                                <option value="<%= poitype.type_id %>">
+                                    <%= poitype.get('name_fr') %>
                                 </option>
                                 <% }); %>
                         </select>
