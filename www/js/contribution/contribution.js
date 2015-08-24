@@ -5,7 +5,8 @@ var $ = require('jquery'),
     Backbone = require('backbone'),
     _ = require('lodash'),
     bootstrap = require('bootstrap'),
-    dialog = require('bootstrap-dialog')
+    dialog = require('bootstrap-dialog'),
+    geocomplete = require('geocomplete')
 ;
 Backbone.$ = $;
 
@@ -19,11 +20,16 @@ var contributionView = baseview.extend({
 
     initialize: function(){
         this.listenTo(this.model, 'invalid', this.onModelInvalid);
-        this.listenTo(this.model, 'change', this.onModelChange);
     },
 
     onModelInvalid: function(model, errors){
+        var dfd = $.Deferred();
         console.log('onModelinvalidate',errors);
+        if(errors){
+            return dfd.reject(errors);
+        }else{
+            return dfd.resolve();
+        }
     },
 
     events: {
@@ -50,15 +56,19 @@ var contributionView = baseview.extend({
             'url_img1': picture
         });
 
-        poiCollection.add(this.model).save().done(function(){
-            dialog.show({
-                title: 'Merci pour votre contribution!',
+        //TODO message
+        poiCollection.add(this.model).save()
+            .done(function(){
+                dialog.show({
+                    title: 'Merci pour votre contribution!',
+                });
+            })
+            .fail(function(error){
+                dialog.show({
+                    title: error,
             });
-        });
-    },
-
-    onModelChange:function(){
-        console.log('change', this.model.attributes);
+        })
+        ;
     },
 
     getValue: function() {
@@ -146,8 +156,19 @@ var contributionView = baseview.extend({
             typepoiinstance: typepoi
         };
     },
+    //TODO method checkconnection
     afterRender: function() {
-
+        //var connect = checkConnection();
+        //if (connect !== 'inconnu' || connect !== "none" || connect === true || connect !== undefined) {
+            var self = this;
+            $('#geoloc', this.el).geocomplete({
+                    country: "FR"
+                })
+                .bind("geocode:result", function(event, result) {})
+                .bind("geocode:error", function(event, status) {
+                    console.log("ERROR: " + status);
+                });
+        //}
     },
 });
 

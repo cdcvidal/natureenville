@@ -566,3 +566,11 @@ body.section-loop .app-header {
     text-transform: uppercase;
     font-size: 1.1rem;
 }
+
+/* CONTRIBUTION */
+
+.page-contribution .header {
+    height: 50%;
+    background: url("../images/800x400.jpg") no-repeat center;
+    background-size: cover;
+}
