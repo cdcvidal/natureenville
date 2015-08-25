@@ -236,11 +236,16 @@ var boucleCarteView = baseview.extend({
         // Clear vector layer beforehand
         tripSource.clear();
         poiSource.clear();
+
+        // Show a spinner while loading
+        this.$el.find('#map-spinner').show();
     },
 
     load: function () {
         this.displayTrips();
         this.displayPOIs();
+        // Hide spinner
+        this.$el.find('#map-spinner').hide();
     },
 
     reload: function () {
