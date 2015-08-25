@@ -196,15 +196,13 @@ var boucleCarteView = baseview.extend({
     },
 
     initialize: function () {
+        this.listenTo(this.model, 'request', this.onRequest);
         this.listenTo(this.model, 'change', this.reload);
         this.listenTo(this.model.request, 'change', this.updateButtonLabels);
         baseview.prototype.initialize.call(this, arguments);
     },
 
     displayTrips: function() {
-        // Clear vector layer beforehand
-        tripSource.clear();
-
         var trips = this.model.get('trip') || [],
             // Iterate over trip segments and prepare them for OL display
             features = trips.map(function (trip, idx, arr) {
@@ -221,9 +219,6 @@ var boucleCarteView = baseview.extend({
     },
 
     displayPOIs: function() {
-        // Clear vector layer beforehand
-        poiSource.clear();
-
         var pois = this.model.get('stops') || [],
             // Iterate over POIs, parse them and build ol.Feature for OL display
             features = pois.map(function (poi, idx, arr) {
@@ -237,15 +232,27 @@ var boucleCarteView = baseview.extend({
         poiSource.addFeatures(features);
     },
 
-    reload: function () {
+    onRequest: function () {
+        // Clear vector layer beforehand
+        tripSource.clear();
+        poiSource.clear();
+    },
+
+    load: function () {
         this.displayTrips();
         this.displayPOIs();
+    },
+
+    reload: function () {
+        this.load();
         view.fit(tripSource.getExtent(), map.getSize());
     },
 
     centerOnCurrentPosition: function () {
-        view.setZoom(15);
-        view.setCenter(ol.proj.transform([currentPos.get('longitude'), currentPos.get('latitude')], 'EPSG:4326', 'EPSG:3857'));
+        currentPos.promise().done(function() {
+            view.setZoom(15);
+            view.setCenter(ol.proj.transform([currentPos.get('longitude'), currentPos.get('latitude')], 'EPSG:4326', 'EPSG:3857'));
+        });
     },
 
     updateButtonLabels: function () {
@@ -256,9 +263,13 @@ var boucleCarteView = baseview.extend({
     afterRender: function () {
         this.updateButtonLabels();
 
-        // show trips and POIs
-        this.displayTrips();
-        this.displayPOIs();
+        if ('trip' in this.model.attributes) {
+            // A magictour exist: show trips and POIs
+            this.load();
+        } else {
+            // Magictour is not loaded yet: show a spinner and let the model's change event trigger a display
+            this.onRequest();
+        }
 
         // Attach map to the DOM (to the #map element)
         map.setTarget('map');

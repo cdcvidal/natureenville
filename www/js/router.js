@@ -2,7 +2,8 @@
 
 var Backbone = require('backbone');
 var $ = require('jquery');
-var _ = require('lodash');
+var _ = require('lodash'),
+    currentPos = require('./current-position');
 
 var poi = require('./models/poi');
 var magicTour = require('./models/magictour');
@@ -53,6 +54,20 @@ var profileView = require('./profile/profile'),
         },
         boucleCarteViewDisplay: function() {
             $('body').alterClass('section-*', 'section-loop section-loop-map');
+
+            // Load a tour with default values
+            currentPos.promise().done(function() {
+                var lat = currentPos.get('latitude'),
+                    lon = currentPos.get('longitude');
+                magicTour.request.set({
+                    dep_x: lon,
+                    dep_y: lat,
+                    arr_x: lon,
+                    arr_y: lat
+                });
+                magicTour.fetch();
+            });
+
             var boucleCarteV = new boucleCarteView.view({
                 model: magicTour
             });

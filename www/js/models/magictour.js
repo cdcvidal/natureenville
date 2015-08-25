@@ -2,34 +2,39 @@
 
 var Backbone = require('backbone'),
     _ = require('lodash'),
+    moment = require('moment'),
     MagicTourRequest = require('./magictourrequest');
 
 Backbone.LocalStorage = require("backbone.localstorage");
 
 var MagicTour = Backbone.Model.extend({
-    defaults: {
-        nb_stops: "2",
-        stops: [],
-        t_length: "0",
-        time: "0",
-        trip: []
-    },
+    /* Expected attributes :
+        {
+            nb_stops: "2",      // Useless, length of the array beloaw
+            stops: [],          // List of POIs on this tour
+            t_length: "0",      // Tour length in meters
+            time: "0",          // Tour length in minutes
+            trip: []            // Tour path as a list of WKT linestring geometries
+        }
+    */
 
     url: 'http://dev.optitour.fr/magic/naturalsolution/magictour/',
 
     initialize: function() {
         this.request = new MagicTourRequest();
-        this.listenTo(this.request, 'reload', function() {
-            this.fetch();
-        });
+        this.listenTo(this.request, 'reload', this.reload);
     },
 
-    setRequestParams: function(params) {
-        this.request.set(params);
-        return this;
+    reload: function() {
+        this.fetch();
     },
 
     fetch: function(options) {
+        // Always load request for the current day/time
+        this.request.set({
+            option_date: moment().format("DD/MM/YYYY"),
+            option_heure: moment().diff(moment().startOf('day'), 'minutes')
+        });
         // Automatically include request params
         options = _.extend({data: this.request.attributes, type: 'POST'}, options);
         // Relay to original Backbone fetch method
