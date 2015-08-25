@@ -20,6 +20,21 @@ var PositionFormView = DialogView.extend({
         this.el.innerHTML = '<span class="glyphicon glyphicon-screenshot"></span> <input type="text" placeholder="Ma position" />';
 
         DialogView.prototype.initialize.call(this, attributes, options);
+    },
+
+    afterRender: function() {
+        // Geocomplete configuration
+        var $input = this.$el.find('input');
+        $input.geocomplete({
+            country: "FR"
+        });
+        // Move the DOM fragment to the dialogview so that we can customize it with CSS
+        /*
+         * FIXME: doesn't work, .pac-container doesn't exist yet and there is not event telling when it will be ready...
+         * It's not either possible to tell the autocomplete to pop upward :(
+         * Hence, the weird CSS quickfix : min-width on position-form + z-index on .pac-container
+         */
+        //$('.pac-container').appendTo(this.$el);
     }
 });
 
