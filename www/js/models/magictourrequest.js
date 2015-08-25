@@ -36,8 +36,6 @@ var MagicTourRequest = Backbone.Model.extend({
         {value: 120, label: '2h'}
     ],
 
-    url: 'http://dev.optitour.fr/magic/naturalsolution/magictour/',
-
     getTimeLabel: function() {
         var t = parseInt(this.get('option_temps')),
             step = this.timeSteps.filter(function(ts) {

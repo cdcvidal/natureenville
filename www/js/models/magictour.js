@@ -16,7 +16,6 @@ var MagicTour = Backbone.Model.extend({
     },
 
     url: 'http://dev.optitour.fr/magic/naturalsolution/magictour/',
-    //url: './data/tours.json',
 
     initialize: function() {
         this.request = new MagicTourRequest();
@@ -32,7 +31,7 @@ var MagicTour = Backbone.Model.extend({
 
     fetch: function(options) {
         // Automatically include request params
-        options = _.extend({data: this.request.attributes}, options);
+        options = _.extend({data: this.request.attributes, type: 'POST'}, options);
         // Relay to original Backbone fetch method
         return Backbone.Model.prototype.fetch.call(this, options);
     },
