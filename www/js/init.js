@@ -56,7 +56,7 @@ function init() {
             // dep_y: currentPos.get('latitude')
         });
         return magicTour.fetch({
-            //type: 'POST',
+            type: 'POST'
         });
     }).done(function (responseData) {
         var containerView = require('./container/container').instance;
