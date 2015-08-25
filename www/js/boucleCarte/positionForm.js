@@ -10,6 +10,8 @@ var PositionFormView = DialogView.extend({
     tagName: 'p',
     id: 'position-form',
 
+    changed: false,
+
     dialogOptions: {
         title: '<span class="glyphicon glyphicon-map-marker"></span> Point de départ',
         cssClass: 'bottom-sheet theme-magenta'
@@ -22,11 +24,29 @@ var PositionFormView = DialogView.extend({
         DialogView.prototype.initialize.call(this, attributes, options);
     },
 
+    onClose: function (dialog) {
+        if (this.changed) {
+            this.model.trigger('reload');
+        }
+    },
+
     afterRender: function() {
         // Geocomplete configuration
-        var $input = this.$el.find('input');
+        var $input = this.$el.find('input'),
+            self = this;
         $input.geocomplete({
             country: "FR"
+        }).bind("geocode:result", function(event, result) {
+            var place = result.geometry.location;
+            self.changed = true;
+            self.model.set({
+                dep_x: place.lng(),
+                dep_y: place.lat(),
+                arr_x: place.lng(), // TODO: set arr_x/y only for loop trip
+                arr_y: place.lat()
+            });
+        }).bind("geocode:error", function(event, status) {
+            console.log("ERROR: " + status);
         });
         // Move the DOM fragment to the dialogview so that we can customize it with CSS
         /*

@@ -289,7 +289,7 @@ var boucleCarteView = baseview.extend({
     onBtnPositionClick: function(e) {
         e.preventDefault();
         var PositionFormView = require('./positionForm.js'),
-            dialog = new PositionFormView();
+            dialog = new PositionFormView({model: this.model.request});
         dialog.render();
     },
 
