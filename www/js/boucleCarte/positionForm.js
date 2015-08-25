@@ -3,24 +3,27 @@
 /*
  * Dependencies
  */
-var $ = require('jquery'),
-    Dialog = require('bootstrap-dialog');
+var DialogView = require('./dialogView');
 
-/*
- * (Basic) template
- */
-var html = '<p id="position-form">' +
-           '  <span class="glyphicon glyphicon-screenshot"></span>' +
-           '  <input type="text" placeholder="Ma position" />' +
-           '</p>',
-    $html = $(html);
+var PositionFormView = DialogView.extend({
 
-// Module export a dialog ready to be opened
-module.exports = new Dialog({
-    title: '<span class="glyphicon glyphicon-map-marker"></span> Point de départ',
-    message: $html,
-    cssClass: 'bottom-sheet theme-magenta'
+    tagName: 'p',
+    id: 'position-form',
+
+    dialogOptions: {
+        title: '<span class="glyphicon glyphicon-map-marker"></span> Point de départ',
+        cssClass: 'bottom-sheet theme-magenta'
+    },
+
+    initialize: function (attributes, options) {
+        // Generate HTML content
+        this.el.innerHTML = '<span class="glyphicon glyphicon-screenshot"></span> <input type="text" placeholder="Ma position" />';
+
+        DialogView.prototype.initialize.call(this, attributes, options);
+    }
 });
+
+module.exports = PositionFormView;
 
 /*
  * TODO:
