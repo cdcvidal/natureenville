@@ -192,6 +192,8 @@ var boucleCarteView = baseview.extend({
 
     initialize: function () {
         this.listenTo(this.model, 'request', this.onRequest);
+        this.listenTo(this.model, 'error', this.onError);
+        this.listenTo(this.model, 'change', this.reload);
         this.listenTo(this.model, 'change', this.reload);
         this.listenTo(this.model.request, 'change', this.updateButtonLabels);
         baseview.prototype.initialize.call(this, arguments);
@@ -234,6 +236,12 @@ var boucleCarteView = baseview.extend({
 
         // Show a spinner while loading
         this.$el.find('#map-spinner').show();
+    },
+
+    onError: function () {
+        // Hide spinner
+        this.$el.find('#map-spinner').hide();
+        // TODO: Display an error message for the user?
     },
 
     load: function () {
