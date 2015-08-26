@@ -80,34 +80,45 @@
 /* Interest form */
 
 #interest-form li {
-    margin: 1.5em 1em;
-    padding-left: 2em;
+    margin: 0.5em;
+    padding: 15px 0 15px 70px;
+    background-repeat: no-repeat;
     position: relative;
-}
-#interest-form li.active {
     color: #888;
 }
-#interest-form li::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    /* TODO: home-brewed icon font or sprites or plain-old icon */
-    font-family: 'Glyphicons Halflings';
+#interest-form li.active {
+    color: inherit;
 }
-#interest-form li.interest-1::before {
-    content: "\e024";
+#interest-form li.interest-1 {
+    background-image: url(../images/general_types/1-avenue_tree.png);
 }
-#interest-form li.interest-3::before {
-    content: "\e239";
+#interest-form li.interest-2 {
+    background-image: url(../images/general_types/2-remarkable_tree.png);
 }
-#interest-form li.interest-4::before {
-    content: "\e062";
+#interest-form li.interest-3 {
+    background-image: url(../images/general_types/3-park_garden.png);
+}
+#interest-form li.interest-4 {
+    background-image: url(../images/general_types/4-strange_place.png);
+}
+#interest-form li.interest-5 {
+    background-image: url(../images/general_types/5-revegetated_street.png);
+}
+#interest-form li.interest-6 {
+    background-image: url(../images/general_types/6-wild_plant.png);
+}
+#interest-form li.interest-7 {
+    background-image: url(../images/general_types/7-vegetable_garden.png);
+}
+#interest-form li.interest-8 {
+    background-image: url(../images/general_types/8-landscaping.png);
 }
 #interest-form li::after {
     position: absolute;
-    top: 0;
+    top: 15px;
     right: 0;
     content: "\26aa"; /* TODO: prettify, change char or font or both */
+    color: #fff;
 }
 #interest-form li.active::after {
     content: "\2713"; /* TODO: prettify, change char or font or both */
