@@ -24,17 +24,22 @@ function getScaleFactor(resolution) {
         return 8;
     }
 }
-function colorFromType(poiType) {
+function styleFromType(poiType) {
     // Assign a color for a POI type
-    var color = [0,0,0]; // Defaults to black
+    var style = {
+        color: [0,0,0], // Defaults to black
+        icon: '' // FIXME: any default?
+    };
     switch (poiType) {
         // General type 1
         case 7:
-            color = [149, 228, 46];
+            style.color = [96, 140, 51];
+            style.icon = 'images/general_types/1-avenue_tree.png';
             break;
         // General type 2
         case 3:
-            color = [15, 253, 96];
+            style.color = [206, 0, 127];
+            style.icon = 'images/general_types/2-remarkable_tree.png';
             break;
         // General type 3
         case 1:
@@ -42,31 +47,37 @@ function colorFromType(poiType) {
         case 11:
         case 12:
         case 13:
-            color = [245, 0, 87];
+            style.color = [111, 165, 28];
+            style.icon = 'images/general_types/3-park_garden.png';
             break;
         // General type 4
         case 10:
-            color = [237, 100, 18];
+            style.color = [243, 152, 27];
+            style.icon = 'images/general_types/4-strange_place.png';
             break;
         // General type 5
         case 6:
-            color = [0, 176, 255];
+            style.color = [121, 33, 129];
+            style.icon = 'images/general_types/5-revegetated_street.png';
             break;
         // General type 6
         case 9:
-            color = [176, 0, 255]; // Not part of Vivien's design
+            style.color = [227, 1, 55];
+            style.icon = 'images/general_types/6-wild_plant.png';
             break;
         // General type 7
         case 4:
         case 5:
-            color = [46, 149, 228]; // Not part of Vivien's design
+            style.color = [0, 104, 132];
+            style.icon = 'images/general_types/7-vegetable_garden.png';
             break;
         // General type 8
         case 8:
-            color = [153, 153, 153]; // Not part of Vivien's design
+            style.color = [60, 165, 148];
+            style.icon = 'images/general_types/8-landscaping.png';
             break;
     }
-    return color;
+    return style;
 }
 
 /*
@@ -142,7 +153,7 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
                 source: poiSource,
                 style: function(feature, resolution) {
                     var sf = getScaleFactor(resolution),
-                        color = colorFromType(parseInt(feature.l.place_type)); // FIXME: why using this ".l"??? Looks like a bug in OL? Or in planet-maps build?
+                        styleParams = styleFromType(parseInt(feature.l.place_type)); // FIXME: why using this ".l"??? Looks like a bug in OL? Or in planet-maps build?
                     if (resolution > 50) {
                         // Do not display POI
                         return [];
@@ -152,22 +163,29 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
                             image: new ol.style.Circle({
                                 radius: 2*sf,
                                 fill: new ol.style.Fill({
-                                    color: color.concat(1)
+                                    color: styleParams.color.concat(1)
                                 })
                             })
                         })];
-                    } else {
+                    } else if (resolution > 2) {
                         // Display POI with semi-opaque fill + plain edge
                         return [new ol.style.Style({
                             image: new ol.style.Circle({
                                 radius: 2*sf,
                                 fill: new ol.style.Fill({
-                                    color: color.concat(0.5)
+                                    color: styleParams.color.concat(0.5)
                                 }),
                                 stroke: new ol.style.Stroke({
-                                    color: color.concat(1),
+                                    color: styleParams.color.concat(1),
                                     width: 1*sf
                                 })
+                            })
+                        })];
+                    } else {
+                        return [new ol.style.Style({
+                            image: new ol.style.Icon({
+                                anchor: [0.5, 0.5],
+                                src: styleParams.icon
                             })
                         })];
                     }
