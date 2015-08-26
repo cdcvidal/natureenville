@@ -5,12 +5,7 @@
  */
 var baseview = require('../baseview'),
     currentPos = require('../current-position'),
-    $ = require('jquery'),
-    ol = require('planet-maps/dist/ol-base'),
-    bootstrap = require('bootstrap'),
-    dialog = require('bootstrap-dialog'),
-    _ = require('lodash')
-    ;
+    ol = require('planet-maps/dist/ol-base');
 
 /*
  * Utilities

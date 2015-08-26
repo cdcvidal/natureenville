@@ -5,6 +5,7 @@
  */
 var Backbone = require('backbone'),
     _ = require('lodash'),
+    bootstrap = require('bootstrap'),
     Dialog = require('bootstrap-dialog');
 
 
