@@ -27,19 +27,19 @@ function init() {
     var bC = new badgesColl();
     bC.fetch({
         success : function(response){
-                if(response.length === 0){
-                    console.log('bC fetch response',response);
-                    badgesInstanceColl.fetch({
-                        ajaxSync: true,
-                        success : function(response){
-                            response.models.forEach(function(n, key){
-                                badgesInstanceColl.add(n).save();
-                            });
-                        }
-                    });
-                }else{
-                    badgesInstanceColl.fetch();
-                }
+            if(response.length === 0){
+                console.log('bC fetch response',response);
+                badgesInstanceColl.fetch({
+                    ajaxSync: true,
+                    success : function(response){
+                        response.models.forEach(function(n, key){
+                            badgesInstanceColl.add(n).save();
+                        });
+                    }
+                });
+            }else{
+                badgesInstanceColl.fetch();
+            }
         }
     });
 
