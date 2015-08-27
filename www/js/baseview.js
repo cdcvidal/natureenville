@@ -116,8 +116,8 @@ var BaseView = Backbone.View.extend({
             viewList = this._views[selector];
             base = (selector === '' ? this.$el : this.$el.find(selector));
             for (i in viewList) {
-                viewList[i].render();
                 viewList[i].$el.appendTo(base);
+                viewList[i].render();
             }
         }
 
