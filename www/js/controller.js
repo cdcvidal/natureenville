@@ -37,14 +37,7 @@ Controller.prototype.profileViewDisplay = function() {
     this._displayView(v);
 };
 
-Controller.prototype.boucleDetailViewDisplay = function() {
-    var v = new BoucleDetailView({
-        model: magicTour
-    });
-    this._displayView(v);
-};
-
-Controller.prototype.boucleCarteViewDisplay = function() {
+function _loadMagicTour() {
     // Load a tour with default values if none exists
     if (magicTour.isVirgin) {
         currentPos.promise().done(function() {
@@ -59,6 +52,19 @@ Controller.prototype.boucleCarteViewDisplay = function() {
             magicTour.fetch();
         });
     }
+}
+
+Controller.prototype.boucleDetailViewDisplay = function() {
+    _loadMagicTour();
+
+    var v = new BoucleDetailView({
+        model: magicTour
+    });
+    this._displayView(v);
+};
+
+Controller.prototype.boucleCarteViewDisplay = function() {
+    _loadMagicTour();
 
     var v = new BoucleCarteView({
         model: magicTour

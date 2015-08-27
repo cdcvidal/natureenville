@@ -8,21 +8,44 @@ var BoucleDetailView = BaseView.extend({
     template: require('./boucleDetail.html'),
     sectionClass: 'section-loop section-loop-details',
 
+    initialize: function () {
+        this.listenTo(this.model, 'request', this.showSpinner);
+        this.listenTo(this.model, 'error', this.hideSpinner);
+        this.listenTo(this.model, 'change', this.hideSpinner);
+        this.listenTo(this.model, 'change', this.render);
+        BaseView.prototype.initialize.call(this, arguments);
+    },
+
     serialize: function () {
+        var data = this.model.isEmpty ?
+                        {attributes: {stops: []}} :
+                        this.model;
         return {
-            parcours: this.model,
+            parcours: data,
             formatPoiPosition: function(stop) {
                 return utilities.formatMinutes(stop.departure);
             }
         };
     },
+
+    showSpinner: function () {
+        // Show a spinner while loading
+        this.$el.find('.loader').show();
+    },
+
+    hideSpinner: function () {
+        // Hide spinner
+        this.$el.find('.loader').hide();
+    },
+
     afterRender: function() {
-        var self = this;
-        //self.$el.find('.collapse').collapse();
-        self.$el.find('.collapse').on('show.bs.collapse', function (e) {
+        if (this.model.isEmpty) {
+            this.showSpinner();
+        }
+        this.$el.find('.collapse').on('show.bs.collapse', function (e) {
             $(e.currentTarget).parent().addClass('open');
         });
-        self.$el.find('.collapse').on('hide.bs.collapse', function (e) {
+        this.$el.find('.collapse').on('hide.bs.collapse', function (e) {
             $(e.currentTarget).parent().removeClass('open');
         });
     }
