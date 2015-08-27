@@ -200,6 +200,7 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
  */
 var BoucleCarteView = BaseView.extend({
     template: require('./boucleCarte.html'),
+    sectionClass: 'section-loop section-loop-map',
 
     events: {
         'click .btn-interest': 'onBtnInterestClick',

@@ -26,12 +26,10 @@ var Controller = function() {
 
 // "Action" methods
 Controller.prototype.homeViewDisplay = function () {
-    $('body').alterClass('section-*', 'section-home');
     this._displayView(new HomeView());
 };
 
 Controller.prototype.profileViewDisplay = function() {
-    $('body').alterClass('section-*', 'section-loop section-profile');
     var v = new ProfileView({
         model: user,
         collection: badges
@@ -40,7 +38,6 @@ Controller.prototype.profileViewDisplay = function() {
 };
 
 Controller.prototype.boucleDetailViewDisplay = function() {
-    $('body').alterClass('section-*', 'section-loop section-loop-details');
     var v = new BoucleDetailView({
         model: magicTour
     });
@@ -48,8 +45,6 @@ Controller.prototype.boucleDetailViewDisplay = function() {
 };
 
 Controller.prototype.boucleCarteViewDisplay = function() {
-    $('body').alterClass('section-*', 'section-loop section-loop-map');
-
     // Load a tour with default values
     currentPos.promise().done(function() {
         var lat = currentPos.get('latitude'),
@@ -70,7 +65,6 @@ Controller.prototype.boucleCarteViewDisplay = function() {
 };
 
 Controller.prototype.ficheViewDisplay = function(poiId) {
-    $('body').alterClass('section-*', 'section-poi');
     var currentPOI = magicTour.attributes.stops.filter(function(item) {
         return item.poi_id == poiId;
     })[0];
@@ -88,7 +82,6 @@ Controller.prototype.ficheViewDisplay = function(poiId) {
 };
 
 Controller.prototype.contributionViewDisplay = function () {
-    $('body').alterClass('section-*', 'section-contribution');
     var poiM = new poi.Poi();
     var v = new ContributionView({
         model: poiM
@@ -101,6 +94,9 @@ Controller.prototype._displayView = function(view) {
     if (this._currentView) {
         this._currentView.remove();
         this._currentView.off();
+    }
+    if (view.sectionClass) {
+        $('body').alterClass('section-*', view.sectionClass);
     }
     this._currentView = view;
     $('#main').empty();

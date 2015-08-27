@@ -8,6 +8,8 @@ var moment = require('moment');
 
 var FichePoiView = BaseView.extend({
     template: require('./fichePoi.html'),
+    sectionClass: 'section-poi',
+
     initialize: function () {
         //moment.locale('fr');
         BaseView.prototype.initialize.call(this, arguments);

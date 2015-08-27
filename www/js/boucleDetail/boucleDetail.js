@@ -6,6 +6,7 @@ var utilities = require('../utilities');
 
 var BoucleDetailView = BaseView.extend({
         template: require('./boucleDetail.html'),
+        sectionClass: 'section-loop section-loop-details',
 
         serialize: function () {
             return {

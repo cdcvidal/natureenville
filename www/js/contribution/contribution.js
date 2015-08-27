@@ -16,6 +16,7 @@ var poiCollection = require('../models/poi').instancePoiCollection;
 
 var ContributionView = BaseView.extend({
     template: require('./contribution.html'),
+    sectionClass: 'section-contribution',
 
     initialize: function(){
         this.listenTo(this.model, 'invalid', this.onModelInvalid);
