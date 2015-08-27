@@ -1,46 +1,45 @@
 <% var _ = require('lodash'); %>
-	    <div class="tab-pane" id="liste">
-	    	<!-- <p class="text-center"></p> -->
-	    	<% 
-				_.each(data.stops, function(item, itemIndex) {
-			%>  		
-	 			<div class="panel panel-default">
-					<div class="panel-heading clearfix" data-toggle="collapse">
-						<a class="panel-title" role="button" data-toggle="collapse" href="#collapse-poi-<%= itemIndex %>">
-						  <%= itemIndex + 1 %>
-							<% if (itemIndex + 1 === 1) { %>
-								Départ
-							<% } else if (itemIndex + 1 === data.stops.length) { %>
-								Arrivée
-							<% } else { %>
-								<%= item.place_name %>
-							<% } %>
-						</a>
-						<span class="open-status-icons pull-right">
-							<span class="status-open glyphicon glyphicon-chevron-up"></span>
-							<span class="status-closed glyphicon glyphicon-chevron-down"></span>
-						</span>	
-					</div>
-					<div id="collapse-poi-<%= itemIndex %>" class="panel-collapse collapse">
-						<div class="container">
-							<div>
-								<%= data.formatPoiPosition(item) %>
-							</div>
-							<% if(item.desc){ %> 
-							<div class="row description">
-								<%= item.desc %>
-							</div>
-							<% } %>
-							<% if(item.poi_id){ %>
-							<div class="row actions">
-								<a class="btn btn-block" href="#fiche/<%=item.poi_id %>" role="button">Voir le détail</a>
-							</div>
-							<% } %>
-						</div>
-					</div>
-				</div>
-			<% 	}); %>
-			
+<div class="tab-pane" id="liste">
 
-	    	</div>
-		</div>
+    <% _.each(data.stops, function(item, itemIndex) { %>
+
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix" data-toggle="collapse">
+            <a class="panel-title" role="button" data-toggle="collapse" href="#collapse-poi-<%= itemIndex %>">
+              <%= itemIndex + 1 %>
+                <% if (itemIndex + 1 === 1) { %>
+                    Départ
+                <% } else if (itemIndex + 1 === data.stops.length) { %>
+                    Arrivée
+                <% } else { %>
+                    <%= item.place_name %>
+                <% } %>
+            </a>
+            <span class="open-status-icons pull-right">
+                <span class="status-open glyphicon glyphicon-chevron-up"></span>
+                <span class="status-closed glyphicon glyphicon-chevron-down"></span>
+            </span>
+        </div>
+        <div id="collapse-poi-<%= itemIndex %>" class="panel-collapse collapse">
+            <div class="container">
+                <div>
+                    <%= data.formatPoiPosition(item) %>
+                </div>
+                <% if(item.desc){ %> 
+                <div class="row description">
+                    <%= item.desc %>
+                </div>
+                <% } %>
+                <% if(item.poi_id){ %>
+                <div class="row actions">
+                    <a class="btn btn-block" href="#fiche/<%=item.poi_id %>" role="button">Voir le détail</a>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <% }); %>
+
+    </div>
+</div>
