@@ -212,8 +212,9 @@ var BoucleCarteView = BaseView.extend({
 
     initialize: function () {
         this.listenTo(this.model, 'request', this.onRequest);
-        this.listenTo(this.model, 'error', this.onError);
-        this.listenTo(this.model, 'change', this.reload);
+        this.listenTo(this.model, 'request', this.showSpinner);
+        this.listenTo(this.model, 'error', this.hideSpinner); // TODO: Display an error message for the user?
+        this.listenTo(this.model, 'change', this.hideSpinner);
         this.listenTo(this.model, 'change', this.reload);
         this.listenTo(this.model.request, 'change', this.updateButtonLabels);
         BaseView.prototype.initialize.call(this, arguments);
@@ -249,26 +250,25 @@ var BoucleCarteView = BaseView.extend({
         poiSource.addFeatures(features);
     },
 
-    onRequest: function () {
-        // Clear vector layer beforehand
-        tripSource.clear();
-        poiSource.clear();
-
+    showSpinner: function () {
         // Show a spinner while loading
-        this.$el.find('#map-spinner').show();
+        this.$el.find('.loader').show();
     },
 
-    onError: function () {
+    hideSpinner: function () {
         // Hide spinner
-        this.$el.find('#map-spinner').hide();
-        // TODO: Display an error message for the user?
+        this.$el.find('.loader').hide();
+    },
+
+    onRequest: function () {
+        // Clear vector layer
+        tripSource.clear();
+        poiSource.clear();
     },
 
     load: function () {
         this.displayTrips();
         this.displayPOIs();
-        // Hide spinner
-        this.$el.find('#map-spinner').hide();
     },
 
     reload: function () {
@@ -291,11 +291,12 @@ var BoucleCarteView = BaseView.extend({
     afterRender: function () {
         this.updateButtonLabels();
 
-        if ('trip' in this.model.attributes) {
+        if (! this.model.isEmpty) {
             // A magictour exist: show trips and POIs
             this.load();
         } else {
             // Magictour is not loaded yet: show a spinner and let the model's change event trigger a display
+            this.showSpinner();
             this.onRequest();
         }
 

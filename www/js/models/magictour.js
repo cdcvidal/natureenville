@@ -21,6 +21,8 @@ var MagicTour = Backbone.Model.extend({
     url: 'http://dev.optitour.fr/magic/naturalsolution/magictour/',
 
     initialize: function() {
+        this.isVirgin = true;
+        this.isEmpty = true;
         this.request = new MagicTourRequest();
         this.listenTo(this.request, 'reload', this.reload);
     },
@@ -30,6 +32,7 @@ var MagicTour = Backbone.Model.extend({
     },
 
     fetch: function(options) {
+        this.isEmpty = true;
         // Always load request for the current day/time
         this.request.set({
             option_date: moment().format("DD/MM/YYYY"),
@@ -49,6 +52,8 @@ var MagicTour = Backbone.Model.extend({
 
     parse: function(response, options){
         if (response.success && response.tours) {
+            this.isVirgin = false;
+            this.isEmpty = false;
             return response.tours[0];
         } else {
             //TODO manage Optimisation Request Error

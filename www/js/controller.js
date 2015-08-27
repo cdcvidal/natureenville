@@ -46,7 +46,7 @@ Controller.prototype.boucleDetailViewDisplay = function() {
 
 Controller.prototype.boucleCarteViewDisplay = function() {
     // Load a tour with default values if none exists
-    if (! ('trip' in magicTour.attributes)) {
+    if (magicTour.isVirgin) {
         currentPos.promise().done(function() {
             var lat = currentPos.get('latitude'),
                 lon = currentPos.get('longitude');
