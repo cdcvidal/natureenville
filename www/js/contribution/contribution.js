@@ -19,6 +19,7 @@ var ContributionView = BaseView.extend({
 
     initialize: function(){
         this.listenTo(this.model, 'invalid', this.onModelInvalid);
+        BaseView.prototype.initialize.call(this, arguments);
     },
 
     onModelInvalid: function(model, errors){

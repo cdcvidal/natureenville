@@ -10,6 +10,7 @@ var FichePoiView = BaseView.extend({
     template: require('./fichePoi.html'),
     initialize: function () {
         //moment.locale('fr');
+        BaseView.prototype.initialize.call(this, arguments);
     },
     serialize: function () {
         var self = this;
