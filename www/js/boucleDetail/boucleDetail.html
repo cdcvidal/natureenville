@@ -1,7 +1,6 @@
-<% var _ = require('lodash'); %>
 <div class="tab-pane" id="liste">
 
-    <% _.each(data.stops, function(item, itemIndex) { %>
+    <% data.stops.forEach(function(item, itemIndex) { %>
 
     <div class="panel panel-default">
         <div class="panel-heading clearfix" data-toggle="collapse">
