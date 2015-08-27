@@ -1,11 +1,11 @@
 'use strict';
 
 var $ = require('jquery'),
-    baseview = require('../baseview'),
+    BaseView = require('../baseview'),
     router = require('../router');
 
 
-var ContainerView = baseview.extend({
+var ContainerView = BaseView.extend({
         template: require('./app-container.html'),
 
         serialize: function () {

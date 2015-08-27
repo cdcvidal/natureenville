@@ -1,10 +1,10 @@
 'use strict';
 
-var baseview = require('../baseview');
+var BaseView = require('../baseview');
 var $ = require('jquery');
 var utilities = require('../utilities');
 
-var boucleDetailView = baseview.extend({
+var BoucleDetailView = BaseView.extend({
         template: require('./boucleDetail.html'),
 
         serialize: function () {
@@ -27,4 +27,4 @@ var boucleDetailView = baseview.extend({
         }
     });
 
-module.exports = boucleDetailView;
+module.exports = BoucleDetailView;

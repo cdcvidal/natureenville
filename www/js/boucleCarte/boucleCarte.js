@@ -3,7 +3,7 @@
 /*
  * Dependencies
  */
-var baseview = require('../baseview'),
+var BaseView = require('../baseview'),
     currentPos = require('../current-position'),
     ol = require('planet-maps/dist/ol-base');
 
@@ -198,7 +198,7 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
 /*
  * Backbone view
  */
-var boucleCarteView = baseview.extend({
+var BoucleCarteView = BaseView.extend({
     template: require('./boucleCarte.html'),
 
     events: {
@@ -214,7 +214,7 @@ var boucleCarteView = baseview.extend({
         this.listenTo(this.model, 'change', this.reload);
         this.listenTo(this.model, 'change', this.reload);
         this.listenTo(this.model.request, 'change', this.updateButtonLabels);
-        baseview.prototype.initialize.call(this, arguments);
+        BaseView.prototype.initialize.call(this, arguments);
     },
 
     displayTrips: function() {
@@ -345,4 +345,4 @@ var boucleCarteView = baseview.extend({
     }
 });
 
-module.exports = boucleCarteView;
+module.exports = BoucleCarteView;

@@ -1,9 +1,9 @@
 'use strict';
 
-var homeView = require('./home/home'),
+var HomeView = require('./home/home'),
     $ = require('jquery'),
     poi = require('./models/poi'),
-    contributionView = require('./contribution/contribution');
+    ContributionView = require('./contribution/contribution');
 
 /*
  * Controller class
@@ -17,14 +17,14 @@ var Controller = function() {
 // "Action" methods
 Controller.prototype.homeViewDisplay = function () {
     $('body').alterClass('section-*', 'section-home');
-    var homeV = new homeView();
+    var homeV = new HomeView();
     this._displayView(homeV);
 };
 
 Controller.prototype.contributionViewDisplay = function () {
     $('body').alterClass('section-*', 'section-contribution');
     var poiM = new poi.Poi();
-    var contributionV = new contributionView({
+    var contributionV = new ContributionView({
         model: poiM
     });
     this._displayView(contributionV);

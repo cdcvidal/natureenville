@@ -1,12 +1,12 @@
 'use strict';
 
-var baseview = require('../baseview');
+var BaseView = require('../baseview');
 var $ = require('jquery');
 var _ = require('lodash');
 var moment = require('moment');
 //var Swiper = require('swiper');
 
-var fichePoiView = baseview.extend({
+var FichePoiView = BaseView.extend({
     template: require('./fichePoi.html'),
     initialize: function () {
         //moment.locale('fr');
@@ -37,8 +37,8 @@ var fichePoiView = baseview.extend({
         });*/
     },
     remove: function() {
-        baseview.prototype.remove.apply(this, arguments);
+        BaseView.prototype.remove.apply(this, arguments);
     }
 });
 
-module.exports = fichePoiView;
+module.exports = FichePoiView;

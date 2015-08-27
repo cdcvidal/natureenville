@@ -1,8 +1,8 @@
 'use strict';
 
-var baseview = require('../baseview');
+var BaseView = require('../baseview');
 
-var profileView = baseview.extend({
+var ProfileView = BaseView.extend({
         template: require('./profile.html'),
 
         serialize: function () {
@@ -13,4 +13,4 @@ var profileView = baseview.extend({
         }
     });
 
-module.exports = profileView;
+module.exports = ProfileView;

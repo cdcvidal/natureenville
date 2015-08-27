@@ -1,11 +1,11 @@
 'use strict';
 
-var baseview = require('../baseview');
+var BaseView = require('../baseview');
 var Backbone = require('backbone'),
     $ = require('jquery'),
     _ = require('lodash'),
     bootstrap = require('bootstrap'),
-    dialog = require('bootstrap-dialog'),
+    Dialog = require('bootstrap-dialog'),
     geocomplete = require('geocomplete')
 ;
 
@@ -14,7 +14,7 @@ var typepoi = require('../models/typepoi');
 var poiCollection = require('../models/poi').instancePoiCollection;
 
 
-var contributionView = baseview.extend({
+var ContributionView = BaseView.extend({
     template: require('./contribution.html'),
 
     initialize: function(){
@@ -58,12 +58,12 @@ var contributionView = baseview.extend({
         //TODO message
         poiCollection.add(this.model).save()
             .done(function(){
-                dialog.show({
+                Dialog.show({
                     title: 'Merci pour votre contribution!',
                 });
             })
             .fail(function(error){
-                dialog.show({
+                Dialog.show({
                     title: error,
             });
         })
@@ -173,4 +173,4 @@ var contributionView = baseview.extend({
 
 
 
-module.exports = contributionView;
+module.exports = ContributionView;

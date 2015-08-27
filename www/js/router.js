@@ -14,10 +14,10 @@ var controller = require('./controller');
 var badgesInstanceColl = require('./models/badge').instanceColl;
 
 
-var profileView = require('./profile/profile'),
-    boucleDetailView = require('./boucleDetail/boucleDetail'),
-    boucleCarteView = require('./boucleCarte/boucleCarte'),
-    fichePoiView = require('./fichePoi/fichePoi'),
+var ProfileView = require('./profile/profile'),
+    BoucleDetailView = require('./boucleDetail/boucleDetail'),
+    BoucleCarteView = require('./boucleCarte/boucleCarte'),
+    FichePoiView = require('./fichePoi/fichePoi'),
     Router = Backbone.Router.extend({
         routes: {
             '': "homeViewDisplay",
@@ -38,7 +38,7 @@ var profileView = require('./profile/profile'),
 
         profileViewDisplay: function() {
             $('body').alterClass('section-*', 'section-loop section-profile');
-            var profileV = new profileView({
+            var profileV = new ProfileView({
                     model: user,
                     collection: badgesInstanceColl
                 });
@@ -47,7 +47,7 @@ var profileView = require('./profile/profile'),
 
         boucleDetailViewDisplay: function() {
             $('body').alterClass('section-*', 'section-loop section-loop-details');
-            var boucleDetailV = new boucleDetailView({
+            var boucleDetailV = new BoucleDetailView({
                 model: magicTour
             });
             this.displayView(boucleDetailV);
@@ -68,7 +68,7 @@ var profileView = require('./profile/profile'),
                 magicTour.fetch();
             });
 
-            var boucleCarteV = new boucleCarteView({
+            var boucleCarteV = new BoucleCarteView({
                 model: magicTour
             });
             this.displayView(boucleCarteV);
@@ -86,7 +86,7 @@ var profileView = require('./profile/profile'),
             	'url_img1': currentPOI.image,
             	'name_fr': currentPOI.place_name
             });
-            var ficheV = new fichePoiView({
+            var ficheV = new FichePoiView({
                 model: poiM
             });
             this.displayView(ficheV);

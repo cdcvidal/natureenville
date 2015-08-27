@@ -1,9 +1,9 @@
 'use strict';
 
-var baseview = require('../baseview');
+var BaseView = require('../baseview');
 
-var homeView = baseview.extend({
+var HomeView = BaseView.extend({
     template: require('./home.html')
 });
 
-module.exports = homeView;
+module.exports = HomeView;
