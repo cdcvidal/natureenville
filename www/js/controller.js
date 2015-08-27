@@ -1,45 +1,45 @@
 'use strict';
 
-var $ = require('jquery');
-
 var homeView = require('./home/home'),
+    $ = require('jquery'),
+    poi = require('./models/poi'),
     contributionView = require('./contribution/contribution');
 
-var poi = require('./models/poi');
+/*
+ * Controller class
+ */
 
-var Controller = function(){
-    var self = this;
-	self.homeViewDisplay = function () {
-        $('body').alterClass('section-*', 'section-home');
-        var homeV = new homeView.view();
-        self.displayView(homeV);
-    };
-
-    self.contributionViewDisplay = function () {
-        $('body').alterClass('section-*', 'section-contribution');
-        var poiM = new poi.Poi();
-        var contributionV = new contributionView.view({
-            model: poiM
-        });
-        self.displayView(contributionV);
-    };
-
-
-    self._currentView =  null;
-
-    self.displayView = function(view) {
-        if (self._currentView) {
-            self._currentView.remove();
-            self._currentView.off();
-        }
-        self._currentView = view;
-        $('#main').empty();
-        $('#main').append(view.el);
-        view.render();
-    };
-
+// Constructor
+var Controller = function() {
+    this._currentView =  null;
 };
 
-var controller = new Controller();
+// "Action" methods
+Controller.prototype.homeViewDisplay = function () {
+    $('body').alterClass('section-*', 'section-home');
+    var homeV = new homeView.view();
+    this._displayView(homeV);
+};
 
-module.exports = controller;
+Controller.prototype.contributionViewDisplay = function () {
+    $('body').alterClass('section-*', 'section-contribution');
+    var poiM = new poi.Poi();
+    var contributionV = new contributionView.view({
+        model: poiM
+    });
+    this._displayView(contributionV);
+};
+
+// Helper method for switching main view
+Controller.prototype._displayView = function(view) {
+    if (this._currentView) {
+        this._currentView.remove();
+        this._currentView.off();
+    }
+    this._currentView = view;
+    $('#main').empty();
+    $('#main').append(view.el);
+    view.render();
+};
+
+module.exports = new Controller();
