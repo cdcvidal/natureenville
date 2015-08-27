@@ -13,19 +13,17 @@
 	    <div class="tab-pane active" id="liste">
 	    	<!-- <p class="text-center"></p> -->
 	    	<% 
-	    		var count = 1;
-	    		var countStops = Number(data.parcours.attributes.nb_stops);
-				_.each(data.parcours.attributes.stops,function(item, itemIndex){
+				_.each(data.stops, function(item, itemIndex) {
 			%>  		
 	 			<div class="panel panel-default">
 					<div class="panel-heading clearfix" data-toggle="collapse">
 						<a class="panel-title" role="button" data-toggle="collapse" href="#collapse-poi-<%= itemIndex %>">
-						  <%= count %>
-							<% if(count === 1){ %> 
+						  <%= itemIndex + 1 %>
+							<% if (itemIndex + 1 === 1) { %>
 								Départ
-							<% }else if(count === countStops){ %>
+							<% } else if (itemIndex + 1 === data.stops.length) { %>
 								Arrivée
-							<% }else { %>
+							<% } else { %>
 								<%= item.place_name %>
 							<% } %>
 						</a>
@@ -52,7 +50,6 @@
 						</div>
 					</div>
 				</div>
-			<% count++ ;%>	
 			<% 	}); %>
 			
 

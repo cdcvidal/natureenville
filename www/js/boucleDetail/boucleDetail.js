@@ -17,11 +17,8 @@ var BoucleDetailView = BaseView.extend({
     },
 
     serialize: function () {
-        var data = this.model.isEmpty ?
-                        {attributes: {stops: []}} :
-                        this.model;
         return {
-            parcours: data,
+            stops: this.model.isEmpty ? [] : this.model.attributes.stops,
             formatPoiPosition: function(stop) {
                 return utilities.formatMinutes(stop.departure);
             }
