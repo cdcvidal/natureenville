@@ -40,7 +40,7 @@ module.exports = function(grunt) {
                 files: [
                     'www/css/page-container.css',
                     'www/vendor/bootstrap-dialog/css/bootstrap-dialog.css',
-                    'www/js/boucleCarte/boucleCarte.css',
+                    'www/js/**/*.css',
                     'www/css/page-profile.css',
                     'www/css/general.css',
                 ],
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
                         './www/css/general.css',
                         './www/css/page-container.css',
                         './www/css/page-profile.css',
-                        './www/js/boucleCarte/boucleCarte.css'
+                        './www/js/**/*.css'
                     ]
                 }
             }
