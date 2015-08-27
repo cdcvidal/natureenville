@@ -45,18 +45,20 @@ Controller.prototype.boucleDetailViewDisplay = function() {
 };
 
 Controller.prototype.boucleCarteViewDisplay = function() {
-    // Load a tour with default values
-    currentPos.promise().done(function() {
-        var lat = currentPos.get('latitude'),
-            lon = currentPos.get('longitude');
-        magicTour.request.set({
-            dep_x: lon,
-            dep_y: lat,
-            arr_x: lon,
-            arr_y: lat
+    // Load a tour with default values if none exists
+    if (! ('trip' in magicTour.attributes)) {
+        currentPos.promise().done(function() {
+            var lat = currentPos.get('latitude'),
+                lon = currentPos.get('longitude');
+            magicTour.request.set({
+                dep_x: lon,
+                dep_y: lat,
+                arr_x: lon,
+                arr_y: lat
+            });
+            magicTour.fetch();
         });
-        magicTour.fetch();
-    });
+    }
 
     var v = new BoucleCarteView({
         model: magicTour
