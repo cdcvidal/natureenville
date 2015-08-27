@@ -43,8 +43,9 @@ function init() {
         }
     });
 
-    var containerView = require('./container/container').instance;
+    var containerView = require('./container/container');
     containerView.render().$el.appendTo('body');
+
     Backbone.history.start();
 }
 

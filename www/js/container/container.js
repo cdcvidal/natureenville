@@ -1,20 +1,15 @@
 'use strict';
 
-var baseview = require('../baseview');
 var $ = require('jquery'),
-    Backbone = require('backbone'),
-    _ = require('lodash');
-
-var router = require('../router');
+    baseview = require('../baseview'),
+    router = require('../router');
 
 
 var ContainerView = baseview.extend({
         template: require('./app-container.html'),
 
         serialize: function () {
-            return {
-                msg: 'Container!'
-            };
+            return {};
         },
         events: {
             'click [data-toggle=sidenav]': 'toggleSideNav',
@@ -39,8 +34,4 @@ var ContainerView = baseview.extend({
         }
     });
 
-var instance = new ContainerView();
-
-module.exports = {
-    instance: instance
-};
+module.exports = new ContainerView();
