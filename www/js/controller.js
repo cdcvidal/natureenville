@@ -17,14 +17,14 @@ var Controller = function() {
 // "Action" methods
 Controller.prototype.homeViewDisplay = function () {
     $('body').alterClass('section-*', 'section-home');
-    var homeV = new homeView.view();
+    var homeV = new homeView();
     this._displayView(homeV);
 };
 
 Controller.prototype.contributionViewDisplay = function () {
     $('body').alterClass('section-*', 'section-contribution');
     var poiM = new poi.Poi();
-    var contributionV = new contributionView.view({
+    var contributionV = new contributionView({
         model: poiM
     });
     this._displayView(contributionV);

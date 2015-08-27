@@ -13,6 +13,4 @@ var profileView = baseview.extend({
         }
     });
 
-module.exports = {
-    view: profileView
-};
+module.exports = profileView;

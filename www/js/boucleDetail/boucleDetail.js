@@ -6,11 +6,7 @@ var utilities = require('../utilities');
 
 var boucleDetailView = baseview.extend({
         template: require('./boucleDetail.html'),
-        initialize: function () {
-        },
-        events:{
 
-        },
         serialize: function () {
             return {
                 parcours: this.model,
@@ -31,10 +27,4 @@ var boucleDetailView = baseview.extend({
         }
     });
 
-module.exports = {
-    action: function() {
-
-    },
-
-    view: boucleDetailView
-};
+module.exports = boucleDetailView;

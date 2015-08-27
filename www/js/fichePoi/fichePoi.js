@@ -41,9 +41,4 @@ var fichePoiView = baseview.extend({
     }
 });
 
-module.exports = {
-    action: function() {
-    },
-
-    view: fichePoiView
-};
+module.exports = fichePoiView;

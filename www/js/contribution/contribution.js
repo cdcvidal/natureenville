@@ -173,6 +173,4 @@ var contributionView = baseview.extend({
 
 
 
-module.exports = {
-    view: contributionView
-};
+module.exports = contributionView;

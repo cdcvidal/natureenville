@@ -38,7 +38,7 @@ var profileView = require('./profile/profile'),
 
         profileViewDisplay: function() {
             $('body').alterClass('section-*', 'section-loop section-profile');
-            var profileV = new profileView.view({
+            var profileV = new profileView({
                     model: user,
                     collection: badgesInstanceColl
                 });
@@ -47,7 +47,7 @@ var profileView = require('./profile/profile'),
 
         boucleDetailViewDisplay: function() {
             $('body').alterClass('section-*', 'section-loop section-loop-details');
-            var boucleDetailV = new boucleDetailView.view({
+            var boucleDetailV = new boucleDetailView({
                 model: magicTour
             });
             this.displayView(boucleDetailV);
@@ -68,7 +68,7 @@ var profileView = require('./profile/profile'),
                 magicTour.fetch();
             });
 
-            var boucleCarteV = new boucleCarteView.view({
+            var boucleCarteV = new boucleCarteView({
                 model: magicTour
             });
             this.displayView(boucleCarteV);
@@ -86,7 +86,7 @@ var profileView = require('./profile/profile'),
             	'url_img1': currentPOI.image,
             	'name_fr': currentPOI.place_name
             });
-            var ficheV = new fichePoiView.view({
+            var ficheV = new fichePoiView({
                 model: poiM
             });
             this.displayView(ficheV);

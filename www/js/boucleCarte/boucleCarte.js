@@ -345,6 +345,4 @@ var boucleCarteView = baseview.extend({
     }
 });
 
-module.exports = {
-    view: boucleCarteView
-};
+module.exports = boucleCarteView;
