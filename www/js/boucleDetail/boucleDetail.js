@@ -6,13 +6,10 @@ var utilities = require('../utilities');
 
 var BoucleDetailView = BaseView.extend({
     template: require('./boucleDetail.html'),
-    sectionClass: 'section-loop section-loop-details',
 
     initialize: function () {
-        this.listenTo(this.model, 'request', this.showSpinner);
-        this.listenTo(this.model, 'error', this.hideSpinner);
-        this.listenTo(this.model, 'change', this.hideSpinner);
         this.listenTo(this.model, 'change', this.render);
+
         BaseView.prototype.initialize.call(this, arguments);
     },
 
@@ -25,20 +22,11 @@ var BoucleDetailView = BaseView.extend({
         };
     },
 
-    showSpinner: function () {
-        // Show a spinner while loading
-        this.$el.find('.loader').show();
-    },
-
-    hideSpinner: function () {
-        // Hide spinner
-        this.$el.find('.loader').hide();
+    toggleTab: function() {
+        this.$el.toggleClass('active');
     },
 
     afterRender: function() {
-        if (this.model.isEmpty) {
-            this.showSpinner();
-        }
         this.$el.find('.collapse').on('show.bs.collapse', function (e) {
             $(e.currentTarget).parent().addClass('open');
         });

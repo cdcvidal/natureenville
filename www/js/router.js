@@ -7,8 +7,7 @@ var Router = Backbone.Router.extend({
     routes: {
         '': 'homeViewDisplay',
         'profile': 'profileViewDisplay',
-        'loop/map': 'boucleCarteViewDisplay',
-        'loop/details': 'boucleDetailViewDisplay',
+        'loop': 'tourContainerViewDisplay',
         'fiche/:poiId': 'ficheViewDisplay',
         'contribution': 'contributionViewDisplay'
     },
@@ -21,12 +20,8 @@ var Router = Backbone.Router.extend({
         controller.profileViewDisplay();
     },
 
-    boucleDetailViewDisplay: function() {
-        controller.boucleDetailViewDisplay();
-    },
-
-    boucleCarteViewDisplay: function() {
-        controller.boucleCarteViewDisplay();
+    tourContainerViewDisplay: function() {
+        controller.tourContainerViewDisplay();
     },
 
     contributionViewDisplay: function() {

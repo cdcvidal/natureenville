@@ -1,0 +1,36 @@
+.panel > .panel-heading .open-status-icons .status-open {
+    display: none;
+}
+.panel.open > .panel-heading .open-status-icons .status-open {
+    display: inline-block;
+}
+.panel.open > .panel-heading .open-status-icons .status-closed {
+    display: none;
+}
+
+
+#liste {
+    background: #E9E9E9;
+}
+
+#liste .panel-heading {
+    color: #01A6FE;
+}
+
+#liste .panel-collapse {
+    border-top-color: #01A6FE;
+}
+
+#liste .panel-collapse .row {
+    padding: 1.5rem 1.5rem 0 1.5rem;
+}
+#liste .panel-collapse .row:last-child {
+    padding-bottom: 1.5rem;
+}
+
+#liste .panel-collapse .row.actions .btn {
+    background: #EB5A14;
+    color: #FFF;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}

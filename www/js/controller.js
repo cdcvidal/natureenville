@@ -10,8 +10,7 @@ var $ = require('jquery'),
 
     HomeView = require('./home/home'),
     ProfileView = require('./profile/profile'),
-    BoucleDetailView = require('./boucleDetail/boucleDetail'),
-    BoucleCarteView = require('./boucleCarte/boucleCarte'),
+    TourContainerView = require('./tourContainer/tourContainer'),
     FichePoiView = require('./fichePoi/fichePoi'),
     ContributionView = require('./contribution/contribution');
 
@@ -37,7 +36,7 @@ Controller.prototype.profileViewDisplay = function() {
     this._displayView(v);
 };
 
-function _loadMagicTour() {
+Controller.prototype.tourContainerViewDisplay = function() {
     // Load a tour with default values if none exists
     if (magicTour.isVirgin) {
         currentPos.promise().done(function() {
@@ -52,21 +51,8 @@ function _loadMagicTour() {
             magicTour.fetch();
         });
     }
-}
 
-Controller.prototype.boucleDetailViewDisplay = function() {
-    _loadMagicTour();
-
-    var v = new BoucleDetailView({
-        model: magicTour
-    });
-    this._displayView(v);
-};
-
-Controller.prototype.boucleCarteViewDisplay = function() {
-    _loadMagicTour();
-
-    var v = new BoucleCarteView({
+    var v = new TourContainerView({
         model: magicTour
     });
     this._displayView(v);

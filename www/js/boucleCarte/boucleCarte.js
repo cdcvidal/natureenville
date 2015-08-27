@@ -200,8 +200,6 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
  */
 var BoucleCarteView = BaseView.extend({
     template: require('./boucleCarte.html'),
-    sectionClass: 'section-loop section-loop-map',
-    title: 'Boucle',
 
     events: {
         'click .btn-interest': 'onBtnInterestClick',
@@ -212,9 +210,6 @@ var BoucleCarteView = BaseView.extend({
 
     initialize: function () {
         this.listenTo(this.model, 'request', this.onRequest);
-        this.listenTo(this.model, 'request', this.showSpinner);
-        this.listenTo(this.model, 'error', this.hideSpinner); // TODO: Display an error message for the user?
-        this.listenTo(this.model, 'change', this.hideSpinner);
         this.listenTo(this.model, 'change', this.reload);
         this.listenTo(this.model.request, 'change', this.updateButtonLabels);
         BaseView.prototype.initialize.call(this, arguments);
@@ -248,16 +243,6 @@ var BoucleCarteView = BaseView.extend({
             });
         // Add features to the vector layer
         poiSource.addFeatures(features);
-    },
-
-    showSpinner: function () {
-        // Show a spinner while loading
-        this.$el.find('.loader').show();
-    },
-
-    hideSpinner: function () {
-        // Hide spinner
-        this.$el.find('.loader').hide();
     },
 
     onRequest: function () {
@@ -296,7 +281,6 @@ var BoucleCarteView = BaseView.extend({
             this.load();
         } else {
             // Magictour is not loaded yet: show a spinner and let the model's change event trigger a display
-            this.showSpinner();
             this.onRequest();
         }
 
@@ -313,6 +297,10 @@ var BoucleCarteView = BaseView.extend({
                 this.centerOnCurrentPosition();
             }
         }
+    },
+
+    toggleTab: function() {
+        this.$el.toggleClass('active');
     },
 
     serialize: function () {

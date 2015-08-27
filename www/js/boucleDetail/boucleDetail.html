@@ -1,16 +1,5 @@
 <% var _ = require('lodash'); %>
-<div class="page page-loop page-loop-details page-details page-details-loop scrollable with-header">
-  <!-- Fake Nav tabs -->
-  <ul class="nav nav-tabs page-nav-tabs" id="carto-tabs" role="tablist">
-    <li role="presentation" ><a href="#loop/map">Carte</a></li>
-    <li role="presentation" class="active"><a>Détails</a></li>
-  </ul>
-
-  <div class="loader"></div>
-  <div class="container">
-	  <!-- Fake Tab panes -->
-	  <div class="tab-content">
-	    <div class="tab-pane active" id="liste">
+	    <div class="tab-pane" id="liste">
 	    	<!-- <p class="text-center"></p> -->
 	    	<% 
 				_.each(data.stops, function(item, itemIndex) {
@@ -55,7 +44,3 @@
 
 	    	</div>
 		</div>
-	  </div>
-  </div>
-</div>
-		
