@@ -261,6 +261,13 @@ body.show-sidenav .sidenav {
 .app-header .btn-back {
     display: none;
 }
+
+.app-header .title {
+    padding: 10px 0;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
 body.section-poi .app-header .btn-back {
     display: inline-block;
 }

@@ -91,14 +91,21 @@ Controller.prototype.contributionViewDisplay = function () {
 
 // Helper method for switching main view
 Controller.prototype._displayView = function(view) {
+    // Keep a reference to the main ccurrent view
     if (this._currentView) {
         this._currentView.remove();
         this._currentView.off();
     }
+    this._currentView = view;
+    // Set section class on body
     if (view.sectionClass) {
         $('body').alterClass('section-*', view.sectionClass);
     }
-    this._currentView = view;
+    // Set title on container
+    var containerView = require('./container/container'),
+        title = view.title ? view.title : '';
+    containerView.$el.find('.app-header .title').html(title);
+    // Bind this view to the DOM
     $('#main').empty();
     $('#main').append(view.el);
     view.render();
