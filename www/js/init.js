@@ -7,7 +7,6 @@ var Backbone = require('backbone'),
 
 var bootstrap = require('bootstrap');
 var jqueryNs = require('jquery-ns');
-var magicTour = require('./models/magictour');
 var badgesInstanceColl = require('./models/badge').instanceColl;
 var badgesColl = require('./models/badge').BadgeCollection;
 
