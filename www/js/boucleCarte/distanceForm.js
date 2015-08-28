@@ -20,7 +20,7 @@ var DistanceFormView = DialogView.extend({
         cssClass: 'bottom-sheet theme-lime'
     },
 
-    initialize: function (attributes, options) {
+    initialize: function (options) {
         // Generate HTML content
         this.el.innerHTML = '1 <input type="text" /> 20';
 
@@ -36,7 +36,7 @@ var DistanceFormView = DialogView.extend({
         });
         this.slider.on('slideStop', _.bind(this.onSlide, this));
 
-        DialogView.prototype.initialize.call(this, attributes, options);
+        DialogView.prototype.initialize.apply(this, arguments);
     },
 
     onSlide: function(val) {

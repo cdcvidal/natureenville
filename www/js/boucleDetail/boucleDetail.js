@@ -11,7 +11,7 @@ var BoucleDetailView = BaseView.extend({
     initialize: function () {
         this.listenTo(this.model, 'change', this.render);
 
-        BaseView.prototype.initialize.call(this, arguments);
+        BaseView.prototype.initialize.apply(this, arguments);
     },
 
     serialize: function () {

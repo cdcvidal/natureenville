@@ -213,7 +213,7 @@ var BoucleCarteView = BaseView.extend({
         this.listenTo(this.model, 'request', this.onRequest);
         this.listenTo(this.model, 'change', this.reload);
         this.listenTo(this.model.request, 'change', this.updateButtonLabels);
-        BaseView.prototype.initialize.call(this, arguments);
+        BaseView.prototype.initialize.apply(this, arguments);
     },
 
     displayTrips: function() {

@@ -34,7 +34,7 @@ var TourContainerView = BaseView.extend({
             this.currentTab = options.tab;
         }
 
-        BaseView.prototype.initialize.call(this, arguments);
+        BaseView.prototype.initialize.apply(this, arguments);
     },
 
     showSpinner: function () {

@@ -13,7 +13,7 @@ var DialogView = Backbone.View.extend({
 
     dialogOptions: {},
 
-    initialize: function (attributes, options) {
+    initialize: function (options) {
         this.dialogOptions.message = this.el;
         this.dialogOptions.onshown = _.bind(this.afterRender, this);
         this.dialogOptions.onhidden = _.bind(this.onClose, this);

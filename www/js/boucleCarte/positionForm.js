@@ -17,11 +17,11 @@ var PositionFormView = DialogView.extend({
         cssClass: 'bottom-sheet theme-magenta'
     },
 
-    initialize: function (attributes, options) {
+    initialize: function (options) {
         // Generate HTML content
         this.el.innerHTML = '<span class="glyphicon glyphicon-screenshot"></span> <input type="text" placeholder="Ma position" />';
 
-        DialogView.prototype.initialize.call(this, attributes, options);
+        DialogView.prototype.initialize.apply(this, arguments);
     },
 
     onClose: function (dialog) {

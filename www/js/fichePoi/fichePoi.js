@@ -12,7 +12,7 @@ var FichePoiView = BaseView.extend({
 
     initialize: function () {
         //moment.locale('fr');
-        BaseView.prototype.initialize.call(this, arguments);
+        BaseView.prototype.initialize.apply(this, arguments);
     },
     serialize: function () {
         var self = this;

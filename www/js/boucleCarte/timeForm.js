@@ -22,7 +22,7 @@ var TimeFormView = DialogView.extend({
         cssClass: 'bottom-sheet theme-yellow',
     },
 
-    initialize: function(attributes, options) {
+    initialize: function(options) {
         // Generate HTML content
         var i,
             timeSteps = this.model.timeSteps,
@@ -32,7 +32,7 @@ var TimeFormView = DialogView.extend({
             $('<div class="swiper-slide" data-value="' + timeSteps[i].value + '">' + timeSteps[i].label + '</div>').appendTo($wrapper);
         }
 
-        DialogView.prototype.initialize.call(this, attributes, options);
+        DialogView.prototype.initialize.apply(this, arguments);
     },
 
     onClose: function (dialog) {

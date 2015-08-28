@@ -23,7 +23,7 @@ var InterestFormView = DialogView.extend({
         cssClass: 'bottom-sheet theme-orange'
     },
 
-    initialize: function(attributes, options) {
+    initialize: function(options) {
         // Decode request data
         var req = this.req = JSON.parse(this.model.get('etype_einflu')),
             $el = this.$el;
@@ -37,7 +37,7 @@ var InterestFormView = DialogView.extend({
             $li.appendTo($el);
         });
 
-        DialogView.prototype.initialize.call(this, attributes, options);
+        DialogView.prototype.initialize.apply(this, arguments);
     },
 
     onClose: function (dialog) {
