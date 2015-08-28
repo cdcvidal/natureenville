@@ -30,9 +30,8 @@ var TourContainerView = BaseView.extend({
         this.detailView = new BoucleDetailView(options);
         this.mapView = new BoucleCarteView(options);
 
-        if ('tab' in options && options.tab !== void 0) {
-            this.currentTab = options.tab;
-        }
+        this.currentTab = options.tab;
+        this.mode = options.mode;
 
         BaseView.prototype.initialize.apply(this, arguments);
     },
@@ -53,10 +52,11 @@ var TourContainerView = BaseView.extend({
     },
 
     afterRender: function() {
-        if (this.model.isEmpty) {
+        if (this.model.isEmpty && this.mode === 'loop') {
             this.showSpinner();
         }
         this.showTab(this.currentTab);
+        this.setMode(this.mode);
     },
 
     serialize: function () {
@@ -64,6 +64,15 @@ var TourContainerView = BaseView.extend({
             mapActive: this.currentTab === 'map' ? 'active' : '',
             detailsActive: this.currentTab === 'details' ? 'active' : ''
         };
+    },
+
+    setMode: function (mode) {
+        // Keep track of current mode
+        this.mode = mode;
+        // Update title
+        require('../container/container').setTitle(this.mode === 'loop' ? 'Boucle' : 'Itinéraire');
+        // Relay to map view
+        this.mapView.setMode(mode);
     },
 
     showTab: function (tab) {
@@ -76,7 +85,7 @@ var TourContainerView = BaseView.extend({
 
         // Update URL
         var router = require('../router');
-        router.navigate('loop/' + tab); // Without trigger option, just update URL and navigation history
+        router.navigate(this.mode + '/' + tab); // Without trigger option, just update URL and navigation history
 
         // Actually show tab content
         this.mapView.switchTabContent(tab === 'map');

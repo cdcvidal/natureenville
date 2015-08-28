@@ -50,6 +50,11 @@ var MagicTour = Backbone.Model.extend({
         }
     },
 
+    clear: function(){
+        this.isEmpty = true;
+        return Backbone.Model.prototype.clear.apply(this, arguments);
+    },
+
     parse: function(response, options){
         if (response.success && response.tours) {
             this.isVirgin = false;

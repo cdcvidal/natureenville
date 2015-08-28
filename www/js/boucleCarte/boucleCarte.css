@@ -130,3 +130,16 @@
     top: 0.4em;
     left: -0.4em;
 }
+
+/* Destination form */
+/* TODO: move this to app-header section */
+.tour-destination {
+    position: absolute;
+    top: 55px;
+    right: 10px;
+    left: 50px;
+}
+.tour-destination input {
+    padding: 0.25em;
+    width: 100%
+}

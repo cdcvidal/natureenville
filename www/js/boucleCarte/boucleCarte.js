@@ -209,10 +209,13 @@ var BoucleCarteView = BaseView.extend({
         'click .btn-time': 'onBtnTimeClick'
     },
 
-    initialize: function () {
+    initialize: function (options) {
         this.listenTo(this.model, 'request', this.onRequest);
         this.listenTo(this.model, 'change', this.reload);
         this.listenTo(this.model.request, 'change', this.updateButtonLabels);
+
+        this.mode = options.mode;
+
         BaseView.prototype.initialize.apply(this, arguments);
     },
 
@@ -277,6 +280,22 @@ var BoucleCarteView = BaseView.extend({
     afterRender: function () {
         this.updateButtonLabels();
 
+        // Configure destination form
+        var req = this.model.request;
+        this.$el.find('.tour-destination input').geocomplete({
+            country: "FR"
+        }).bind("geocode:result", function(event, result) {
+            var place = result.geometry.location;
+            req.set({
+                arr_x: place.lng(),
+                arr_y: place.lat()
+            });
+            req.trigger('reload');
+        }).bind("geocode:error", function(event, status) {
+            console.log("ERROR: " + status);
+        });
+        this.setMode(this.mode);
+
         if (! this.model.isEmpty) {
             // A magictour exist: show trips and POIs
             this.load();
@@ -315,6 +334,40 @@ var BoucleCarteView = BaseView.extend({
         };
     },
 
+    setMode: function (mode) {
+        // Update destination form visibility, always (used for UI init)
+        if (mode === 'direction') {
+            this.$el.find('.tour-destination').show();
+        } else {
+            this.$el.find('.tour-destination').hide();
+        }
+
+        // If the mode is already on screen, we don't need more
+        if (mode === this.mode) {
+            return;
+        }
+
+        // Keep track of current mode
+        this.mode = mode;
+
+        if (mode === 'direction') {
+            // Reset form
+            this.$el.find('.tour-destination input').val('');
+            // Clear tour request and let the user chose a destination
+            this.model.request.unset('arr_x');
+            this.model.request.unset('arr_y');
+            this.model.clear();
+            this.onRequest();
+        } else {
+            // Request a tour with arr == dep
+            this.model.request.set({
+                arr_x: this.model.request.get('dep_x'),
+                arr_y: this.model.request.get('dep_y')
+            });
+            this.model.request.trigger('reload');
+        }
+    },
+
     onBtnInterestClick: function(e) {
         e.preventDefault();
         var InterestFormView = require('./interestForm.js'),
@@ -325,7 +378,7 @@ var BoucleCarteView = BaseView.extend({
     onBtnPositionClick: function(e) {
         e.preventDefault();
         var PositionFormView = require('./positionForm.js'),
-            dialog = new PositionFormView({model: this.model.request});
+            dialog = new PositionFormView({model: this.model.request, mode: this.mode});
         dialog.render();
     },
 

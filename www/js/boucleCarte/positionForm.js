@@ -20,7 +20,7 @@ var PositionFormView = DialogView.extend({
     initialize: function (options) {
         // Generate HTML content
         this.el.innerHTML = '<span class="glyphicon glyphicon-screenshot"></span> <input type="text" placeholder="Ma position" />';
-
+        this.mode = options.mode;
         DialogView.prototype.initialize.apply(this, arguments);
     },
 
@@ -42,9 +42,13 @@ var PositionFormView = DialogView.extend({
             self.model.set({
                 dep_x: place.lng(),
                 dep_y: place.lat(),
-                arr_x: place.lng(), // TODO: set arr_x/y only for loop trip
-                arr_y: place.lat()
             });
+            if (self.mode === 'loop') {
+                self.model.set({
+                    arr_x: place.lng(),
+                    arr_y: place.lat()
+                });
+            }
         }).bind("geocode:error", function(event, status) {
             console.log("ERROR: " + status);
         });

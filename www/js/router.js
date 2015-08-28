@@ -7,8 +7,10 @@ var Router = Backbone.Router.extend({
     routes: {
         '': 'homeViewDisplay',
         'profile': 'profileViewDisplay',
-        'loop': 'tourContainerViewDisplay',
-        'loop/:tab': 'tourContainerViewDisplay', // Allowed values for tab: 'map' or 'details'
+        'loop': 'loopAction',
+        'loop/:tab': 'loopAction', // Allowed values for tab: 'map' or 'details'
+        'direction': 'directionAction',
+        'direction/:tab': 'directionAction', // Allowed values for tab: 'map' or 'details'
         'fiche/:poiId': 'ficheViewDisplay',
         'contribution': 'contributionViewDisplay'
     },
@@ -21,8 +23,12 @@ var Router = Backbone.Router.extend({
         controller.profileViewDisplay();
     },
 
-    tourContainerViewDisplay: function(tab) {
-        controller.tourContainerViewDisplay(tab);
+    loopAction: function(tab) {
+        controller.tourContainerViewDisplay('loop', tab);
+    },
+
+    directionAction: function(tab) {
+        controller.tourContainerViewDisplay('direction', tab);
     },
 
     contributionViewDisplay: function() {

@@ -36,7 +36,7 @@ Controller.prototype.profileViewDisplay = function() {
     this._displayView(v);
 };
 
-Controller.prototype.tourContainerViewDisplay = function(tab) {
+Controller.prototype.tourContainerViewDisplay = function(mode, tab) {
     // Load a tour with default values if none exists
     if (magicTour.isVirgin) {
         currentPos.promise().done(function() {
@@ -48,16 +48,20 @@ Controller.prototype.tourContainerViewDisplay = function(tab) {
                 arr_x: lon,
                 arr_y: lat
             });
-            magicTour.fetch();
+            if (mode === 'loop') {
+                magicTour.fetch();
+            }
         });
     }
 
     if (this._currentView instanceof TourContainerView) {
         // we're already having a tour container view, just switch to the desired tab
+        this._currentView.setMode(mode);
         this._currentView.showTab(tab || 'map');
     } else {
         var v = new TourContainerView({
             model: magicTour,
+            mode: mode,
             tab: tab
         });
         this._displayView(v);
