@@ -11,6 +11,7 @@ var ContainerView = BaseView.extend({
     serialize: function () {
         return {};
     },
+
     events: {
         'click [data-toggle=sidenav]': 'toggleSideNav',
         'click .sidenav': 'onSideNavClick',
@@ -29,6 +30,11 @@ var ContainerView = BaseView.extend({
     goToprofile: function(){
         router.navigate('#profile',{trigger: true});
     },
+
+    setTitle: function(title) {
+        this.$el.find('.app-header .title').text(title);
+    },
+
     historyBack: function(){
         window.history.back();
     }

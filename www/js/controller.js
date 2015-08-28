@@ -102,9 +102,7 @@ Controller.prototype._displayView = function(view) {
         $('body').alterClass('section-*', view.sectionClass);
     }
     // Set title on container
-    var containerView = require('./container/container'),
-        title = view.title ? view.title : '';
-    containerView.$el.find('.app-header .title').html(title);
+    require('./container/container').setTitle(view.title ? view.title : '');
     // Bind this view to the DOM
     $('#main').empty();
     $('#main').append(view.el);
