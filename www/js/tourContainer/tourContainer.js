@@ -4,15 +4,15 @@
  * Dependencies
  */
 var BaseView = require('../baseview'),
-    BoucleDetailView = require('../boucleDetail/boucleDetail'),
-    BoucleCarteView = require('../boucleCarte/boucleCarte');
+    TourDetailsView = require('../tourDetails/tourDetails'),
+    TourMapView = require('../tourMap/tourMap');
 
 /*
  * Backbone view
  */
 var TourContainerView = BaseView.extend({
     template: require('./tourContainer.html'),
-    sectionClass: 'section-loop',
+    sectionClass: 'section-tour',
     title: 'Boucle',
 
     currentTab: 'map',
@@ -27,8 +27,8 @@ var TourContainerView = BaseView.extend({
         this.listenTo(this.model, 'error', this.hideSpinner); // TODO: Display an error message for the user?
         this.listenTo(this.model, 'change', this.hideSpinner);
 
-        this.detailView = new BoucleDetailView(options);
-        this.mapView = new BoucleCarteView(options);
+        this.detailView = new TourDetailsView(options);
+        this.mapView = new TourMapView(options);
 
         this.currentTab = options.tab;
         this.mode = options.mode;

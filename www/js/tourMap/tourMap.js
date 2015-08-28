@@ -198,8 +198,8 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
 /*
  * Backbone view
  */
-var BoucleCarteView = BaseView.extend({
-    template: require('./boucleCarte.html'),
+var TourMapView = BaseView.extend({
+    template: require('./tourMap.html'),
     activeTab: true,
 
     events: {
@@ -377,7 +377,7 @@ var BoucleCarteView = BaseView.extend({
 
     onBtnPositionClick: function(e) {
         e.preventDefault();
-        var PositionFormView = require('./positionForm.js'),
+        var PositionFormView = require('./originForm.js'),
             dialog = new PositionFormView({model: this.model.request, mode: this.mode});
         dialog.render();
     },
@@ -397,4 +397,4 @@ var BoucleCarteView = BaseView.extend({
     }
 });
 
-module.exports = BoucleCarteView;
+module.exports = TourMapView;

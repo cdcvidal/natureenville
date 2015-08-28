@@ -4,8 +4,8 @@ var BaseView = require('../baseview');
 var $ = require('jquery');
 var utilities = require('../utilities');
 
-var BoucleDetailView = BaseView.extend({
-    template: require('./boucleDetail.html'),
+var TourDetailsView = BaseView.extend({
+    template: require('./tourDetails.html'),
     activeTab: false,
 
     initialize: function () {
@@ -44,4 +44,4 @@ var BoucleDetailView = BaseView.extend({
     }
 });
 
-module.exports = BoucleDetailView;
+module.exports = TourDetailsView;
