@@ -6,6 +6,7 @@ var utilities = require('../utilities');
 
 var BoucleDetailView = BaseView.extend({
     template: require('./boucleDetail.html'),
+    activeTab: false,
 
     initialize: function () {
         this.listenTo(this.model, 'change', this.render);
@@ -15,6 +16,7 @@ var BoucleDetailView = BaseView.extend({
 
     serialize: function () {
         return {
+            active: this.activeTab ? 'active' : '',
             stops: this.model.isEmpty ? [] : this.model.attributes.stops,
             formatPoiPosition: function(stop) {
                 return utilities.formatMinutes(stop.departure);
@@ -22,8 +24,13 @@ var BoucleDetailView = BaseView.extend({
         };
     },
 
-    toggleTab: function() {
-        this.$el.toggleClass('active');
+    switchTabContent: function(active) {
+        this.activeTab = active;
+        if (this.activeTab) {
+            this.$el.addClass('active');
+        } else {
+            this.$el.removeClass('active');
+        }
     },
 
     afterRender: function() {

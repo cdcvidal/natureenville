@@ -200,6 +200,7 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
  */
 var BoucleCarteView = BaseView.extend({
     template: require('./boucleCarte.html'),
+    activeTab: true,
 
     events: {
         'click .btn-interest': 'onBtnInterestClick',
@@ -299,12 +300,19 @@ var BoucleCarteView = BaseView.extend({
         }
     },
 
-    toggleTab: function() {
-        this.$el.toggleClass('active');
+    switchTabContent: function(active) {
+        this.activeTab = active;
+        if (this.activeTab) {
+            this.$el.addClass('active');
+        } else {
+            this.$el.removeClass('active');
+        }
     },
 
     serialize: function () {
-        return {};
+        return {
+            active: this.activeTab ? 'active' : ''
+        };
     },
 
     onBtnInterestClick: function(e) {

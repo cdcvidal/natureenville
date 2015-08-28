@@ -36,7 +36,7 @@ Controller.prototype.profileViewDisplay = function() {
     this._displayView(v);
 };
 
-Controller.prototype.tourContainerViewDisplay = function() {
+Controller.prototype.tourContainerViewDisplay = function(tab) {
     // Load a tour with default values if none exists
     if (magicTour.isVirgin) {
         currentPos.promise().done(function() {
@@ -52,10 +52,16 @@ Controller.prototype.tourContainerViewDisplay = function() {
         });
     }
 
-    var v = new TourContainerView({
-        model: magicTour
-    });
-    this._displayView(v);
+    if (this._currentView instanceof TourContainerView) {
+        // we're already having a tour container view, just switch to the desired tab
+        this._currentView.showTab(tab || 'map');
+    } else {
+        var v = new TourContainerView({
+            model: magicTour,
+            tab: tab
+        });
+        this._displayView(v);
+    }
 };
 
 Controller.prototype.ficheViewDisplay = function(poiId) {

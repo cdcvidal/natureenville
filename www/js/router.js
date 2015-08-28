@@ -8,6 +8,7 @@ var Router = Backbone.Router.extend({
         '': 'homeViewDisplay',
         'profile': 'profileViewDisplay',
         'loop': 'tourContainerViewDisplay',
+        'loop/:tab': 'tourContainerViewDisplay', // Allowed values for tab: 'map' or 'details'
         'fiche/:poiId': 'ficheViewDisplay',
         'contribution': 'contributionViewDisplay'
     },
@@ -20,8 +21,8 @@ var Router = Backbone.Router.extend({
         controller.profileViewDisplay();
     },
 
-    tourContainerViewDisplay: function() {
-        controller.tourContainerViewDisplay();
+    tourContainerViewDisplay: function(tab) {
+        controller.tourContainerViewDisplay(tab);
     },
 
     contributionViewDisplay: function() {
