@@ -128,12 +128,16 @@
 
 #time-form .swiper-wrapper {
     /* I'm not sure why this work... Might be wrong on different screen size */
-    margin-top: 0em;
-    margin-bottom: -20em;
+    /*margin-top: 0em;
+    margin-bottom: -20em;*/
+}
+#time-form.swiper-container {
+    height: 12rem;
+    border-top: 1px solid #333;
 }
 #time-form .swiper-slide {
-    height: 2em;
-    font-size: 2em;
+    height: 33%;
+    font-size: 3rem;
     text-align: center;
 }
 #time-form .swiper-slide-active {

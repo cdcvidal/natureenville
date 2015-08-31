@@ -32,11 +32,12 @@ var MagicTourRequest = Backbone.Model.extend({
         {value: 30, label: '30min'},
         {value: 40, label: '40min'},
         {value: 50, label: '50min'},
-        {value: 60, label: '1h'},
+        {value: 60, label: '1h00'},
         {value: 75, label: '1h15'},
         {value: 90, label: '1h30'},
         {value: 105, label: '1h45'},
-        {value: 120, label: '2h'}
+        {value: 120, label: '2h00'},
+        {value: 120, label: '2h30'}
     ],
 
     getTimeLabel: function() {

@@ -377,6 +377,10 @@ body.section-poi .app-header .btn-sidenav {
     font-size: 16px;
 }
 
+.bootstrap-dialog.body-no-padding .modal-body {
+    padding: 0;
+}
+
 .bootstrap-dialog.bottom-sheet .modal-dialog {
     position: absolute;
     left: 0px;

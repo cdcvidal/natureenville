@@ -19,7 +19,7 @@ var TimeFormView = DialogView.extend({
 
     dialogOptions: {
         title: '<span class="glyphicon glyphicon-time"></span> Durée maximale',
-        cssClass: 'bottom-sheet theme-yellow has-close-btn-ok',
+        cssClass: 'bottom-sheet theme-yellow has-close-btn-ok body-no-padding',
     },
 
     initialize: function(options) {
@@ -57,11 +57,12 @@ var TimeFormView = DialogView.extend({
             slidesPerView: 'auto',
             initialSlide: stepIndex,
             mousewheelControl: true,
+            spaceBetween: 10,
             effect: 'coverflow',
             coverflow: {
                 rotate: 0,
                 stretch: 0,
-                depth: 200,
+                depth: 300,
                 modifier: -1,
                 slideShadows : false
             },
