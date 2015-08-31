@@ -17,7 +17,7 @@ var DistanceFormView = DialogView.extend({
 
     dialogOptions: {
         title: '<span class="glyphicon glyphicon-road"></span> Distance maximale',
-        cssClass: 'bottom-sheet theme-lime'
+        cssClass: 'bottom-sheet theme-lime has-close-btn-ok'
     },
 
     initialize: function (options) {

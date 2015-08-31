@@ -362,6 +362,21 @@ body.section-poi .app-header .btn-sidenav {
 }
 
 
+.bootstrap-dialog.has-close-btn-ok .modal-header .close {
+    font-size: 0;
+    margin-top: 0;
+    color: #FFF;
+    text-shadow: none;
+    filter: alpha(opacity=100);
+    opacity: 1;
+    font-weight: 400;
+}
+
+.bootstrap-dialog.has-close-btn-ok .modal-header .close:before {
+    content: "OK";
+    font-size: 16px;
+}
+
 .bootstrap-dialog.bottom-sheet .modal-dialog {
     position: absolute;
     left: 0px;

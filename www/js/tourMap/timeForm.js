@@ -19,7 +19,7 @@ var TimeFormView = DialogView.extend({
 
     dialogOptions: {
         title: '<span class="glyphicon glyphicon-time"></span> Durée maximale',
-        cssClass: 'bottom-sheet theme-yellow',
+        cssClass: 'bottom-sheet theme-yellow has-close-btn-ok',
     },
 
     initialize: function(options) {

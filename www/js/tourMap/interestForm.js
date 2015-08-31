@@ -20,7 +20,7 @@ var InterestFormView = DialogView.extend({
 
     dialogOptions: {
         title: '<span class="glyphicon glyphicon-heart"></span> Centres d\'Intérêts',
-        cssClass: 'bottom-sheet theme-orange'
+        cssClass: 'bottom-sheet theme-orange has-close-btn-ok'
     },
 
     initialize: function(options) {
