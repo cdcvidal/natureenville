@@ -116,6 +116,7 @@ body {
 
 .bg-blue-light,
 .btn-default:hover.bg-blue-light,
+.open>.dropdown-toggle.btn-default.bg-blue-light,
 .open>.dropdown-toggle.btn-default.bg-blue-light:hover,
 .btn-default.bg-blue-light:active:focus, .btn-default.bg-blue-light:active:hover {
     color: #FFF;
@@ -128,6 +129,7 @@ body {
 
 .bg-orange-light,
 .btn-default:hover.bg-orange-light,
+.open>.dropdown-toggle.btn-default.bg-orange-light,
 .open>.dropdown-toggle.btn-default.bg-orange-light:hover,
 .btn-default.bg-orange-light:active:focus, .btn-default.bg-orange-light:active:hover {
     color: #FFF;
@@ -140,6 +142,7 @@ body {
 
 .bg-orange,
 .btn-default:hover.bg-orange,
+.open>.dropdown-toggle.btn-default.bg-orange,
 .open>.dropdown-toggle.btn-default.bg-orange:hover,
 .btn-default.bg-orange:active:focus, .btn-default.bg-orange:active:hover {
     color: #FFF;
@@ -152,6 +155,7 @@ body {
 
 .bg-magenta,
 .btn-default:hover.bg-magenta,
+.open>.dropdown-toggle.btn-default.bg-magenta,
 .open>.dropdown-toggle.btn-default.bg-magenta:hover,
 .btn-default.bg-magenta:active:focus, .btn-default.bg-magenta:active:hover {
     color: #FFF;
@@ -164,6 +168,7 @@ body {
 
 .bg-lime,
 .btn-default:hover.bg-lime,
+.open>.dropdown-toggle.btn-default.bg-lime,
 .open>.dropdown-toggle.btn-default.bg-lime:hover,
 .btn-default.bg-lime:active:focus, .btn-default.bg-lime:active:hover {
     color: #FFF;
@@ -176,6 +181,7 @@ body {
 
 .bg-yellow,
 .btn-default:hover.bg-yellow,
+.open>.dropdown-toggle.btn-default.bg-yellow,
 .open>.dropdown-toggle.btn-default.bg-yellow:hover,
 .btn-default.bg-yellow:active:focus, .btn-default.bg-yellow:active:hover {
     color: #FFF;
