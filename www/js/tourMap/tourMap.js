@@ -211,15 +211,15 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
  */
 currentPos.promise().done(function(attrs) {
     // When location is known, add a marker to the map
-    var point = new ol.geom.Point([attrs.longitude, attrs.latitude]),
+    var coords = ol.proj.transform([attrs.longitude, attrs.latitude], 'EPSG:4326', 'EPSG:3857'),
         pos = new ol.Feature({
-            geometry: point.transform('EPSG:4326', 'EPSG:3857')
+            geometry: new ol.geom.Point(coords)
         });
     currentPosSource.addFeature(pos);
     // Update marker position when location change
     currentPos.on('change', function(model) {
-        var point = new ol.geom.Point([model.get('longitude'), model.get('latitude')]);
-        pos.setGeometry(point.transform('EPSG:4326', 'EPSG:3857'));
+        var coords = ol.proj.transform([model.get('longitude'), model.get('latitude')], 'EPSG:4326', 'EPSG:3857');
+        pos.setGeometry(new ol.geom.Point(coords))  ;
     });
 });
 
