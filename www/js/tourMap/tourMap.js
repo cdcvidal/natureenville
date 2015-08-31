@@ -267,11 +267,13 @@ var TourMapView = BaseView.extend({
         var pois = this.model.get('stops') || [],
             // Iterate over POIs, parse them and build ol.Feature for OL display
             features = pois.map(function (poi, idx, arr) {
-                return new ol.Feature({
+                var feat = new ol.Feature({
                     geometry: wktParser.readGeometry(poi.geom).transform('EPSG:4326', 'EPSG:3857'), // Convert GPX/WGS84 coordinates to Spherical Mercator (which is the basemap projection)
                     place_type: poi.place_type,
                     place_name: poi.place_name
                 });
+                feat.setId(parseInt(poi.poi_id));
+                return feat;
             });
         // Add features to the vector layer
         poiSource.addFeatures(features);
@@ -291,6 +293,16 @@ var TourMapView = BaseView.extend({
     reload: function () {
         this.load();
         view.fit(tripSource.getExtent(), map.getSize());
+    },
+
+    zoomToPOI: function (poiId) {
+        var feat = poiSource.getFeatureById(parseInt(poiId));
+        if (feat) {
+            view.setZoom(18);
+            view.setCenter(feat.getGeometry().getCoordinates());
+        } else {
+            console.log('[zoomToPOI] Error: feature ' + poiId + ' is unknown.');
+        }
     },
 
     centerOnCurrentPosition: function () {
