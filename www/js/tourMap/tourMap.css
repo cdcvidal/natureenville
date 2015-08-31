@@ -47,50 +47,82 @@
 /* Interest form */
 
 #interest-form li {
-    margin: 0.5em;
+    /*margin: 0.5em;
     padding: 15px 0 15px 70px;
     background-repeat: no-repeat;
     position: relative;
-    color: #888;
+    color: #888;*/
+    display: inline-block;
+    background: no-repeat center;
+    background-size: contain;
+    width: 33%;
+    height: 100px;
+    margin-bottom: 1rem;
 }
 #interest-form li.active {
     color: inherit;
 }
 #interest-form li.interest-1 {
-    background-image: url(../images/general_types/1-avenue_tree.png);
+    background-image: url("../images/general_types/1-avenue_tree_grey.png");
 }
 #interest-form li.interest-2 {
-    background-image: url(../images/general_types/2-remarkable_tree.png);
+    background-image: url("../images/general_types/2-remarkable_tree_grey.png");
 }
 #interest-form li.interest-3 {
-    background-image: url(../images/general_types/3-park_garden.png);
+    background-image: url("../images/general_types/3-park_garden_grey.png");
 }
 #interest-form li.interest-4 {
-    background-image: url(../images/general_types/4-strange_place.png);
+    background-image: url("../images/general_types/4-strange_place_grey.png");
 }
 #interest-form li.interest-5 {
-    background-image: url(../images/general_types/5-revegetated_street.png);
+    background-image: url("../images/general_types/5-revegetated_street_grey.png");
 }
 #interest-form li.interest-6 {
-    background-image: url(../images/general_types/6-wild_plant.png);
+    background-image: url("../images/general_types/6-wild_plant_grey.png");
 }
 #interest-form li.interest-7 {
-    background-image: url(../images/general_types/7-vegetable_garden.png);
+    background-image: url("../images/general_types/7-vegetable_garden_grey.png");
 }
 #interest-form li.interest-8 {
-    background-image: url(../images/general_types/8-landscaping.png);
+    background-image: url("../images/general_types/8-landscaping_grey.png");
 }
-#interest-form li::after {
+
+#interest-form li.active.interest-1 {
+    background-image: url("../images/general_types/1-avenue_tree.png");
+}
+#interest-form li.active.interest-2 {
+    background-image: url("../images/general_types/2-remarkable_tree.png");
+}
+#interest-form li.active.interest-3 {
+    background-image: url("../images/general_types/3-park_garden.png");
+}
+#interest-form li.active.interest-4 {
+    background-image: url("../images/general_types/4-strange_place.png");
+}
+#interest-form li.active.interest-5 {
+    background-image: url("../images/general_types/5-revegetated_street.png");
+}
+#interest-form li.active.interest-6 {
+    background-image: url("../images/general_types/6-wild_plant.png");
+}
+#interest-form li.active.interest-7 {
+    background-image: url("../images/general_types/7-vegetable_garden.png");
+}
+#interest-form li.active.interest-8 {
+    background-image: url("../images/general_types/8-landscaping.png");
+}
+/* TODO: prettify, change char or font or both */
+/*#interest-form li::after {
     position: absolute;
     top: 15px;
     right: 0;
-    content: "\26aa"; /* TODO: prettify, change char or font or both */
+    content: "\26aa";
     color: #fff;
 }
 #interest-form li.active::after {
-    content: "\2713"; /* TODO: prettify, change char or font or both */
+    content: "\2713";
     color: #3EB088;
-}
+}*/
 
 /* Time form */
 

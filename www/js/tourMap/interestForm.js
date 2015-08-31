@@ -30,7 +30,7 @@ var InterestFormView = DialogView.extend({
 
         // Generate HTML content
         generalTypes.each(function(gType) {
-            var $li = $('<li class="interest-' + gType.id + '" data-id="' + gType.id + '">' + gType.get('name_fr') + '</li>');
+            var $li = $('<li class="interest-' + gType.id + '" data-id="' + gType.id + '">' /*+ gType.get('name_fr')*/ + '</li>');
             if (gType.id in req && parseInt(req[gType.id]) > 0) {
                 $li.addClass('active');
             }
