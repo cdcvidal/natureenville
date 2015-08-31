@@ -86,6 +86,7 @@ function styleFromType(poiType) {
 var view = new ol.View(), // Map visible area (parameters will be set during view rendering)
     tripSource = new ol.source.Vector(), // Datasource for trips
     poiSource = new ol.source.Vector(), // Datasource for POIs
+    currentPosSource = new ol.source.Vector(), // Datasource for current position
     wktParser = new ol.format.WKT(), // WKT parser will decode geometries from the MagicTour data
     map = new ol.Map({
         layers: [
@@ -190,10 +191,37 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
                         })];
                     }
                 }
+            }),
+            // Layer 4: Current position
+            new ol.layer.Vector({
+                source: currentPosSource,
+                style: new ol.style.Style({
+                    image: new ol.style.Icon({
+                        anchor: [0.5, 0.5],
+                        src: 'images/location.png'
+                    })
+                })
             })
         ],
         view: view
     });
+
+/*
+ * Current position management
+ */
+currentPos.promise().done(function(attrs) {
+    // When location is known, add a marker to the map
+    var point = new ol.geom.Point([attrs.longitude, attrs.latitude]),
+        pos = new ol.Feature({
+            geometry: point.transform('EPSG:4326', 'EPSG:3857')
+        });
+    currentPosSource.addFeature(pos);
+    // Update marker position when location change
+    currentPos.on('change', function(model) {
+        var point = new ol.geom.Point([model.get('longitude'), model.get('latitude')]);
+        pos.setGeometry(point.transform('EPSG:4326', 'EPSG:3857'));
+    });
+});
 
 /*
  * Backbone view
