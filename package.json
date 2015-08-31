@@ -47,13 +47,13 @@
     "backbone": "^1.2.1",
     "backbone.localstorage": "^1.1.16",
     "bootstrap": "^3.3.5",
+    "bootstrap-slider": "^5.0.12",
     "browserify-shim": "^3.8.9",
+    "geocomplete": "git://github.com/ubilabs/geocomplete.git#1.6.5",
     "jquery": "^2.1.4",
     "lodash": "^3.10.0",
     "moment": "^2.10.6",
     "planet-maps": "^1.6.0",
-    "bootstrap-slider": "^5.0.12",
-    "swiper": "^3.1.0",
-    "geocomplete": "git://github.com/ubilabs/geocomplete.git#1.6.5"
+    "swiper": "^3.1.0"
   }
 }
