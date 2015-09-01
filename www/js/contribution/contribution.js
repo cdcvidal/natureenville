@@ -25,12 +25,16 @@ var ContributionView = BaseView.extend({
     events: {
         'click .submit' : 'onSubmit',
         'click #take-picture': 'capturePhoto',
-        'change #input-picture': 'loadPhoto'
+        'change #input-picture': 'loadPhoto',
+        'focusin .has-error input': 'clearError'
+    },
+    clearError: function(e){
+        var $currentinput = e.currentTarget.parentElement;
+        $($currentinput).removeClass('has-error');
     },
 
     onSubmit: function(e){
         e.preventDefault();
-        $(".form-group").removeClass('has-error');        
         var name = this.$el.find("input[name*='name']").val();
         var type_id = $("#type_id option:selected").text().trim();
         var street = this.$el.find("input[name*='route']").val();
@@ -79,12 +83,11 @@ var ContributionView = BaseView.extend({
         }else{
             var msg= "";
             _.forEach(this.model.validationError,function(n,key){
-                console.log(n,key);
                 msg += n+"<br>";
                 $("#"+key).parent().addClass("has-error");
             });
             Dialog.show({
-                title: 'Une erreur est survenue !',
+                title: 'Champ(s) obligatoire(s)',
                 message: msg,
                 type: 'type-danger',
                 size: 'size-large'

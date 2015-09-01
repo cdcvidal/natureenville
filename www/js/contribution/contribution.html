@@ -6,13 +6,13 @@
             <form>
                 <h2>Description</h2>
                 <fieldset>
-                    <div class="form-group">
+                    <div class="form-group required">
                         <label for="name">Nom</label>
-                        <input id="name" name="name" type="text" class="form-control" placeholder="Nom du lieu">
+                        <input id="name"  name="name" type="text" class="form-control" placeholder="Nom du lieu">
                         <%= data.model.get('name') %>
                     </div>
-                    <div class="form-group">
-                        <label for="type_id">Type de POI</label>
+                    <div class="form-group required">
+                        <label for="type_id">Type du lieu</label>
                         <select id="type_id" name="type_id" class="form-control">
                             <% data.typepoiinstance.each(function(poitype, key){ %>
                                 <option value="<%= poitype.type_id %>">
@@ -22,17 +22,17 @@
                         </select>
                     </div>
                     <div class="geoloc">
-                        <div class="form-group">
+                        <div class="form-group required">
                             <label for="geoloc">Adresse</label>
                             <input id="geoloc" name="adresse" class="form-control" type="text" placeholder="exemple : 1 place de la République, Marseille" size="90" >
                         </div>
                         <fieldset class="hidden">
                             <div class="form-group">
-                                <label for="street">Rue</label>
+                                <label for="street required">Rue</label>
                                 <input id="street" name="route" type="text" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="postal_code">Code POSTAL</label>
+                                <label for="postal_code required">Code POSTAL</label>
                                 <input id="postal_code" name="postal_code" type="text" class="form-control">
                             </div>
                             <div class="form-group">
