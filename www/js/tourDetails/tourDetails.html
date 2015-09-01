@@ -10,7 +10,7 @@
             <a class="panel-title clearfix" role="button" data-toggle="collapse" href="#collapse-poi-<%= itemIndex %>">
                 <span class="pull-left title">
                     <span class="meta">
-                        #<%= itemIndex + 1 %> - <%= data.formatPoiPosition(item) %>
+                        #<%= itemIndex + 1 %><% if (!isLast) { %> - <%= data.formatPoiPosition(item) %><% } %>
                     </span>
                     <span class="text">
                         <% if (isFirst) { %>

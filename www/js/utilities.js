@@ -4,7 +4,7 @@ var moment = require('moment');
 
 module.exports = {
     formatMinutes: function(minutes) {
-        return moment().startOf('day').add(parseFloat(minutes), 'minutes').format('hh:mm');
+        return moment().startOf('day').add(parseFloat(minutes), 'minutes').format('HH:mm');
     },
     checkConnection: function() {
         if (navigator.connection) {
