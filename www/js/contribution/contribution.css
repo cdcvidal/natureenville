@@ -122,3 +122,10 @@
     text-transform: uppercase;
     font-size: 1.1rem;
 }
+
+body.section-contribution .app-header .btn-back {
+    display: inline-block;
+}
+body.section-contribution .app-header .btn-sidenav {
+    display: none;
+}
