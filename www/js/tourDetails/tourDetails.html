@@ -1,28 +1,19 @@
 <div class="tab-pane <%= data.active %>" id="liste">
 
-    <% data.stops.forEach(function(item, itemIndex) { %>
-    <% var isFirst = itemIndex === 0; %>
-    <% var isLast = itemIndex === data.stops.length-1; %>
-    <% var isPoi = (!isFirst && !isLast); %>
-    <div class="panel panel-default poi-generaltype-<%= item.generalType %>">
+    <% data.steps.forEach(function(step, itemIndex) { %>
+    <div class="panel panel-default poi-generaltype-<%= step.generalType %>">
         <div class="icon-generaltype"></div>
         <div class="panel-heading" data-toggle="collapse">
             <a class="panel-title clearfix" role="button" data-toggle="collapse" href="#collapse-poi-<%= itemIndex %>">
                 <span class="pull-left title">
                     <span class="meta">
-                        #<%= itemIndex + 1 %><% if (!isLast) { %> - <%= data.formatPoiPosition(item) %><% } %>
+                        #<%= itemIndex + 1 %><% if (! step.isArrival) { %> - <%= step.departure %><% } %>
                     </span>
                     <span class="text">
-                        <% if (isFirst) { %>
-                            Départ
-                        <% } else if (isLast) { %>
-                            Arrivée
-                        <% } else { %>
-                            <%= item.place_name %>
-                        <% } %>
+                        <%= step.name %>
                     </span>
                 </span>
-                <% if (isPoi) { %>
+                <% if (step.isPoi) { %>
                 <span class="open-status-icons pull-right">
                     <span class="status-open material-icons">keyboard_arrow_up</span>
                     <span class="status-closed material-icons">keyboard_arrow_down</span>
@@ -30,25 +21,21 @@
                 <% } %>
             </a>
         </div>
-        <% if (isPoi) { %>
+        <% if (step.isPoi) { %>
         <div id="collapse-poi-<%= itemIndex %>" class="panel-collapse collapse">
             <div class="container">
-                <% if ( item.image ) { %>
+                <% if ( step.image ) { %>
                 <div class="row photo">
-                    <img src="http://dev.optitour.fr<%= item.image %>" />
+                    <img src="http://dev.optitour.fr<%= step.image %>" />
                     <span class="credit">Lorem ipsum</span>
                 </div>
                 <% } %>
-                <% if(item.desc){ %> 
                 <div class="row description">
-                    <%= item.desc %>
+                    <%= step.desc %>
                 </div>
-                <% } %>
-                <% if(item.poi_id){ %>
                 <div class="row actions">
-                    <a class="btn btn-block" href="#fiche/<%=item.poi_id %>" role="button">Voir le détail</a>
+                    <a class="btn btn-block" href="#fiche/<%= step.poiId %>" role="button">Voir le détail</a>
                 </div>
-                <% } %>
             </div>
         </div>
         <% } %>

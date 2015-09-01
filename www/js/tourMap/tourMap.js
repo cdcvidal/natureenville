@@ -24,54 +24,41 @@ function getScaleFactor(resolution) {
         return 8;
     }
 }
-function styleFromType(poiType) {
+function styleFromType(poiGenType) {
     // Assign a color for a POI type
     var style = {
         color: [0,0,0], // Defaults to black
         icon: '' // FIXME: any default?
     };
-    switch (poiType) {
-        // General type 1
-        case 7:
+    switch (poiGenType) {
+        case 1:
             style.color = [96, 140, 51];
             style.icon = 'images/general_types/1-avenue_tree.png';
             break;
-        // General type 2
-        case 3:
+        case 2:
             style.color = [206, 0, 127];
             style.icon = 'images/general_types/2-remarkable_tree.png';
             break;
-        // General type 3
-        case 1:
-        case 2:
-        case 11:
-        case 12:
-        case 13:
+        case 3:
             style.color = [111, 165, 28];
             style.icon = 'images/general_types/3-park_garden.png';
             break;
-        // General type 4
-        case 10:
+        case 4:
             style.color = [243, 152, 27];
             style.icon = 'images/general_types/4-strange_place.png';
             break;
-        // General type 5
-        case 6:
+        case 5:
             style.color = [121, 33, 129];
             style.icon = 'images/general_types/5-revegetated_street.png';
             break;
-        // General type 6
-        case 9:
+        case 6:
             style.color = [227, 1, 55];
             style.icon = 'images/general_types/6-wild_plant.png';
             break;
-        // General type 7
-        case 4:
-        case 5:
+        case 7:
             style.color = [0, 104, 132];
             style.icon = 'images/general_types/7-vegetable_garden.png';
             break;
-        // General type 8
         case 8:
             style.color = [60, 165, 148];
             style.icon = 'images/general_types/8-landscaping.png';
@@ -264,15 +251,20 @@ var TourMapView = BaseView.extend({
     },
 
     displayPOIs: function() {
-        var pois = this.model.get('stops') || [],
+        var steps = this.model.get('stops'),
             // Iterate over POIs, parse them and build ol.Feature for OL display
-            features = pois.map(function (poi, idx, arr) {
+            features = steps.map(function (step, idx, arr) {
                 var feat = new ol.Feature({
-                    geometry: wktParser.readGeometry(poi.geom).transform('EPSG:4326', 'EPSG:3857'), // Convert GPX/WGS84 coordinates to Spherical Mercator (which is the basemap projection)
-                    place_type: poi.place_type,
-                    place_name: poi.place_name
+                    geometry: step.get('geom').transform('EPSG:4326', 'EPSG:3857'), // Convert GPX/WGS84 coordinates to Spherical Mercator (which is the basemap projection)
+                    place_name: step.get('name_fr')
                 });
-                feat.setId(parseInt(poi.poi_id));
+                if (step.isPoi()) {
+                    var poi = step.get('poi');
+                    feat.setId(poi.id);
+                    feat.setProperties({
+                        place_type: poi.get('general_type_id'),
+                    });
+                }
                 return feat;
             });
         // Add features to the vector layer

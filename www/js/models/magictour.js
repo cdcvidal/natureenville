@@ -3,6 +3,7 @@
 var Backbone = require('backbone'),
     _ = require('lodash'),
     moment = require('moment'),
+    Step = require('./step'),
     MagicTourRequest = require('./magictourrequest');
 
 Backbone.LocalStorage = require("backbone.localstorage");
@@ -10,8 +11,8 @@ Backbone.LocalStorage = require("backbone.localstorage");
 var MagicTour = Backbone.Model.extend({
     /* Expected attributes :
         {
-            nb_stops: "2",      // Useless, length of the array beloaw
-            stops: [],          // List of POIs on this tour
+            nb_stops: "2",      // Useless, length of the array below
+            stops: [],          // An ordered collection of Step instances
             t_length: "0",      // Tour length in meters
             time: "0",          // Tour length in minutes
             trip: []            // Tour path as a list of WKT linestring geometries
@@ -59,7 +60,13 @@ var MagicTour = Backbone.Model.extend({
         if (response.success && response.tours) {
             this.isVirgin = false;
             this.isEmpty = false;
-            return response.tours[0];
+            var tour = response.tours[0];
+            tour.stops = new Backbone.Collection(
+                tour.stops.map(function(stop, i) {
+                    return new Step(stop, {parse: true});
+                })
+            );
+            return tour;
         } else {
             //TODO manage Optimisation Request Error
 

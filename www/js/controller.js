@@ -69,19 +69,12 @@ Controller.prototype.tourContainerViewDisplay = function(mode, tab) {
 };
 
 Controller.prototype.ficheViewDisplay = function(poiId) {
-    var currentPOI = magicTour.attributes.stops.filter(function(item) {
-        return item.poi_id == poiId;
-    })[0];
-
-    var poiM = new poi.Poi({
-        'externalId': currentPOI.poi_id,
-        'desc_fr': currentPOI.desc,
-        'url_img1': currentPOI.image,
-        'name_fr': currentPOI.place_name
-    });
-    var v = new FichePoiView({
-        model: poiM
-    });
+    var currentStep = magicTour.attributes.stops.find(function(step) {
+            return step.isPoi() && step.get('poi').id === poiId;
+        }),
+        v = new FichePoiView({
+            model: currentStep.get('poi')
+        });
     this._displayView(v);
 };
 

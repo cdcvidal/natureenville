@@ -17,18 +17,24 @@ var TourDetailsView = BaseView.extend({
     },
 
     serialize: function () {
-        //TODO: tmp
-        if ( !this.model.isEmpty ) {
-            _.forEach(this.model.attributes.stops, function(stop) {
-                stop.generalType = _.random(1, 8);
-            });
-        }
         return {
             active: this.activeTab ? 'active' : '',
-            stops: this.model.isEmpty ? [] : this.model.attributes.stops,
-            formatPoiPosition: function(stop) {
-                return utilities.formatMinutes(stop.departure);
-            }
+            steps: this.model.isEmpty ? [] : this.model.attributes.stops.map(function(step, i) {
+                var poi = step.get('poi'),
+                    data = {
+                        name: step.get('name_fr'),
+                        departure: utilities.formatMinutes(step.get('departure')),
+                        isPoi: poi !== void 0,
+                        isArrival: step.isArrival()
+                    };
+                if (data.isPoi) {
+                    data.desc = poi.get('desc_fr');
+                    data.image = poi.get('image');
+                    data.poiId = poi.id;
+                    data.generalType = poi.get('general_type_id');
+                }
+                return data;
+            })
         };
     },
 

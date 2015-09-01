@@ -35,8 +35,8 @@ var Router = Backbone.Router.extend({
         controller.contributionViewDisplay();
     },
 
-    ficheViewDisplay: function() {
-        controller.ficheViewDisplay();
+    ficheViewDisplay: function(poiId) {
+        controller.ficheViewDisplay(parseInt(poiId));
     }
 });
 
