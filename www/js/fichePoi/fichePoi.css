@@ -1,0 +1,99 @@
+.page-poi {
+    background: #F3F4F6;
+    color: #555;
+}
+
+.page-poi .row {
+    position: relative;
+    margin: 2rem 0 0 5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #CCC;
+}
+
+.page-poi .row.photo {
+    position: relative;
+    margin: 0 -15px;
+    padding: 0;
+}
+
+.page-poi .row.photo img {
+    width: 100%;
+}
+
+.page-poi .row.photo .credit {
+    position: absolute;
+    right: .8rem;
+    bottom: .5rem;
+    color: #FFF;
+    font-size: 1.1rem;
+}
+
+.page-poi .row-icon {
+    position: absolute;
+    top: 0;
+    left: -3.7rem;
+    font-size: 2rem;
+}
+
+.page-poi .row.heading .title {
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #333;
+}
+
+.page-poi .row:last-child {
+    border-bottom: none;
+}
+
+.page-poi .footer {
+    background-color: inherit;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    border-collapse: separate;
+    border-spacing: 10px 0;
+    padding: 1px 5px 15px;
+}
+
+.page-poi .footer .btn {
+    background: #EB5A14;
+    border: none;
+    color: #FFF;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+
+.page-poi .icon-generaltype {
+    left: -5.5rem;
+    width: 4rem;
+    height: 4rem;
+    background: no-repeat center;
+    background-size: contain;
+}
+
+/* TODO: resolve by nomenclature */
+.page-poi.poi-generaltype-1 .icon-generaltype {
+    background-image: url("../images/general_types/1-avenue_tree.png");
+}
+.page-poi.poi-generaltype-2 .icon-generaltype {
+    background-image: url("../images/general_types/2-remarkable_tree.png");
+}
+.page-poi.poi-generaltype-3 .icon-generaltype {
+    background-image: url("../images/general_types/3-park_garden.png");
+}
+.page-poi.poi-generaltype-4 .icon-generaltype {
+    background-image: url("../images/general_types/4-strange_place.png");
+}
+.page-poi.poi-generaltype-5 .icon-generaltype {
+    background-image: url("../images/general_types/5-revegetated_street.png");
+}
+.page-poi.poi-generaltype-6 .icon-generaltype {
+    background-image: url("../images/general_types/6-wild_plant.png");
+}
+.page-poi.poi-generaltype-7 .icon-generaltype {
+    background-image: url("../images/general_types/7-vegetable_garden.png");
+}
+.page-poi.poi-generaltype-8 .icon-generaltype {
+    background-image: url("../images/general_types/8-landscaping.png");
+}

@@ -19,6 +19,7 @@ var FichePoiView = BaseView.extend({
             title: this.model.get('name_fr'),
             general_type: this.model.get('general_type').toJSON(),
             image: this.model.get('url_img1'),
+            creditPhoto: this.model.get('photo_credit'),
             open_hour: this.model.get('period').get('open_hour'),
             address: this.model.get('street'),
             desc: this.model.get('desc_fr'),

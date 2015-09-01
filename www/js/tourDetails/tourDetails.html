@@ -1,45 +1,48 @@
 <div class="tab-pane <%= data.active %>" id="liste">
 
     <% data.steps.forEach(function(step, itemIndex) { %>
-    <div class="panel panel-default poi-generaltype-<%= step.generalType %>">
-        <div class="icon-generaltype"></div>
-        <div class="panel-heading" data-toggle="collapse">
-            <a class="panel-title clearfix" role="button" data-toggle="collapse" href="#collapse-poi-<%= itemIndex %>">
-                <span class="pull-left title">
-                    <span class="meta">
-                        #<%= itemIndex + 1 %> - <%= step.displayTime %>
+        <% var poiTypeClassname = (step.isPoi ? 'poi-generaltype-'+step.generalType : '') %>
+        <% var iconClassname = 'icon-'+ (step.isPoi ? 'generaltype' : 'step-'+step.type+' material-icons' ) %>
+        <% var textClassname = 'text-'+ (step.isPoi ? poiTypeClassname : 'step-'+step.type) %>
+        <div class="panel panel-default step-<%= step.type %> <%= poiTypeClassname %>">
+            <div class="row-icon <%= iconClassname %> <%= textClassname %>"><% if(!step.isPoi){%>flag<%} %></div>
+            <div class="panel-heading" data-toggle="collapse">
+                <a class="panel-title clearfix" role="button" data-toggle="collapse" href="#collapse-poi-<%= itemIndex %>">
+                    <span class="pull-left title">
+                        <span class="meta <%= textClassname %>">
+                            <b>#<%= itemIndex + 1 %></b> - <i><%= step.displayTime %></i>
+                        </span>
+                        <span class="text">
+                            <%= step.name %>
+                        </span>
                     </span>
-                    <span class="text">
-                        <%= step.name %>
+                    <% if (step.isPoi) { %>
+                    <span class="open-status-icons pull-right">
+                        <span class="status-open material-icons">keyboard_arrow_up</span>
+                        <span class="status-closed material-icons">keyboard_arrow_down</span>
                     </span>
-                </span>
-                <% if (step.isPoi) { %>
-                <span class="open-status-icons pull-right">
-                    <span class="status-open material-icons">keyboard_arrow_up</span>
-                    <span class="status-closed material-icons">keyboard_arrow_down</span>
-                </span>
-                <% } %>
-            </a>
-        </div>
-        <% if (step.isPoi) { %>
-        <div id="collapse-poi-<%= itemIndex %>" class="panel-collapse collapse">
-            <div class="container">
-                <% if ( step.image ) { %>
-                <div class="row photo">
-                    <img src="<%= step.image %>" />
-                    <span class="credit">Lorem ipsum</span>
-                </div>
-                <% } %>
-                <div class="row description">
-                    <%= step.desc %>
-                </div>
-                <div class="row actions">
-                    <a class="btn btn-block" href="#fiche/<%= step.poiId %>" role="button">Voir le détail</a>
+                    <% } %>
+                </a>
+            </div>
+            <% if (step.isPoi) { %>
+            <div id="collapse-poi-<%= itemIndex %>" class="panel-collapse collapse">
+                <div class="container">
+                    <% if ( step.image ) { %>
+                    <div class="row photo">
+                        <img src="<%= step.image %>" />
+                        <span class="credit"><%= step.creditPhoto %></span>
+                    </div>
+                    <% } %>
+                    <div class="row description">
+                        <%= step.desc %>
+                    </div>
+                    <div class="row actions">
+                        <a class="btn btn-block" href="#fiche/<%= step.poiId %>" role="button">Voir le détail</a>
+                    </div>
                 </div>
             </div>
+            <% } %>
         </div>
-        <% } %>
-    </div>
 
     <% }); %>
 

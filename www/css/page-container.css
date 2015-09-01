@@ -194,6 +194,49 @@ body {
     color: #FFD104;
 }
 
+.text-step-departure {
+    color: #3FB48D;
+}
+
+.text-step-arrival {
+    color: #F00;
+}
+
+/* General types */
+/* TODO: Get good colors */
+.text-poi-generaltype-1 {
+    color: #01A6FE;
+}
+
+.text-poi-generaltype-2 {
+    color: #FF8601;
+}
+
+.text-poi-generaltype-3 {
+    color: #EB5A14;
+}
+
+.text-poi-generaltype-4 {
+    color: #F4004F;
+}
+
+.text-poi-generaltype-5 {
+    color: #8BE129;
+}
+
+.text-poi-generaltype-6 {
+    color: #FFD104;
+}
+
+.text-poi-generaltype-7 {
+    color: #F00;
+}
+
+.text-poi-generaltype-8 {
+    color: #0F0;
+}
+
+
 /* Components */
 
 .sidenav {
@@ -266,6 +309,10 @@ body.show-sidenav .sidenav {
     z-index: 2;
 }
 
+.app-header .material-icons {
+    vertical-align: bottom;
+}
+
 .app-header .btn-back {
     display: none;
 }
@@ -290,7 +337,7 @@ body.section-poi .app-header .btn-sidenav {
     display: inline-block;
     width: 3em;
     height: 3em;
-    line-height: 2.6em;
+    line-height: 2.8em;
     text-align: center;
     -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
     -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
@@ -303,7 +350,7 @@ body.section-poi .app-header .btn-sidenav {
 }
 .btn-fab > span {
     vertical-align: middle;
-    font-size: 1.5em;
+    font-size: 1.9em;
 }
 
 .btn-fab.btn-lg > span {
@@ -477,50 +524,4 @@ body.section-poi .app-header .btn-sidenav {
 
 .page-home .actions .btn {
     min-width: 40%;
-}
-
-/* POI */
-
-.page-poi {
-    background: #E9E9E9;
-}
-
-.page-poi .header img {
-    width: 100%;
-}
-
-.page-poi .row {
-    position: relative;
-    margin: 2rem 0 0 3.5rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid #CCC;
-}
-
-.page-poi .row-icon {
-    position: absolute;
-    top: 0;
-    left: -3.7rem;
-    font-size: 2rem;
-}
-
-.page-poi .row:last-child {
-    border-bottom: none;
-}
-
-.page-poi .footer {
-    position: fixed;
-    width: 100%;
-    left: 0;
-    bottom: 15px;
-    border-collapse: separate;
-    border-spacing: 10px 0;
-    padding: 0 5px;
-}
-
-.page-poi .footer .btn {
-    background: #EB5A14;
-    border: none;
-    color: #FFF;
-    text-transform: uppercase;
-    font-size: 1.1rem;
 }

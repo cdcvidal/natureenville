@@ -1,25 +1,30 @@
-<div class="page page-poi scrollable with-footer generaltype-<%= data.general_type.id %>">
-	<% if ( data.image ) { %>
-    <div class="header">
-        <img src="<%= data.image %>" />
-    </div>
-    <% } %>
-    <div class="container rows">
-        <div class="row title">
-            <span class="row-icon glyphicon glyphicon-grain"></span>
+<div class="page page-poi scrollable with-footer poi-generaltype-<%= data.general_type.id %>">
+	<div class="container rows">
+		<% if ( data.image ) { %>
+	    <div class="row photo">
+	        <img src="<%= data.image %>" />
+	        <span class="credit"><%= data.creditPhoto %></span>
+	    </div>
+	    <% } %>
+        <div class="row heading">
+            <span class="row-icon icon-generaltype"></span>
             <div class="title"><%= data.title %></div>
             <div class="type"><%= data.general_type.name_fr %></div>
         </div>
-        <div class="row description">
-            <span class="row-icon glyphicon glyphicon-grain"></span>
-            <%= data.desc %>
-        </div>
         <% if ( data.address ) { %>
         <div class="row address">
-            <span class="row-icon glyphicon glyphicon-map-marker"></span>
+            <span class="row-icon material-icons">place</span>
             <%= data.address %>
         </div>
         <% } %>
+        <div class="row time">
+            <span class="row-icon material-icons">timer</span>
+            <b>Temps de la visite :</b> <i>This info is in step model so ?</i>
+        </div>
+        <div class="row description">
+            <span class="row-icon material-icons">description</span>
+            <%= data.desc %>
+        </div>
         <!-- <div class="row opening">
             <span class="row-icon glyphicon glyphicon-time"></span>
             <div><%= data.openingDays %></div>

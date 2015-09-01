@@ -3,8 +3,14 @@
     margin-left: 5rem;
 }
 
-#liste .panel .icon-generaltype {
+#liste .panel .row-icon {
     position: absolute;
+    top: .7rem;
+    left: -5.5rem;
+    font-size: 4rem;
+}
+
+#liste .panel .icon-generaltype {
     top: .7rem;
     left: -5.5rem;
     width: 4rem;
@@ -76,8 +82,7 @@
 }
 
 #liste .panel-heading .title .meta {
-    font-weight: bold;
-    margin-bottom: .2rem;
+    margin-bottom: .4rem;
 }
 
 #liste .panel-heading .title .text {

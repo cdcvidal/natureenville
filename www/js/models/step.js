@@ -50,6 +50,8 @@ var Step = Backbone.Model.extend({
             } else if (this.isArrival()) {
                 return 'Arrivée';
             }
+        } else if ( attr === 'type' ) {
+            return this.isPoi() ? 'poi' : ( this.isDeparture() ? 'departure' : 'arrival' );
         }
     },
 
