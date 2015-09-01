@@ -6,7 +6,8 @@ var Backbone = require('backbone'),
     _ = require('lodash'),
     bootstrap = require('bootstrap'),
     Dialog = require('bootstrap-dialog'),
-    geocomplete = require('geocomplete')
+    geocomplete = require('geocomplete'),
+    utilities = require('../utilities')
 ;
 
 var poi = require('../models/poi').instance;
@@ -26,7 +27,11 @@ var ContributionView = BaseView.extend({
         'click .submit' : 'onSubmit',
         'click #take-picture': 'capturePhoto',
         'change #input-picture': 'loadPhoto',
-        'focusin .has-error input': 'clearError'
+        'focusin .has-error input': 'clearError',
+        'click .cancel-js': 'historyBack'
+    },
+    historyBack: function(){
+        window.history.back();
     },
     clearError: function(e){
         var $currentinput = e.currentTarget.parentElement;
@@ -74,8 +79,8 @@ var ContributionView = BaseView.extend({
             Dialog.show({
                     title: 'Merci pour votre contribution!',
                     message:'Votre contribution sera ajoutée après validation par nos équipes.',
-                    onhidden: function(dialogRef){
-                        window.history.back();
+                    onhidden: function(){
+                        this.historyBack();
                     },
                     type: 'type-success',
                     size: 'size-large'
@@ -183,9 +188,8 @@ var ContributionView = BaseView.extend({
     },
     //TODO method checkconnection
     afterRender: function() {
-        //var connect = checkConnection();
-        //if (connect !== 'inconnu' || connect !== "none" || connect === true || connect !== undefined) {
-            var self = this;
+        var connect = utilities.checkConnection();
+        if ((connect !== 'Unknown connection' && connect !== 'No network connection' && typeof connect!== "undefined") || (navigator.onLine) ){
             $("#geoloc").geocomplete({
                 details: ".geoloc"
             })
@@ -194,7 +198,10 @@ var ContributionView = BaseView.extend({
                 .bind("geocode:error", function(event, status) {
                     console.log("ERROR: " + status);
                 });
-        //}
+        }else{
+            $(".adresse-online-js").addClass("hidden");
+            $(".adresse-offline-js").removeClass("hidden");
+        }
     },
 });
 
