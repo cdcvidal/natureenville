@@ -22,28 +22,26 @@
                         </select>
                     </div>
                     <div class="geoloc">
-                        <div class="form-group required">
+                        <div class="form-group required adresse-online-js">
                             <label for="geoloc">Adresse</label>
                             <input id="geoloc" name="adresse" class="form-control" type="text" placeholder="exemple : 1 place de la République, Marseille" size="90" >
                         </div>
-                        <fieldset class="hidden">
-                            <div class="form-group">
-                                <label for="street required">Rue</label>
-                                <input id="street" name="route" type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="postal_code required">Code POSTAL</label>
-                                <input id="postal_code" name="postal_code" type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="longitude">Longitude</label>
-                                <input id="longitude" name="lng" type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="latitude">Latitude</label>
-                                <input id="latitude" name="lat" type="text" class="form-control">
-                            </div>
-                        </fieldset>
+                        <div class="form-group required hidden adresse-offline-js">
+                            <label for="street required">Rue</label>
+                            <input id="street" name="route" type="text" class="form-control" placeholder="exemple : place de la République">
+                        </div>
+                        <div class="form-group required hidden adresse-offline-js">
+                            <label for="postal_code required">Code POSTAL</label>
+                            <input id="postal_code" name="postal_code" type="text" class="form-control" placeholder="exemple : 13001" size="5">
+                        </div>
+                        <div class="form-group hidden">
+                            <label for="longitude">Longitude</label>
+                            <input id="longitude" name="lng" type="text" class="form-control">
+                        </div>
+                        <div class="form-group hidden">
+                            <label for="latitude">Latitude</label>
+                            <input id="latitude" name="lat" type="text" class="form-control">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="desc">Description</label>
@@ -124,7 +122,7 @@
                 </fieldset>
                 <div class="footer btn-group btn-group-justified" role="group" aria-label="...">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-lg btn-default">Annuler</button>
+                        <button type="button" class="btn btn-lg btn-default cancel-js">Annuler</button>
                     </div>
                     <div class="btn-group form-actions" role="group">
                         <input type="submit" class="btn btn-lg btn-primary submit" name="Ajouter" value="Ajouter">
