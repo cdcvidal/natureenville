@@ -8,7 +8,7 @@
                 <fieldset>
                     <div class="form-group">
                         <label for="name">Nom</label>
-                        <input id="name" name="name" type="text" class="form-control" placeholder="Nom du point d'intérêt">
+                        <input id="name" name="name" type="text" class="form-control" placeholder="Nom du lieu">
                         <%= data.model.get('name') %>
                     </div>
                     <div class="form-group">
@@ -21,26 +21,36 @@
                                 <% }); %>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="geoloc">Adresse</label>
-                        <input id="geoloc" name="Adresse" class="form-control" type="text" placeholder="Entrer l'adresse du point d'intérêt" size="90" >
+                    <div class="geoloc">
+                        <div class="form-group">
+                            <label for="geoloc">Adresse</label>
+                            <input id="geoloc" name="adresse" class="form-control" type="text" placeholder="exemple : 1 place de la République, Marseille" size="90" >
+                        </div>
+                        <fieldset class="hidden">
+                            <div class="form-group">
+                                <label for="street">Rue</label>
+                                <input id="street" name="route" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="postal_code">Code POSTAL</label>
+                                <input id="postal_code" name="postal_code" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="longitude">Longitude</label>
+                                <input id="longitude" name="lng" type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="latitude">Latitude</label>
+                                <input id="latitude" name="lat" type="text" class="form-control">
+                            </div>
+                        </fieldset>
                     </div>
                     <div class="form-group">
                         <label for="desc">Description</label>
-                        <textarea id="desc" name="desc" class="form-control" rows="4" placeholder="Quelques lignes pour le décrire"></textarea>
+                        <textarea id="desc" name="desc" class="form-control" rows="4" placeholder="Quelques lignes pour décrire le lieu"></textarea>
                     </div>
                 </fieldset>
-                <h2>géolocalisation</h2>
-                <fieldset>
-                    <div class="form-group">
-                        <label for="longitude">Longitude</label>
-                        <input id="longitude" name="longitude" type="number" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="latitude">Latitude</label>
-                        <input id="latitude" name="latitude" type="number" step="any">
-                    </div>
-                </fieldset>
+
                 <h2>Informations optionnelles</h2>
                 <fieldset>
                     <div class="form-group">
@@ -98,16 +108,16 @@
                     </div>
                     <div class="form-group">
                         <label for="phone">Téléphone</label>
-                        <input id="phone" name="phone" type="tel" class="form-control">
+                        <input id="phone" name="phone" type="tel" class="form-control" placeholder="exemple : 0491000000">
                     </div>
                     <div class="form-group">
                         <label for="mail">Email</label>
-                        <input id="mail" name="mail" type="email" class="form-control">
+                        <input id="mail" name="mail" type="email" class="form-control" placeholder="exemple : contact@monlieu">
                     </div>
                     <div class="form-group">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" checked="checked"> Avec enfant
+                                <input id="with_child" type="checkbox" checked="checked"> Avec enfant
                             </label>
                         </div>
                     </div>

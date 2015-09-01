@@ -19,18 +19,7 @@ var ContributionView = BaseView.extend({
     sectionClass: 'section-contribution',
 
     initialize: function(){
-        this.listenTo(this.model, 'invalid', this.onModelInvalid);
         BaseView.prototype.initialize.apply(this, arguments);
-    },
-
-    onModelInvalid: function(model, errors){
-        var dfd = $.Deferred();
-        console.log('onModelinvalidate',errors);
-        if(errors){
-            return dfd.reject(errors);
-        }else{
-            return dfd.resolve();
-        }
     },
 
     events: {
@@ -41,35 +30,67 @@ var ContributionView = BaseView.extend({
 
     onSubmit: function(e){
         e.preventDefault();
+        $(".form-group").removeClass('has-error');        
         var name = this.$el.find("input[name*='name']").val();
-        var type_id = this.$el.find("input[name*='type_id']").val();
-        var street = this.$el.find("input[name*='street']").val();
+        var type_id = $("#type_id option:selected").text().trim();
+        var street = this.$el.find("input[name*='route']").val();
         var postal_code = this.$el.find("input[name*='postal_code']").val();
+        var latitude =  this.$el.find("input[name*='lat']").val();
+        var longitude = this.$el.find("input[name*='lng']").val();
         var desc = this.$el.find("input[name*='desc']").val();
         var picture = this.getValue();
+        var visit_time_min = $("#visit_time_min option:selected").text().trim();
+        var visit_time_max = $("#visit_time_max option:selected").text().trim();
+        var price_max = $("#price_max option:selected").text().trim();
+        var price_min = $("#price_min option:selected").text().trim();
+        var withchild = $("#with_child").is(":checked");
+
 
         this.model.set({
             'name':name,
             'type_id':type_id,
             'street':street,
             'postal_code':postal_code,
+            'latitude': latitude,
+            'longitude': longitude,
             'desc':desc,
-            'url_img1': picture
+            'url_img1': picture,
+            'visit_time_min': visit_time_min,
+            'visit_time_max': visit_time_max,
+            'price_min': price_min,
+            'price_max': price_max,
+            'withchild': withchild
         });
 
-        //TODO message
-        poiCollection.add(this.model).save()
-            .done(function(){
-                Dialog.show({
+        poiCollection.add(this.model).save({
+            error: function(){ console.log('save error');},
+            success: function(){ console.log('save success');}
+        });
+        if (this.model.isValid()) {
+            Dialog.show({
                     title: 'Merci pour votre contribution!',
+                    message:'Votre contribution sera ajoutée après validation par nos équipes.',
+                    onhidden: function(dialogRef){
+                        window.history.back();
+                    },
+                    type: 'type-success',
+                    size: 'size-large'
                 });
-            })
-            .fail(function(error){
-                Dialog.show({
-                    title: error,
+        }else{
+            var msg= "";
+            _.forEach(this.model.validationError,function(n,key){
+                console.log(n,key);
+                msg += n+"<br>";
+                $("#"+key).parent().addClass("has-error");
             });
-        })
-        ;
+            Dialog.show({
+                title: 'Une erreur est survenue !',
+                message: msg,
+                type: 'type-danger',
+                size: 'size-large'
+            });
+        }
+
     },
 
     getValue: function() {
@@ -162,10 +183,11 @@ var ContributionView = BaseView.extend({
         //var connect = checkConnection();
         //if (connect !== 'inconnu' || connect !== "none" || connect === true || connect !== undefined) {
             var self = this;
-            $('#geoloc', this.el).geocomplete({
-                    country: "FR"
+            $("#geoloc").geocomplete({
+                details: ".geoloc"
+            })
+                .bind("geocode:result", function(event, result) {
                 })
-                .bind("geocode:result", function(event, result) {})
                 .bind("geocode:error", function(event, status) {
                     console.log("ERROR: " + status);
                 });

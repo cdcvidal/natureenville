@@ -43,12 +43,15 @@ var Poi = Backbone.Model.extend({
 
     // Ensure that each poi created has name, longitude, latitude, type_id, street, postal_code.
     validate: function(attrs, options) {
+        var errors = {};
         if (!attrs.name) {
-          return "L'information name est manquante";
+            errors.name = "L'information nom est obligatoire.";
+         // return "L'information nom est obligatoire.";
         }
-        // if (!attrs.longitude) {
-        //   return "L'information longitude est manquante";
-        // }
+        if (!attrs.longitude) {
+         // return "L'information adresse est obligatoire.";
+            errors.geoloc = "L'information adresse est obligatoire.";
+        }
         // if (!attrs.latitude) {
         //   return "L'information latitude est manquante";
         // }
@@ -61,6 +64,7 @@ var Poi = Backbone.Model.extend({
         // if (!attrs.postal_code) {
         //   return "L'information code postal est manquante";
         // }
+        if(!jQuery.isEmptyObject(errors))return errors;
     }
 
 });
