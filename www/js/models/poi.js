@@ -1,5 +1,6 @@
 var Backbone = require('backbone'),
     poiTypes = require('./typepoi'),
+    generalTypes = require('./generaltypepoi'),
     ol = require('planet-maps/dist/ol-base'),
     Period = require('./period');
 
@@ -43,13 +44,16 @@ var Poi = Backbone.Model.extend({
     get: function (attr) {
         if (attr in this.attributes) {
             return Backbone.Model.prototype.get.apply(this, arguments);
-        } else if (attr === 'general_type_id') {
+        } else if (attr === 'general_type') {
             var tid = this.get('type_id'),
                 type = poiTypes.find(function(t) {
                     return t.get('type_id') === tid;
                 });
-            if (type) {
-                return type.get('general_type_id');
+            if ( type ) {
+                var generalType = generalTypes.find(function(gt) {
+                    return gt.get('id') === type.get('general_type_id');
+                });
+                return generalType;
             }
         }
     },
@@ -70,7 +74,8 @@ var Poi = Backbone.Model.extend({
             id: parseInt(attrs.poi_id),
             desc_fr: desc,
             photo_credit: cred,
-            url_img1: attrs.image,
+            // TODO
+            url_img1: attrs.image ? 'http://dev.optitour.fr'+ attrs.image : '',
             name_fr: attrs.place_name,
             type_id: parseInt(attrs.place_type),
             longitude: coords[0],

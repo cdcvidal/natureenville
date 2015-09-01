@@ -262,7 +262,7 @@ var TourMapView = BaseView.extend({
                     var poi = step.get('poi');
                     feat.setId(poi.id);
                     feat.setProperties({
-                        place_type: poi.get('general_type_id'),
+                        place_type: poi.get('general_type').get('id'),
                     });
                 }
                 return feat;

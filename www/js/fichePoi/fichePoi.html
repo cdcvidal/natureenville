@@ -1,8 +1,15 @@
-<div class="page page-poi scrollable with-footer">
+<div class="page page-poi scrollable with-footer generaltype-<%= data.general_type.id %>">
+	<% if ( data.image ) { %>
     <div class="header">
-        <img src="./images/600x400.jpg" />
+        <img src="<%= data.image %>" />
     </div>
+    <% } %>
     <div class="container rows">
+        <div class="row title">
+            <span class="row-icon glyphicon glyphicon-grain"></span>
+            <div class="title"><%= data.title %></div>
+            <div class="type"><%= data.general_type.name_fr %></div>
+        </div>
         <div class="row description">
             <span class="row-icon glyphicon glyphicon-grain"></span>
             <%= data.desc %>
@@ -13,11 +20,11 @@
             <%= data.address %>
         </div>
         <% } %>
-        <div class="row opening">
+        <!-- <div class="row opening">
             <span class="row-icon glyphicon glyphicon-time"></span>
             <div><%= data.openingDays %></div>
             <span>Ouverture : </span> <%=  data.open_hour %>
-        </div>
+        </div> -->
     </div>
     <div class="footer btn-group btn-group-justified" role="group" aria-label="...">
         <div class="btn-group" role="group">

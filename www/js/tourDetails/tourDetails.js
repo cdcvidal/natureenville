@@ -31,7 +31,7 @@ var TourDetailsView = BaseView.extend({
                     data.desc = poi.get('desc_fr');
                     data.image = poi.get('url_img1');
                     data.poiId = poi.id;
-                    data.generalType = poi.get('general_type_id');
+                    data.generalType = poi.get('general_type').get('id');
                 }
                 return data;
             })

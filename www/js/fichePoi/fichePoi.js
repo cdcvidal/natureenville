@@ -16,6 +16,9 @@ var FichePoiView = BaseView.extend({
                 openingDays.push(_.capitalize(moment().day(index).format('ddd')));
         });
         return {
+            title: this.model.get('name_fr'),
+            general_type: this.model.get('general_type').toJSON(),
+            image: this.model.get('url_img1'),
             open_hour: this.model.get('period').get('open_hour'),
             address: this.model.get('street'),
             desc: this.model.get('desc_fr'),
