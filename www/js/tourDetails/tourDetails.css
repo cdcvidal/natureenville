@@ -1,24 +1,89 @@
-.panel > .panel-heading .open-status-icons .status-open {
+#liste .panel {
+    position: relative;
+    margin-left: 5rem;
+}
+
+#liste .panel .icon-generaltype {
+    position: absolute;
+    top: .7rem;
+    left: -5.5rem;
+    width: 4rem;
+    height: 4rem;
+    background: no-repeat center;
+    background-size: contain;
+}
+
+/* TODO: resolve by nomenclature */
+#liste .panel.poi-generaltype-1 .icon-generaltype {
+    background-image: url("../images/general_types/1-avenue_tree.png");
+}
+#liste .panel.poi-generaltype-2 .icon-generaltype {
+    background-image: url("../images/general_types/2-remarkable_tree.png");
+}
+#liste .panel.poi-generaltype-3 .icon-generaltype {
+    background-image: url("../images/general_types/3-park_garden.png");
+}
+#liste .panel.poi-generaltype-4 .icon-generaltype {
+    background-image: url("../images/general_types/4-strange_place.png");
+}
+#liste .panel.poi-generaltype-5 .icon-generaltype {
+    background-image: url("../images/general_types/5-revegetated_street.png");
+}
+#liste .panel.poi-generaltype-6 .icon-generaltype {
+    background-image: url("../images/general_types/6-wild_plant.png");
+}
+#liste .panel.poi-generaltype-7 .icon-generaltype {
+    background-image: url("../images/general_types/7-vegetable_garden.png");
+}
+#liste .panel.poi-generaltype-8 .icon-generaltype {
+    background-image: url("../images/general_types/8-landscaping.png");
+}
+
+#liste .panel-heading .open-status-icons {
+    position: absolute;
+    right: 0;
+    height: 50%;
+    top: 50%;
+}
+
+#liste .panel-heading .open-status-icons > span {
+    position: relative;
+    top: -12px;
+    left: 7px;
+}
+
+#liste .panel > .panel-heading .open-status-icons .status-open {
     display: none;
 }
-.panel.open > .panel-heading .open-status-icons .status-open {
+#liste .panel.open > .panel-heading .open-status-icons .status-open {
     display: inline-block;
 }
-.panel.open > .panel-heading .open-status-icons .status-closed {
+#liste .panel.open > .panel-heading .open-status-icons .status-closed {
     display: none;
-}
-
-
-#liste {
-    background: #E9E9E9;
 }
 
 #liste .panel-heading {
     color: #01A6FE;
 }
 
-#liste .panel-collapse {
-    border-top-color: #01A6FE;
+#liste .panel-heading .title {
+    display: block;
+    width: 90%;
+}
+
+#liste .panel-heading .title > * {
+    display: block;
+}
+
+#liste .panel-heading .title .meta {
+    font-weight: bold;
+    margin-bottom: .2rem;
+}
+
+#liste .panel-heading .title .text {
+    color: #6E6E6E;
+    text-transform: uppercase;
+    line-height: 110%;
 }
 
 #liste .panel-collapse .row {
@@ -26,6 +91,24 @@
 }
 #liste .panel-collapse .row:last-child {
     padding-bottom: 1.5rem;
+}
+
+#liste .panel-collapse .row.photo {
+    padding: 0;
+    position: relative;
+}
+
+#liste .panel-collapse .row.photo img {
+    width: 100%;
+    height: auto;
+}
+
+#liste .panel-collapse .row.photo .credit {
+    position: absolute;
+    right: .8rem;
+    bottom: .5rem;
+    color: #FFF;
+    font-size: 1.1rem;
 }
 
 #liste .panel-collapse .row.actions .btn {

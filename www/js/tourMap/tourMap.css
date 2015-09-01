@@ -62,6 +62,8 @@
 #interest-form li.active {
     color: inherit;
 }
+
+/* TODO: resolve by nomenclature */
 #interest-form li.interest-1 {
     background-image: url("../images/general_types/1-avenue_tree_grey.png");
 }

@@ -51,9 +51,10 @@ a:focus, a:hover {
 
 .panel {
     border-radius: 0;
-    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);
-    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);
+    border-color: #EEE;
+    -webkit-box-shadow: 0px 1px 2px 0px rgba(0,0,0,.15);
+    -moz-box-shadow: 0px 1px 2px 0px rgba(0,0,0,.15);
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,.15);
 }
 
 .panel-default>.panel-heading {
@@ -69,8 +70,9 @@ a:focus, a:hover {
 
 a.panel-title {
     display: block;
-    float: left;
-    width: 90%;
+    position: relative;
+    /*float: left;
+    width: 90%;*/
 }
 
 .panel-default>.panel-collapse {

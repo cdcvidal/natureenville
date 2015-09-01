@@ -2,6 +2,7 @@
 
 var BaseView = require('../baseview');
 var $ = require('jquery');
+var _ = require('lodash');
 var utilities = require('../utilities');
 
 var TourDetailsView = BaseView.extend({
@@ -16,6 +17,12 @@ var TourDetailsView = BaseView.extend({
     },
 
     serialize: function () {
+        //TODO: tmp
+        if ( !this.model.isEmpty ) {
+            _.forEach(this.model.attributes.stops, function(stop) {
+                stop.generalType = _.random(1, 8);
+            });
+        }
         return {
             active: this.activeTab ? 'active' : '',
             stops: this.model.isEmpty ? [] : this.model.attributes.stops,

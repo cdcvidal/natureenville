@@ -1,29 +1,44 @@
 <div class="tab-pane <%= data.active %>" id="liste">
 
     <% data.stops.forEach(function(item, itemIndex) { %>
-
-    <div class="panel panel-default">
-        <div class="panel-heading clearfix" data-toggle="collapse">
-            <a class="panel-title" role="button" data-toggle="collapse" href="#collapse-poi-<%= itemIndex %>">
-              <%= itemIndex + 1 %>
-                <% if (itemIndex + 1 === 1) { %>
-                    Départ
-                <% } else if (itemIndex + 1 === data.stops.length) { %>
-                    Arrivée
-                <% } else { %>
-                    <%= item.place_name %>
+    <% var isFirst = itemIndex === 0; %>
+    <% var isLast = itemIndex === data.stops.length-1; %>
+    <% var isPoi = (!isFirst && !isLast); %>
+    <div class="panel panel-default poi-generaltype-<%= item.generalType %>">
+        <div class="icon-generaltype"></div>
+        <div class="panel-heading" data-toggle="collapse">
+            <a class="panel-title clearfix" role="button" data-toggle="collapse" href="#collapse-poi-<%= itemIndex %>">
+                <span class="pull-left title">
+                    <span class="meta">
+                        #<%= itemIndex + 1 %> - <%= data.formatPoiPosition(item) %>
+                    </span>
+                    <span class="text">
+                        <% if (isFirst) { %>
+                            Départ
+                        <% } else if (isLast) { %>
+                            Arrivée
+                        <% } else { %>
+                            <%= item.place_name %>
+                        <% } %>
+                    </span>
+                </span>
+                <% if (isPoi) { %>
+                <span class="open-status-icons pull-right">
+                    <span class="status-open material-icons">keyboard_arrow_up</span>
+                    <span class="status-closed material-icons">keyboard_arrow_down</span>
+                </span>
                 <% } %>
             </a>
-            <span class="open-status-icons pull-right">
-                <span class="status-open glyphicon glyphicon-chevron-up"></span>
-                <span class="status-closed glyphicon glyphicon-chevron-down"></span>
-            </span>
         </div>
+        <% if (isPoi) { %>
         <div id="collapse-poi-<%= itemIndex %>" class="panel-collapse collapse">
             <div class="container">
-                <div>
-                    <%= data.formatPoiPosition(item) %>
+                <% if ( item.image ) { %>
+                <div class="row photo">
+                    <img src="http://dev.optitour.fr<%= item.image %>" />
+                    <span class="credit">Lorem ipsum</span>
                 </div>
+                <% } %>
                 <% if(item.desc){ %> 
                 <div class="row description">
                     <%= item.desc %>
@@ -36,6 +51,7 @@
                 <% } %>
             </div>
         </div>
+        <% } %>
     </div>
 
     <% }); %>
