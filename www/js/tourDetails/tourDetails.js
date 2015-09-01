@@ -23,13 +23,13 @@ var TourDetailsView = BaseView.extend({
                 var poi = step.get('poi'),
                     data = {
                         name: step.get('name_fr'),
-                        departure: utilities.formatMinutes(step.get('departure')),
+                        displayTime: utilities.formatMinutes( step.isDeparture() ? step.get('departure') : step.get('arrival') ),
                         isPoi: poi !== void 0,
                         isArrival: step.isArrival()
                     };
                 if (data.isPoi) {
                     data.desc = poi.get('desc_fr');
-                    data.image = poi.get('image');
+                    data.image = poi.get('url_img1');
                     data.poiId = poi.id;
                     data.generalType = poi.get('general_type_id');
                 }

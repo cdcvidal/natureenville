@@ -7,6 +7,7 @@ var BaseView = require('../baseview'),
 var FichePoiView = BaseView.extend({
     template: require('./fichePoi.html'),
     sectionClass: 'section-poi',
+    title: 'Détail',
 
     serialize: function () {
         var openingDays = [];
