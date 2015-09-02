@@ -155,6 +155,19 @@ body {
 
 /* Colors */
 
+.bg-blue,
+.btn-default:hover.bg-blue,
+.open>.dropdown-toggle.btn-default.bg-blue,
+.open>.dropdown-toggle.btn-default.bg-blue:hover,
+.btn-default.bg-blue:active:focus, .btn-default.bg-blue:active:hover {
+    color: #FFF;
+    background-color: #005C7A;
+}
+
+.text-blue {
+    color: #005C7A;
+}
+
 .bg-blue-light,
 .btn-default:hover.bg-blue-light,
 .open>.dropdown-toggle.btn-default.bg-blue-light,
@@ -174,11 +187,11 @@ body {
 .open>.dropdown-toggle.btn-default.bg-orange-light:hover,
 .btn-default.bg-orange-light:active:focus, .btn-default.bg-orange-light:active:hover {
     color: #FFF;
-    background-color: #FF8601;
+    background-color: #F28D1A;
 }
 
 .text-orange-light {
-    color: #FF8601;
+    color: #F28D1A;
 }
 
 .bg-orange,
@@ -200,11 +213,11 @@ body {
 .open>.dropdown-toggle.btn-default.bg-magenta:hover,
 .btn-default.bg-magenta:active:focus, .btn-default.bg-magenta:active:hover {
     color: #FFF;
-    background-color: #F4004F;
+    background-color: #C80074;
 }
 
 .text-magenta {
-    color: #F4004F;
+    color: #C80074;
 }
 
 .bg-lime,
@@ -213,11 +226,11 @@ body {
 .open>.dropdown-toggle.btn-default.bg-lime:hover,
 .btn-default.bg-lime:active:focus, .btn-default.bg-lime:active:hover {
     color: #FFF;
-    background-color: #8BE129;
+    background-color: #6EA327;
 }
 
 .text-lime {
-    color: #8BE129;
+    color: #6EA327;
 }
 
 .bg-yellow,
@@ -226,11 +239,24 @@ body {
 .open>.dropdown-toggle.btn-default.bg-yellow:hover,
 .btn-default.bg-yellow:active:focus, .btn-default.bg-yellow:active:hover {
     color: #FFF;
-    background-color: #FFD104;
+    background-color: #D0CD16;
 }
 
 .text-yellow {
-    color: #FFD104;
+    color: #D0CD16;
+}
+
+.bg-purple,
+.btn-default:hover.bg-purple,
+.open>.dropdown-toggle.btn-default.bg-purple,
+.open>.dropdown-toggle.btn-default.bg-purple:hover,
+.btn-default.bg-purple:active:focus, .btn-default.bg-purple:active:hover {
+    color: #FFF;
+    background-color: #6E1E76;
+}
+
+.text-purple {
+    color: #6E1E76;
 }
 
 .text-step-departure {
@@ -244,35 +270,35 @@ body {
 /* General types */
 /* TODO: Get good colors */
 .text-poi-generaltype-1 {
-    color: #01A6FE;
+    color: #56812D;
 }
 
 .text-poi-generaltype-2 {
-    color: #FF8601;
+    color: #C80074;
 }
 
 .text-poi-generaltype-3 {
-    color: #EB5A14;
+    color: #6EA227;
 }
 
 .text-poi-generaltype-4 {
-    color: #F4004F;
+    color: #F28D1A;
 }
 
 .text-poi-generaltype-5 {
-    color: #8BE129;
+    color: #6E1E76;
 }
 
 .text-poi-generaltype-6 {
-    color: #FFD104;
+    color: #E00131;
 }
 
 .text-poi-generaltype-7 {
-    color: #F00;
+    color: #005D79;
 }
 
 .text-poi-generaltype-8 {
-    color: #0F0;
+    color: #43A391;
 }
 
 
@@ -512,17 +538,20 @@ body.section-contribution .app-header .btn-sidenav {
     background: rgba(0, 0, 0, .7);
 }
 
+.bootstrap-dialog.bottom-sheet.theme-purple .modal-header {
+    background: #6E1E76;
+}
 .bootstrap-dialog.bottom-sheet.theme-orange .modal-header {
     background: #EB5A14;
 }
 .bootstrap-dialog.bottom-sheet.theme-magenta .modal-header {
-    background: #F4004F;
+    background: #C80074;
 }
 .bootstrap-dialog.bottom-sheet.theme-lime .modal-header {
-    background: #8BE129;
+    background: #6EA327;
 }
 .bootstrap-dialog.bottom-sheet.theme-yellow .modal-header {
-    background: #FFD104;
+    background: #D0CD16;
 }
 
 
