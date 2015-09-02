@@ -36,7 +36,7 @@ Controller.prototype.profileViewDisplay = function() {
     this._displayView(v);
 };
 
-Controller.prototype.tourContainerViewDisplay = function(mode, tab) {
+Controller.prototype.tourContainerViewDisplay = function(mode, tab, poiId) {
     if (magicTour.isVirgin) {
         // Load a tour with default values if none exists
         currentPos.promise().done(function() {
@@ -58,6 +58,10 @@ Controller.prototype.tourContainerViewDisplay = function(mode, tab) {
         tab: tab
     });
     this._displayView(v);
+
+    if (poiId !== void 0) {
+        this._currentView.tabView.zoomToPOI(poiId);
+    }
 };
 
 Controller.prototype.ficheViewDisplay = function(poiId) {

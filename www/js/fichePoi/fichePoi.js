@@ -9,6 +9,22 @@ var FichePoiView = BaseView.extend({
     sectionClass: 'section-poi',
     title: 'Détail',
 
+    events: {
+        'click #see-on-map': 'seeOnMap'
+    },
+
+    seeOnMap: function() {
+        var router = require('../router'),
+            // Analyze magictour to detect whether it's a loop or not
+            magictour = require('../models/magictour'),
+            ol = require('planet-maps/dist/ol-base'),
+            startStep = magictour.get('stops').first(),
+            endStep = magictour.get('stops').last(),
+            isLoop = ol.extent.equals(startStep.get('geom').getExtent(), endStep.get('geom').getExtent());
+        // route user to the corresponding map
+        router.navigate((isLoop ? 'loop' : 'direction') + '/map/' + this.model.id, {trigger: true});
+    },
+
     serialize: function () {
         var openingDays = [];
         _.forEach(this.model.get('period').get('interval'), function(isOpen, index) {
