@@ -18,6 +18,7 @@ var poiCollection = require('../models/poi').instancePoiCollection;
 var ContributionView = BaseView.extend({
     template: require('./contribution.html'),
     sectionClass: 'section-contribution',
+    title: 'Ajouter un lieu',
 
     initialize: function(){
         BaseView.prototype.initialize.apply(this, arguments);

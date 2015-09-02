@@ -1,20 +1,71 @@
-.form-group.required label:after {
-  content:"*";
-  color:red;
+.page-contribution {
+    background-color: #F4F5F6;
+    padding-bottom: 15px;
 }
+
+.page-contribution .container {
+    padding: 
+}
+
 .page-contribution .header {
-    height: 50%;
-    background: url("../images/800x400.jpg") no-repeat center;
+    height: 40%;
+    background: url("../images/placeholder.jpg") no-repeat center;
     background-size: cover;
+    margin-bottom: 15px;
 }
+
+.page-contribution .form-group {
+    position: relative;
+    margin-left: 4rem;
+    border-bottom: 1px solid #CCC;
+    padding-bottom: 3rem;
+    padding-right: 1.5rem;
+}
+
+.page-contribution .form-group.with-textarea {
+    padding-bottom: 0;
+}
+
+.page-contribution .form-group input,
+.page-contribution .form-group textarea {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    padding-left: 0;
+}
+
+.page-contribution .form-group textarea {
+    height: 70px;
+}
+
+.page-contribution input[type=file]::before {
+    color: #FFF;
+}
+
+.page-contribution .icon-field {
+    position: absolute;
+    left: -4rem;
+    color: #AAA;
+    top: 4px;
+}
+
+.page-contribution .form-group.required:after {
+    content: "*";
+    position: absolute;
+    right: 0;
+    top: 10px;
+}
+
 .page-contribution .footer {
-    position: fixed;
+    /*position: fixed;
     width: 100%;
     left: 0;
-    bottom: 15px;
-    border-collapse: separate;
+    bottom: 0;
+    border-collapse: separate;*/
     border-spacing: 10px 0;
+    /*padding: 0 5px 15px;*/
     padding: 0 5px;
+    background-color: #F4F5F6;
 }
 
 .page-contribution .footer .btn {
