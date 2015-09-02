@@ -235,6 +235,8 @@ var TourMapView = BaseView.extend({
     },
 
     displayTrips: function() {
+        tripSource.clear();
+
         var trips = this.model.get('trip') || [],
             // Iterate over trip segments and prepare them for OL display
             features = trips.map(function (trip, idx, arr) {
@@ -251,11 +253,13 @@ var TourMapView = BaseView.extend({
     },
 
     displayPOIs: function() {
+        poiSource.clear();
+
         var steps = this.model.get('stops'),
             // Iterate over POIs, parse them and build ol.Feature for OL display
             features = steps.map(function (step, idx, arr) {
                 var feat = new ol.Feature({
-                    geometry: step.get('geom').transform('EPSG:4326', 'EPSG:3857'), // Convert GPX/WGS84 coordinates to Spherical Mercator (which is the basemap projection)
+                    geometry: step.get('geom').clone().transform('EPSG:4326', 'EPSG:3857'), // Convert GPX/WGS84 coordinates to Spherical Mercator (which is the basemap projection)
                     place_name: step.get('name_fr')
                 });
                 if (step.isPoi()) {
