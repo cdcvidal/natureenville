@@ -215,7 +215,6 @@ currentPos.promise().done(function(attrs) {
  */
 var TourMapView = BaseView.extend({
     template: require('./tourMap.html'),
-    activeTab: true,
 
     events: {
         'click .btn-interest': 'onBtnInterestClick',
@@ -316,21 +315,22 @@ var TourMapView = BaseView.extend({
     afterRender: function () {
         this.updateButtonLabels();
 
-        // Configure destination form
-        var req = this.model.request;
-        this.$el.find('.tour-destination input').geocomplete({
-            country: "FR"
-        }).bind("geocode:result", function(event, result) {
-            var place = result.geometry.location;
-            req.set({
-                arr_x: place.lng(),
-                arr_y: place.lat()
+        if (this.mode === 'direction') {
+            // Configure destination form
+            var req = this.model.request;
+            this.$el.find('.tour-destination input').geocomplete({
+                country: "FR"
+            }).bind("geocode:result", function(event, result) {
+                var place = result.geometry.location;
+                req.set({
+                    arr_x: place.lng(),
+                    arr_y: place.lat()
+                });
+                req.trigger('reload');
+            }).bind("geocode:error", function(event, status) {
+                console.log("ERROR: " + status);
             });
-            req.trigger('reload');
-        }).bind("geocode:error", function(event, status) {
-            console.log("ERROR: " + status);
-        });
-        this.setMode(this.mode);
+        }
 
         if (! this.model.isEmpty) {
             // A magictour exist: show trips and POIs
@@ -355,53 +355,10 @@ var TourMapView = BaseView.extend({
         }
     },
 
-    switchTabContent: function(active) {
-        this.activeTab = active;
-        if (this.activeTab) {
-            this.$el.addClass('active');
-        } else {
-            this.$el.removeClass('active');
-        }
-    },
-
     serialize: function () {
         return {
-            active: this.activeTab ? 'active' : ''
+            mode: this.mode
         };
-    },
-
-    setMode: function (mode) {
-        // Update destination form visibility, always (used for UI init)
-        if (mode === 'direction') {
-            this.$el.find('.tour-destination').show();
-        } else {
-            this.$el.find('.tour-destination').hide();
-        }
-
-        // If the mode is already on screen, we don't need more
-        if (mode === this.mode) {
-            return;
-        }
-
-        // Keep track of current mode
-        this.mode = mode;
-
-        if (mode === 'direction') {
-            // Reset form
-            this.$el.find('.tour-destination input').val('');
-            // Clear tour request and let the user chose a destination
-            this.model.request.unset('arr_x');
-            this.model.request.unset('arr_y');
-            this.model.clear();
-            this.onRequest();
-        } else {
-            // Request a tour with arr == dep
-            this.model.request.set({
-                arr_x: this.model.request.get('dep_x'),
-                arr_y: this.model.request.get('dep_y')
-            });
-            this.model.request.trigger('reload');
-        }
     },
 
     onBtnInterestClick: function(e) {

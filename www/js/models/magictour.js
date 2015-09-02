@@ -24,6 +24,7 @@ var MagicTour = Backbone.Model.extend({
     initialize: function() {
         this.isVirgin = true;
         this.isEmpty = true;
+        this.isPending = false;
         this.request = new MagicTourRequest();
         this.listenTo(this.request, 'reload', this.reload);
     },
@@ -34,6 +35,7 @@ var MagicTour = Backbone.Model.extend({
 
     fetch: function(options) {
         this.isEmpty = true;
+        this.isPending = true;
         // Always load request for the current day/time
         this.request.set({
             option_date: moment().format("DD/MM/YYYY"),
@@ -45,21 +47,46 @@ var MagicTour = Backbone.Model.extend({
         return Backbone.Model.prototype.fetch.call(this, options);
     },
 
+    setMode: function(mode) {
+        // Don't do anything if we're already in this mode
+        if (this.currentMode === mode) {
+            return;
+        }
+        if (mode === 'loop') {
+            // Switch to loop mode: ensure dest = dep and reload
+            this.request.set({
+                arr_x: this.request.get('dep_x'),
+                arr_y: this.request.get('dep_y')
+            });
+            this.request.trigger('reload');
+        } else {
+            // Switch to direction mode: unset dest and clear obsolete data
+            this.request.unset('arr_x');
+            this.request.unset('arr_y');
+            this.clear();
+        }
+        this.currentMode = mode;
+    },
+
     validate: function(attrs, options) {
         if ('error' in attrs) {
             return attrs.error;
         }
     },
 
-    clear: function(){
+    clear: function(options) {
+        options = options || {};
+        options.silent = true;
         this.isEmpty = true;
-        return Backbone.Model.prototype.clear.apply(this, arguments);
+        this.isPending = false;
+        return Backbone.Model.prototype.clear.call(this, options);
     },
 
     parse: function(response, options){
         if (response.success && response.tours) {
             this.isVirgin = false;
             this.isEmpty = false;
+            this.isPending = false;
             var tour = response.tours[0];
             tour.stops = new Backbone.Collection(
                 tour.stops.map(function(stop, i) {

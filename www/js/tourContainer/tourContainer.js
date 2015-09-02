@@ -13,9 +13,6 @@ var BaseView = require('../baseview'),
 var TourContainerView = BaseView.extend({
     template: require('./tourContainer.html'),
     sectionClass: 'section-tour',
-    title: 'Boucle',
-
-    currentTab: 'map',
 
     events: {
         'click .nav-tabs li.tab-map': 'onClickMapTab',
@@ -27,11 +24,12 @@ var TourContainerView = BaseView.extend({
         this.listenTo(this.model, 'error', this.hideSpinner); // TODO: Display an error message for the user?
         this.listenTo(this.model, 'change', this.hideSpinner);
 
-        this.detailView = new TourDetailsView(options);
-        this.mapView = new TourMapView(options);
+        var ViewClass = options.tab === 'map' ? TourMapView : TourDetailsView;
+        this.tabView = new ViewClass(options);
 
         this.currentTab = options.tab;
         this.mode = options.mode;
+        this.title = options.mode === 'loop' ? 'Boucle' : 'Itinéraire';
 
         BaseView.prototype.initialize.apply(this, arguments);
     },
@@ -47,49 +45,21 @@ var TourContainerView = BaseView.extend({
     },
 
     beforeRender: function() {
-        this.insertView('div.tab-content', this.mapView);
-        this.insertView('div.tab-content', this.detailView);
+        this.insertView('div.tab-content', this.tabView);
     },
 
     afterRender: function() {
-        if (this.model.isEmpty && this.mode === 'loop') {
+        if (this.model.isPending) {
             this.showSpinner();
         }
-        this.showTab(this.currentTab);
-        this.setMode(this.mode);
     },
 
     serialize: function () {
         return {
+            mode: this.mode,
             mapActive: this.currentTab === 'map' ? 'active' : '',
             detailsActive: this.currentTab === 'details' ? 'active' : ''
         };
-    },
-
-    setMode: function (mode) {
-        // Keep track of current mode
-        this.mode = mode;
-        // Update title
-        require('../container/container').setTitle(this.mode === 'loop' ? 'Boucle' : 'Itinéraire');
-        // Relay to map view
-        this.mapView.setMode(mode);
-    },
-
-    showTab: function (tab) {
-        // Update active tab
-        this.$el.find('.nav-tabs li').removeClass('active');
-        this.$el.find('.nav-tabs li.tab-' + tab).addClass('active');
-
-        // Keep track of current tab
-        this.currentTab = tab;
-
-        // Update URL
-        var router = require('../router');
-        router.navigate(this.mode + '/' + tab); // Without trigger option, just update URL and navigation history
-
-        // Actually show tab content
-        this.mapView.switchTabContent(tab === 'map');
-        this.detailView.switchTabContent(tab === 'details');
     },
 
     onClickMapTab: function (e) {
@@ -101,12 +71,11 @@ var TourContainerView = BaseView.extend({
     },
 
     onClickTab: function (e, tab) {
-        if (this.currentTab !== tab) {
-            this.showTab(tab);
+        if (this.currentTab === tab) {
+            // Disable anchor behavior, we're already on the clicked tab
+            e.preventDefault();
+            return false;
         }
-        // Disable anchor behavior
-        e.preventDefault();
-        return false;
     }
 });
 

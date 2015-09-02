@@ -37,35 +37,27 @@ Controller.prototype.profileViewDisplay = function() {
 };
 
 Controller.prototype.tourContainerViewDisplay = function(mode, tab) {
-    // Load a tour with default values if none exists
     if (magicTour.isVirgin) {
+        // Load a tour with default values if none exists
         currentPos.promise().done(function() {
             var lat = currentPos.get('latitude'),
                 lon = currentPos.get('longitude');
             magicTour.request.set({
                 dep_x: lon,
-                dep_y: lat,
-                arr_x: lon,
-                arr_y: lat
+                dep_y: lat
             });
-            if (mode === 'loop') {
-                magicTour.fetch();
-            }
+            magicTour.setMode(mode);
         });
+    } else {
+        magicTour.setMode(mode);
     }
 
-    if (this._currentView instanceof TourContainerView) {
-        // we're already having a tour container view, just switch to the desired tab
-        this._currentView.setMode(mode);
-        this._currentView.showTab(tab || 'map');
-    } else {
-        var v = new TourContainerView({
-            model: magicTour,
-            mode: mode,
-            tab: tab
-        });
-        this._displayView(v);
-    }
+    var v = new TourContainerView({
+        model: magicTour,
+        mode: mode,
+        tab: tab
+    });
+    this._displayView(v);
 };
 
 Controller.prototype.ficheViewDisplay = function(poiId) {
@@ -99,7 +91,7 @@ Controller.prototype._displayView = function(view) {
         $('body').alterClass('section-*', view.sectionClass);
     }
     // Set title on container
-    require('./container/container').setTitle(view.title ? view.title : '');
+    require('./container/container').setTitle(view.title || '');
     // Bind this view to the DOM
     $('#main').empty();
     $('#main').append(view.el);

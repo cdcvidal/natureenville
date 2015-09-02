@@ -24,11 +24,11 @@ var Router = Backbone.Router.extend({
     },
 
     loopAction: function(tab) {
-        controller.tourContainerViewDisplay('loop', tab);
+        controller.tourContainerViewDisplay('loop', tab || 'map');
     },
 
     directionAction: function(tab) {
-        controller.tourContainerViewDisplay('direction', tab);
+        controller.tourContainerViewDisplay('direction', tab || 'map');
     },
 
     contributionViewDisplay: function() {

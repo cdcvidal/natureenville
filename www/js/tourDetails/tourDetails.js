@@ -7,7 +7,6 @@ var utilities = require('../utilities');
 
 var TourDetailsView = BaseView.extend({
     template: require('./tourDetails.html'),
-    activeTab: false,
 
     initialize: function () {
         this.listenTo(this.model, 'change', this.render);
@@ -18,7 +17,6 @@ var TourDetailsView = BaseView.extend({
 
     serialize: function () {
         return {
-            active: this.activeTab ? 'active' : '',
             steps: this.model.isEmpty ? [] : this.model.attributes.stops.map(function(step, i) {
                 var poi = step.get('poi'),
                     data = {
@@ -39,15 +37,6 @@ var TourDetailsView = BaseView.extend({
                 return data;
             })
         };
-    },
-
-    switchTabContent: function(active) {
-        this.activeTab = active;
-        if (this.activeTab) {
-            this.$el.addClass('active');
-        } else {
-            this.$el.removeClass('active');
-        }
     },
 
     afterRender: function() {

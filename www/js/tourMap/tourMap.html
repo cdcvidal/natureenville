@@ -1,8 +1,10 @@
-<div class="tab-pane <%= data.active %>">
+<div class="tab-pane active">
     <div id="map"></div>
+    <% if (data.mode === "direction") { %>
     <div class="tour-destination">
         <input type="text" placeholder="Destination..." />
     </div>
+    <% } %>
     <div class="dropup fab-dial floating bottom left open">
         <button class="btn btn-default dropdown-toggle btn-fab btn-lg bg-blue-light" type="button" data-toggle="dropdown">
             <span class="icon-close material-icons">settings</span>
