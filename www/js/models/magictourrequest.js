@@ -54,6 +54,12 @@ var MagicTourRequest = Backbone.Model.extend({
 
     getDistanceKm: function() {
         return Math.round(this.get('option_distance') / 1000);
+    },
+
+    validate: function(attrs, options) {
+        if (!(attrs.dep_x && attrs.dep_y && attrs.arr_x && attrs.arr_y)) {
+            return 'Departure or destination is missing';
+        }
     }
 });
 

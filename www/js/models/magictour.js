@@ -34,6 +34,9 @@ var MagicTour = Backbone.Model.extend({
     },
 
     fetch: function(options) {
+        if (! this.request.isValid()) {
+            return;
+        }
         if (this.lastXHR) {
             this.lastXHR.abort();
         }
