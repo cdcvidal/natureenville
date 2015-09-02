@@ -187,11 +187,11 @@ body {
 .open>.dropdown-toggle.btn-default.bg-orange:hover,
 .btn-default.bg-orange:active:focus, .btn-default.bg-orange:active:hover {
     color: #FFF;
-    background-color: #EB5A14;
+    background-color: #E77134;
 }
 
 .text-orange {
-    color: #EB5A14;
+    color: #E77134;
 }
 
 .bg-magenta,
@@ -338,7 +338,7 @@ body.show-sidenav .sidenav {
 }
 
 .app-header {
-    background: #3EB088;
+    background: #56812D;
     color: #FFF;
     -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);
     -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);
@@ -389,9 +389,20 @@ body.section-contribution .app-header .btn-sidenav {
     height: 3em;
     line-height: .5em;
 }
+
 .btn-fab > span {
     vertical-align: middle;
     font-size: 1.9em;
+}
+
+.btn-fab > span.icon-open {
+    display: none;
+}
+.fab-dial.open .btn-fab > span.icon-open {
+    display: inline-block;
+}
+.fab-dial.open .btn-fab > span.icon-close {
+    display: none;
 }
 
 .btn-fab.btn-lg > span {

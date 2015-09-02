@@ -1,7 +1,14 @@
-<div id="poi-form" class="page page-contribution scrollable">
-    <div class="header img-preview"> 
-        <img class="editor-picture-img " src="">
-        <input type="file" accept="image/*" capture="" id="input-picture" >
+<div id="poi-form" class="page page-contribution scrollable <% if(data.isDevice){%>is-device<%} %>">
+    <div class="header img-preview">
+        <div class="inner">
+            <span class="icon-camera material-icons">photo_camera</span>
+            <img class="editor-picture-img " src="" />
+            <input type="file" accept="image/*" capture="" id="input-picture" />
+            <button id="take-picture" type="button" class="btn btn-link">
+                <span>Prendre une photo</span>
+                <span>Modifier la photo</span>
+            </button>
+        </div>
     </div>
     <div class="container">
         <form>
@@ -127,7 +134,7 @@
             <button type="button" class="btn btn-lg btn-default cancel-js">Annuler</button>
         </div>
         <div class="btn-group form-actions" role="group">
-            <input type="submit" class="btn btn-lg btn-primary submit" name="Ajouter" value="Ajouter">
+            <input type="submit" class="btn btn-lg btn-primary submit" name="Ajouter" value="Valider">
         </div>
     </div>
 </div>

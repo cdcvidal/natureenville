@@ -92,11 +92,11 @@ var ContributionView = BaseView.extend({
                 msg += n+"<br>";
                 $("#"+key).parent().addClass("has-error");
             });
-            Dialog.show({
-                title: 'Champ(s) obligatoire(s)',
+            Dialog.alert({
+                title: "Formulaire incomplet",
                 message: msg,
                 type: 'type-danger',
-                size: 'size-large'
+                //size: 'size-large'
             });
         }
 
@@ -114,15 +114,18 @@ var ContributionView = BaseView.extend({
         var input = document.querySelector('input[type=file]');
         var file = readfile(input.files[0]);
         var self = this;
+        var $preview = self.$el.find('.img-preview');
 
         function readfile(f) {
             var reader = new FileReader();
             reader.readAsDataURL(f);
             reader.onload = function() {
                 var data = reader.result;
-                self.$el.find('.img-preview img.editor-picture-img').attr('src', data);
+                $preview.addClass('complete');
+                $preview.find('img.editor-picture-img').attr('src', data);
             };
             reader.onerror = function(e) {
+                $preview.removeClass('complete');
                 console.log("Error", e);
             };
         }
@@ -182,6 +185,7 @@ var ContributionView = BaseView.extend({
 
     serialize: function() {
         return {
+            isDevice: window.cordova ? true : false,
             model: this.model,
             collection: this.collection,
             typepoiinstance: typepoi

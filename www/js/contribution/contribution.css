@@ -7,11 +7,58 @@
     padding: 
 }
 
-.page-contribution .header {
-    height: 40%;
+.page-contribution .img-preview {
+    display: table;
+    width: 100%;
+    height: 200px;
     background: url("../images/placeholder.jpg") no-repeat center;
     background-size: cover;
     margin-bottom: 15px;
+    color: #FFF;
+}
+
+.page-contribution .img-preview > .inner {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+}
+
+.page-contribution .img-preview img {
+    max-width: 90%;
+    max-height: 150px;
+}
+
+.page-contribution .img-preview .icon-camera {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #FFF;
+    font-size: 5rem;
+}
+
+.page-contribution .img-preview.complete .icon-camera {
+    display: none;
+}
+
+.page-contribution #take-picture {
+    display: none;
+}
+
+.page-contribution #take-picture > span:nth-child(2),
+.page-contribution .img-preview.complete #take-picture > span:nth-child(1) {
+    display: none;
+}
+.page-contribution .img-preview.complete #take-picture > span:nth-child(2) {
+    display: inline;
+}
+
+.page-contribution.is-device #input-picture {
+    display: none;
+}
+
+.page-contribution.is-device #take-picture {
+    display: inline-block;
 }
 
 .page-contribution .form-group {
