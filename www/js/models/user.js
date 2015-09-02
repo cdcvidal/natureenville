@@ -2,8 +2,8 @@ var Backbone = require('backbone');
 
 var User = Backbone.Model.extend({
     defaults: {
-        nickMame: 'Nickname',
-        mail: '',
+        nickMame: 'Jean Dupont',
+        mail: 'jeandupont@nomdedomaine.fr',
         photo: '',
     }
 });
