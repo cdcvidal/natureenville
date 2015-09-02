@@ -34,6 +34,9 @@ var MagicTour = Backbone.Model.extend({
     },
 
     fetch: function(options) {
+        if (this.lastXHR) {
+            this.lastXHR.abort();
+        }
         this.isEmpty = true;
         this.isPending = true;
         // Always load request for the current day/time
@@ -44,7 +47,8 @@ var MagicTour = Backbone.Model.extend({
         // Automatically include request params
         options = _.extend({data: this.request.attributes, type: 'POST', validate: true}, options);
         // Relay to original Backbone fetch method
-        return Backbone.Model.prototype.fetch.call(this, options);
+        this.lastXHR = Backbone.Model.prototype.fetch.call(this, options);
+        return this.lastXHR;
     },
 
     setMode: function(mode) {
@@ -75,6 +79,9 @@ var MagicTour = Backbone.Model.extend({
     },
 
     clear: function(options) {
+        if (this.lastXHR) {
+            this.lastXHR.abort();
+        }
         options = options || {};
         options.silent = true;
         this.isEmpty = true;
