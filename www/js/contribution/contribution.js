@@ -77,11 +77,12 @@ var ContributionView = BaseView.extend({
             success: function(){ console.log('save success');}
         });
         if (this.model.isValid()) {
+            var self =this;
             Dialog.show({
                     title: 'Merci pour votre contribution!',
                     message:'Votre contribution sera ajoutée après validation par nos équipes.',
                     onhidden: function(){
-                        this.historyBack();
+                        self.historyBack();
                     },
                     type: 'type-success',
                     size: 'size-large'
