@@ -145,6 +145,17 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
                     if (resolution > 50) {
                         // Do not display POI
                         return [];
+                    } else if (! feature.l.isPoi) {
+                        return [new ol.style.Style({
+                            text: new ol.style.Text({
+                                text: '\ue55f',
+                                font: 'normal ' + (10*sf) + 'px \'Material Icons\'',
+                                textBaseline: 'Bottom',
+                                fill: new ol.style.Fill({
+                                    color: feature.l.isDeparture ? '#3FB48D' : 'red'
+                                })
+                            })
+                        })];
                     } else if (resolution > 5) {
                         // Display POI as a simple small circle
                         return [new ol.style.Style({
@@ -182,12 +193,20 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
             // Layer 4: Current position
             new ol.layer.Vector({
                 source: currentPosSource,
-                style: new ol.style.Style({
-                    image: new ol.style.Icon({
-                        anchor: [0.5, 0.5],
-                        src: 'images/location.png'
-                    })
-                })
+                style: function(feature, resolution) {
+                    var size = getScaleFactor(resolution) * 10;
+                    return [new ol.style.Style({
+                        text: new ol.style.Text({
+                            text: '\ue55c',
+                            font: 'normal ' + size + 'px \'Material Icons\'',
+                            textBaseline: 'Bottom',
+                            offsetY: Math.round(size/2),
+                            fill: new ol.style.Fill({
+                                color: '#02A8F3'
+                            })
+                        })
+                    })];
+                }
             })
         ],
         view: view
@@ -265,11 +284,22 @@ var TourMapView = BaseView.extend({
                     var poi = step.get('poi');
                     feat.setId(poi.id);
                     feat.setProperties({
+                        isPoi: true,
                         place_type: poi.get('general_type').get('id'),
+                    });
+                } else {
+                    feat.setProperties({
+                        isPoi: false,
+                        isDeparture: step.isDeparture(),
+                        isArrival: step.isArrival()
                     });
                 }
                 return feat;
             });
+        if (this.mode === 'loop') {
+            // remove arrival node for loops
+            features.pop();
+        }
         // Add features to the vector layer
         poiSource.addFeatures(features);
     },
