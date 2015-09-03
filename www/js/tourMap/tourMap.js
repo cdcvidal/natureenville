@@ -181,9 +181,18 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
                             })
                         })];
                     } else {
+                        var scale = 1;
+                        if (resolution > 0.5) {
+                            scale = 0.4;
+                        } else if (resolution > 0.1) {
+                            scale = 0.6;
+                        } else if (resolution > 0.02) {
+                            scale = 0.8;
+                        }
                         return [new ol.style.Style({
                             image: new ol.style.Icon({
                                 anchor: [0.5, 0.5],
+                                scale: scale,
                                 src: styleParams.icon
                             })
                         })];
