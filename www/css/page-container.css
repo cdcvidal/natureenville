@@ -644,19 +644,3 @@ body.section-contribution .app-header .btn-sidenav {
     padding-bottom: 65px;
 }
 
-/* HOME */
-
-.page-home .header {
-    height: 50%;
-    background: url("../images/800x400.jpg") no-repeat center;
-    background-size: cover;
-}
-
-.page-home .actions {
-    text-align: center;
-    padding-top: 3rem;
-}
-
-.page-home .actions .btn {
-    min-width: 40%;
-}

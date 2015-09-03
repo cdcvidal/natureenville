@@ -1,0 +1,61 @@
+.page-home .actions {
+    text-align: center;
+    padding-top: 3rem;
+}
+
+.page-home .actions .btn {
+    min-width: 40%;
+}
+
+.page-home {
+    background: url("../images/home_bg.jpg") no-repeat bottom center;
+    background-size: cover;
+}
+
+.page-home .path {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: url("../images/home_path.png") no-repeat center;
+    background-size: contain;
+}
+
+.page-home .logo {
+    position: absolute;
+    width: 32%;
+    top: 10%;
+    right: 20%;
+}
+
+.page-home .logo img {
+    width: 100%;
+    height: auto;
+}
+
+.page-home .btn-tour {
+    position: absolute;
+    width: 30%;
+    padding: 5px;
+    background: #F5EFDC;
+    border-radius: 50%;
+    -webkit-box-shadow: 2px 2px 10px -3px rgba(0,0,0,.7);
+    box-shadow: 2px 2px 10px -3px rgba(0,0,0,.7);
+}
+
+.page-home .btn-tour img {
+    width: 100%;
+    height: auto;
+}
+
+.page-home .btn-tour-loop {
+    top: 40%;
+    right: 10%;
+}
+
+.page-home .btn-tour-direction {
+    bottom: 10%;
+    left: 20%;
+}
+
