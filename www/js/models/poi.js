@@ -44,16 +44,20 @@ var Poi = Backbone.Model.extend({
         if (attr in this.attributes) {
             return Backbone.Model.prototype.get.apply(this, arguments);
         } else if (attr === 'general_type') {
-            var tid = this.get('type_id'),
-                type = poiTypes.find(function(t) {
-                    return t.get('type_id') === tid;
-                });
-            if ( type ) {
-                var generalType = generalTypes.find(function(gt) {
-                    return gt.get('id') === type.get('general_type_id');
-                });
-                return generalType;
-            }
+            return this._generalType();
+        }
+    },
+
+    _generalType: function() {
+        var tid = this.get('type_id'),
+            type = poiTypes.find(function(t) {
+                return t.get('type_id') === tid;
+            });
+        if ( type ) {
+            var generalType = generalTypes.find(function(gt) {
+                return gt.get('id') === type.get('general_type_id');
+            });
+            return generalType;
         }
     },
 
