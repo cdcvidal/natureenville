@@ -319,13 +319,14 @@ body.keyboardshow .hidden-by-keyboard {
     transform: translateX(-100%);
     color: #FFF;
     font-size: 1.5rem;
+    font-weight: 300;
 }
 .sidenav > .inner {
     position: absolute;
     height: 100%;
     left: 0;
     top: 0;
-    background: rgba(0, 0, 0, 1);
+    background: #212223;
 }
 body.show-sidenav .sidenav {
     transform: translateX(0);
@@ -334,7 +335,7 @@ body.show-sidenav .sidenav {
 .sidenav .header {
     text-align: center;
     padding: 3rem;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid #111;
 }
 
 .sidenav .header .photo {
@@ -344,12 +345,14 @@ body.show-sidenav .sidenav {
     border-radius: 50%;
     border: 1px solid #3EB088;
     margin: 0 auto;
-    background: no-repeat center;
+    background: #D0D1D2 no-repeat center;
     background-size: cover;
 }
 
 .sidenav .header .names {
     text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 1.5rem;
 }
 
 .sidenav .nav {
@@ -365,6 +368,7 @@ body.show-sidenav .sidenav {
 
 .sidenav .nav li > a > span {
     margin-right: 2rem;
+    vertical-align: bottom;
 }
 
 .app-header {
