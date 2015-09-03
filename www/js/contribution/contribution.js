@@ -47,7 +47,7 @@ var ContributionView = BaseView.extend({
         var postal_code = this.$el.find("input[name*='postal_code']").val();
         var latitude =  this.$el.find("input[name*='lat']").val();
         var longitude = this.$el.find("input[name*='lng']").val();
-        var desc = this.$el.find("input[name*='desc']").val();
+        var desc = $('textarea#desc').val();
         var picture = this.getValue();
         var visit_time_min = $("#visit_time_min option:selected").text().trim();
         var visit_time_max = $("#visit_time_max option:selected").text().trim();
