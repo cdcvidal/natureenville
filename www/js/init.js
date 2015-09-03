@@ -34,11 +34,10 @@ function init() {
     bC.fetch({
         success : function(response){
             if(response.length === 0){
-                console.log('bC fetch response',response);
                 badgesInstanceColl.fetch({
                     ajaxSync: true,
-                    success : function(response){
-                        response.models.forEach(function(n, key){
+                    success : function(coll){
+                        coll.models.forEach(function(n, key){
                             badgesInstanceColl.add(n).save();
                         });
                     }
