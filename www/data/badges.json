@@ -172,5 +172,62 @@
 		"imageUrl": "./images/badges/TOUSArdt_MARSEILLE.svg",
 		"type":"arrondissement",
 		"description":" Badge obtenu pour une contribution dans chaque arrondissement de la ville de Marseille.'"
+	},
+	{
+		"name": "Avenue arborée",
+		"activate": 0,
+		"imageUrl": "./images/general_types/1-avenue_tree.png",
+		"type":"interet",
+		"description":" Badge obtenu pour une contribution de type Avenue arborée.'"
+	},
+	{
+		"name": "Arbre remarquable",
+		"activate": 0,
+		"imageUrl": "./images/general_types/2-remarkable_tree.png",
+		"type":"interet",
+		"description":" Badge obtenu pour une contribution de type Arbre remarquable.'"
+	},
+	{
+		"name": "Parc et jardin",
+		"activate": 0,
+		"imageUrl": "./images/general_types/3-park_garden.png",
+		"type":"interet",
+		"description":" Badge obtenu pour une contribution de type Parc et jardin.'"
+	},
+	{
+		"name": "Lieu insolite",
+		"activate": 0,
+		"imageUrl": "./images/general_types/4-strange_place.png",
+		"type":"interet",
+		"description":" Badge obtenu pour une contribution de type Lieu insolite.'"
+	},
+	{
+		"name": "Rue végétalisée",
+		"activate": 0,
+		"imageUrl": "./images/general_types/5-revegetated_street.png",
+		"type":"interet",
+		"description":" Badge obtenu pour une contribution de type Rue végétalisée.'"
+	},
+	{
+		"name": "Plante sauvage",
+		"activate": 0,
+		"imageUrl": "./images/general_types/6-wild_plant.png",
+		"type":"interet",
+		"description":" Badge obtenu pour une contribution de type Plante sauvage.'"
+	},
+	{
+		"name": "Jardin potager",
+		"activate": 0,
+		"imageUrl": "./images/general_types/7-vegetable_garden.png",
+		"type":"interet",
+		"description":" Badge obtenu pour une contribution de type Jardin potager.'"
+	},
+	{
+		"name": "Aménagement paysager",
+		"activate": 0,
+		"imageUrl": "./images/general_types/8-landscaping.png",
+		"type":"interet",
+		"description":" Badge obtenu pour une contribution de type Aménagement paysager.'"
 	}
+
 ]
