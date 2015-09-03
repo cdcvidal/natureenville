@@ -64,6 +64,7 @@ var Poi = Backbone.Model.extend({
             errors.name = "L'information nom est obligatoire.";
          // return "L'information nom est obligatoire.";
         }
+        //TODO validate adresse, street and postal code instead of longitude
         if (!attrs.longitude) {
          // return "L'information adresse est obligatoire.";
             errors.geoloc = "L'information adresse est obligatoire.";
@@ -82,14 +83,19 @@ var Poi = Backbone.Model.extend({
         // }
         if(!jQuery.isEmptyObject(errors))return errors;
     }
-
 });
 
 var PoiCollection = Backbone.Collection.extend({
     model: Poi,
     url: '',
     localStorage: new Backbone.LocalStorage("PoiCollection"),
+    initialize: function() {
+        // Assign the Deferred issued by fetch() as a property
+        this.deferred = this.fetch();
+    }
 });
+
+
 
 module.exports = {
     instance: new Poi(),

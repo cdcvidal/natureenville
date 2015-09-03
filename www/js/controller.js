@@ -29,11 +29,17 @@ Controller.prototype.homeViewDisplay = function () {
 };
 
 Controller.prototype.profileViewDisplay = function() {
-    var v = new ProfileView({
-        model: user,
-        collection: badges
+    var self = this;
+    var poiCollection = require('./models/poi').instancePoiCollection;
+    poiCollection.deferred.done(function(){
+        var v = new ProfileView({
+            model: user,
+            collection: badges,
+           options: poiCollection
+        });
+        self._displayView(v);
     });
-    this._displayView(v);
+
 };
 
 Controller.prototype.tourContainerViewDisplay = function(mode, tab, poiId) {
