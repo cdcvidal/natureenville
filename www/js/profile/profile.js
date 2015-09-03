@@ -7,6 +7,7 @@ var BadgeCollection = require('../models/badge').BadgeCollection;
 var ProfileView = BaseView.extend({
     template: require('./profile.html'),
     sectionClass: 'section-loop section-profile',
+    title: 'Profil',
 
     initialize: function(param){
 		this.contribution = param.options;
@@ -16,6 +17,7 @@ var ProfileView = BaseView.extend({
         return {
             model: this.model,
             collection: this.collection,
+            nbContribution: this.contribution.length
             //TODO remove if using poi methods
             //contribution: this.contribution
         };

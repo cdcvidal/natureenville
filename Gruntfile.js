@@ -41,7 +41,6 @@ module.exports = function(grunt) {
                     'www/css/page-container.css',
                     'www/vendor/bootstrap-dialog/css/bootstrap-dialog.css',
                     'www/js/**/*.css',
-                    'www/css/page-profile.css',
                     'www/css/general.css',
                 ],
                 tasks: ['cssmin']
@@ -62,7 +61,6 @@ module.exports = function(grunt) {
                         './www/vendor/bootstrap-dialog/css/bootstrap-dialog.css',
                         './www/css/general.css',
                         './www/css/page-container.css',
-                        './www/css/page-profile.css',
                         './www/js/**/*.css'
                     ]
                 }

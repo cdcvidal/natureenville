@@ -1,0 +1,94 @@
+/*.page-profile .header .photo{
+    display: block;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px solid #3EB088;
+    margin: 0 auto;
+    background: no-repeat center;
+    background-size: cover;
+}
+.page-profile .header {
+    text-align: center;
+    padding: 3rem;
+    border-bottom: 1px solid #222;
+}
+.page-profile .header .names {
+    text-transform: uppercase;
+}*/
+
+/*body.section-profile .app-header .btn-back {
+    display: inline-block;
+}
+body.section-profile .app-header .btn-sidenav {
+    display: none;
+}*/
+body.section-profile .app-header {
+	background: rgba(0,0,0,1);
+}
+
+.page-profile {
+    background: #191919;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.page-profile .header {
+    text-align: center;
+    padding: 3rem;
+    background: url("../images/profile_header_bg.png") no-repeat bottom center;
+    background-size: contain;
+}
+
+.page-profile .header .photo {
+    display: block;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid #3EB088;
+    margin: 0 auto;
+    background: #D0D1D2 no-repeat center;
+    background-size: cover;
+}
+
+.page-profile .header .names {
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 1.5rem;
+}
+
+.page-profile .header .num-contributions {
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 2rem;
+}
+
+.page-profile .header .num-contributions > .icon {
+    color: #01A3C1;
+    font-size: 1.5rem;
+    vertical-align: text-bottom;
+    margin-right: 1rem;
+}
+
+.page-profile .badge-container {
+    padding-top: 0 !important;
+}
+
+.page-profile .badge-container > .row {
+    border-bottom: 1px solid #222;
+    margin: 0;
+    padding: 2rem 0;
+}
+.page-profile .badge-container > .row:last-child {
+    border-bottom: none;
+}
+
+.page-profile .badge-container > .row > div {
+    margin-bottom: 1rem;
+}
+
+.page-profile .interface-disabled-badge {
+    opacity: 0.5;
+}
+
