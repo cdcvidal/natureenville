@@ -1,15 +1,13 @@
 <div class="page page-poi scrollable with-footer poi-generaltype-<%= data.general_type.id %>">
 	<div class="container rows">
-		<% if ( data.image ) { %>
 	    <div class="row photo">
-	        <img src="<%= data.image %>" />
+	        <img src="<%= data.image || 'images/placeholder.jpg' %>" />
 	        <span class="credit"><%= data.creditPhoto %></span>
             <span class="visit-time">
                 <span class="material-icons">access_time</span>
                 <span class="text"><%= data.visitTime %> Min</span>
             </span>
 	    </div>
-	    <% } %>
         <div class="row heading">
             <span class="row-icon icon-generaltype"></span>
             <div class="title"><%= data.title %></div>
