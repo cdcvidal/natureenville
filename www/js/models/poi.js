@@ -1,7 +1,6 @@
 var Backbone = require('backbone'),
     poiTypes = require('./typepoi'),
     generalTypes = require('./generaltypepoi'),
-    ol = require('planet-maps/dist/ol-base'),
     Period = require('./period');
 
 Backbone.LocalStorage = require("backbone.localstorage");
@@ -56,31 +55,6 @@ var Poi = Backbone.Model.extend({
                 return generalType;
             }
         }
-    },
-
-    parse: function (attrs, options) {
-        var wktParser = new ol.format.WKT(),
-            geom = wktParser.readGeometry(attrs.geom),
-            coords = geom.getCoordinates(),
-            desc, cred, idx = attrs.desc.indexOf('Crédit photo');
-        if (idx === -1) {
-            desc = attrs.desc;
-        } else {
-            desc = attrs.desc.slice(0, idx);
-            cred = attrs.desc.slice(idx);
-        }
-        return {
-            street: attrs.adress,
-            id: parseInt(attrs.poi_id),
-            desc_fr: desc,
-            photo_credit: cred,
-            // TODO
-            url_img1: attrs.image ? 'http://dev.optitour.fr'+ attrs.image : '',
-            name_fr: attrs.place_name,
-            type_id: parseInt(attrs.place_type),
-            longitude: coords[0],
-            latitude: coords[1]
-        };
     },
 
     // Ensure that each poi created has name, longitude, latitude, type_id, street, postal_code.

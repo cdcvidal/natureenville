@@ -25,15 +25,34 @@ var Step = Backbone.Model.extend({
 
         // Parse direction information
         var wktParser = new ol.format.WKT(),
+            geom = wktParser.readGeometry(attrs.geom),
             data = _.pick(attrs, 'arrival', 'date', 'departure', 'length_to_next_point', 'time_to_next_point', 'visit_time', 'geom');
         data.length_to_next_point = parseInt(data.length_to_next_point);
-        data.geom = wktParser.readGeometry(data.geom);
+        data.geom = geom;
         data.time_to_next_point = parseInt(data.time_to_next_point);
         data.visit_time = parseInt(data.visit_time);
 
         // Parse attached POI
         if (parseInt(attrs.place_type) !== 0) {
-            data.poi = new Poi(_.pick(attrs, 'adress', 'poi_id', 'desc', 'image', 'place_name', 'place_type', 'geom'), options);
+            var coords = geom.getCoordinates(),
+                desc, cred, idx = attrs.desc.indexOf('Crédit photo');
+            if (idx === -1) {
+                desc = attrs.desc;
+            } else {
+                desc = attrs.desc.slice(0, idx);
+                cred = attrs.desc.slice(idx);
+            }
+            data.poi = new Poi({
+                street: attrs.adress,
+                id: parseInt(attrs.poi_id),
+                desc_fr: desc,
+                photo_credit: cred,
+                url_img1: attrs.image,
+                name_fr: attrs.place_name,
+                type_id: parseInt(attrs.place_type),
+                longitude: coords[0],
+                latitude: coords[1]
+            });
         }
 
         return data;
