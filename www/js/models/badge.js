@@ -28,6 +28,8 @@ var BadgeCollection = Backbone.Collection.extend({
     calculAllRule: function(poiColl){
         this.calculPartageRule(poiColl);
         this.calculArrondissementRule(poiColl);
+        this.calculTownRule(poiColl);
+        this.calculTypeRule(poiColl);
     },
     calculPartageRule: function(poiColl){
         var dfd = $.Deferred();
@@ -75,6 +77,55 @@ var BadgeCollection = Backbone.Collection.extend({
         });
         return dfd.promise();
     },
+    calculTownRule: function(poiColl){
+        var dfd = $.Deferred();
+        var self = this;
+        var badgesInstanceColl = require('./badge').instanceColl;
+        _.forEach(poiColl.models, function(m, key) {
+            var step = self.townSteps.filter(function(ts) {
+                return ts.value === m.get('postal_code').substring(0,3);
+            });
+            if (step.length) {
+                //active badges for each matching rule
+                _.forEach(step, function(n, key) {
+                    _.forEach(badgesInstanceColl.models, function(b, keyb) {
+                        if(b.get('name') === n.label){
+                            b.set({'activate':1}).save();
+                        }
+                    });
+                });
+                dfd.resolve(step);
+            } else {
+                return dfd.resolve('');
+            }
+        });
+        return dfd.promise();
+    },
+    calculTypeRule: function(poiColl){
+        var dfd = $.Deferred();
+        var self = this;
+        var badgesInstanceColl = require('./badge').instanceColl;
+        var types = require('./typepoi');
+        _.forEach(poiColl.models, function(m, key) {
+            var step = types.filter(function(ts) {
+                return ts.get('name_fr') === m.get('type_id');
+            });
+            if (step.length) {
+                //active badges for each matching rule
+                _.forEach(step, function(n, key) {
+                    _.forEach(badgesInstanceColl.models, function(b, keyb) {
+                        if(b.get('name').toLowerCase() === n.get('name_fr')){
+                            b.set({'activate':1}).save();
+                        }
+                    });
+                });
+                dfd.resolve(step);
+            } else {
+                return dfd.resolve('');
+            }
+        });
+        return dfd.promise();
+    },
     partageSteps: [
         {value: 1, label: 'Première contribution'},
         {value: 1, label: 'Bienvenue'},
@@ -101,6 +152,9 @@ var BadgeCollection = Backbone.Collection.extend({
         {value: '13014', label: '14e arrondissement'},
         {value: '13015', label: '15e arrondissement'},
         {value: '13016', label: '16e arrondissement'}
+    ],
+    townSteps: [
+        {value: '130', label: 'Marseille'}
     ],
 });
 
