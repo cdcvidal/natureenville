@@ -21,6 +21,13 @@ function init() {
     }, false);
     currentPos.watch();
 
+    window.addEventListener('native.keyboardshow', function() {
+        $('body').addClass('keyboardshow');
+    });
+    window.addEventListener('native.keyboardhide', function() {
+        $('body').removeClass('keyboardshow');
+    });
+
     moment.locale('fr');
 
     var bC = new badgesColl();

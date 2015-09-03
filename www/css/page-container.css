@@ -145,6 +145,10 @@ body {
     font-weight: 300;*/
 }
 
+body.keyboardshow .hidden-by-keyboard {
+    display: none !important;
+}
+
 .app-container,
 .app-container > .inner {
     position: absolute;

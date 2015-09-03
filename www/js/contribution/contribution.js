@@ -148,15 +148,18 @@ var ContributionView = BaseView.extend({
     },
 
     onSuccess: function(imageURI) {
+        var self = this;
+        var $preview = self.$el.find('.img-preview');
         if(window.cordova){
             var tagprojet = "monJardinEnville";
-            var self = this;
             var fsFail = function(error) {
+                $preview.removeClass('complete');
                 console.log("failed with error code: " + error.code);
             };
             var copiedFile = function(fileEntry) {
                 console.log(fileEntry.nativeURL);
-                this.$el.find('.editor-picture-img').attr('src', fileEntry.nativeURL);
+                $preview.addClass('complete');
+                self.$el.find('.editor-picture-img').attr('src', fileEntry.nativeURL);
             };
             var gotFileEntry = function(fileEntry) {
                 console.log("got image file entry: " + fileEntry.nativeURL);
@@ -178,9 +181,9 @@ var ContributionView = BaseView.extend({
 
 
     onFail: function(message) {
-        this.$el.find('.img-preview').hide();
-        this.$el.find('.img-error').show();
-        this.$el.find('#img-error-msg').html(message);
+        //this.$el.find('.img-preview').hide();
+        //this.$el.find('.img-error').show();
+        //this.$el.find('#img-error-msg').html(message);
         alert(message);
     },
 

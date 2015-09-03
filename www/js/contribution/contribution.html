@@ -1,5 +1,5 @@
 <div id="poi-form" class="page page-contribution scrollable <% if(data.isDevice){%>is-device<%} %>">
-    <div class="header img-preview">
+    <div class="header img-preview hidden-by-keyboard">
         <div class="inner">
             <span class="icon-camera material-icons">photo_camera</span>
             <img class="editor-picture-img " src="" />
@@ -21,7 +21,7 @@
                 <div class="form-group required">
                     <span class="icon-field material-icons">filter_vintage</span>
                     <select id="type_id" name="type_id" class="form-control">
-                        <option value="" disabled selected>Type</option>
+                        <option value="" disabled>Type</option>
                         <% data.typepoiinstance.each(function(poitype, key){ %>
                             <option value="<%= poitype.type_id %>">
                                 <%= poitype.get('name_fr') %>
