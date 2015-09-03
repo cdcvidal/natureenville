@@ -28,6 +28,25 @@
     font-size: 1.1rem;
 }
 
+.page-poi .row.photo .visit-time {
+    position: absolute;
+    right: 0;
+    top: 20%;
+    color: #FFF;
+    font-size: 1.5rem;
+    font-weight: 300;
+    padding: 6px 8px;
+    background-color: rgba(0, 0, 0, .8);
+    -webkit-border-top-left-radius: 18px;
+    -webkit-border-bottom-left-radius: 18px;
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+}
+
+.page-poi .row.photo .visit-time .text {
+    vertical-align: middle;
+}
+
 .page-poi .row-icon {
     position: absolute;
     top: 0;

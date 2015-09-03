@@ -4,6 +4,10 @@
 	    <div class="row photo">
 	        <img src="<%= data.image %>" />
 	        <span class="credit"><%= data.creditPhoto %></span>
+            <span class="visit-time">
+                <span class="material-icons">access_time</span>
+                <span class="text"><%= data.visitTime %> Min</span>
+            </span>
 	    </div>
 	    <% } %>
         <div class="row heading">
@@ -17,10 +21,6 @@
             <%= data.address %>
         </div>
         <% } %>
-        <div class="row time">
-            <span class="row-icon material-icons">timer</span>
-            <b>Temps de la visite :</b> <i>This info is in step model so ?</i>
-        </div>
         <div class="row description">
             <span class="row-icon material-icons">description</span>
             <%= data.desc %>

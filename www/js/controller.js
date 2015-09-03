@@ -75,7 +75,7 @@ Controller.prototype.ficheViewDisplay = function(poiId) {
             return step.isPoi() && step.get('poi').id === poiId;
         }),
         v = new FichePoiView({
-            model: currentStep.get('poi')
+            model: currentStep
         });
     this._displayView(v);
 };

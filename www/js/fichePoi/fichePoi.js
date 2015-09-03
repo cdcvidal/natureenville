@@ -27,18 +27,21 @@ var FichePoiView = BaseView.extend({
 
     serialize: function () {
         var openingDays = [];
-        _.forEach(this.model.get('period').get('interval'), function(isOpen, index) {
+        var poi = this.model.get('poi');
+        console.log(this.model.attributes);
+        _.forEach(poi.get('period').get('interval'), function(isOpen, index) {
             if ( isOpen )
                 openingDays.push(_.capitalize(moment().day(index).format('ddd')));
         });
         return {
-            title: this.model.get('name_fr'),
-            general_type: this.model.get('general_type').toJSON(),
-            image: this.model.get('url_img1'),
-            creditPhoto: this.model.get('photo_credit_html'),
-            open_hour: this.model.get('period').get('open_hour'),
-            address: this.model.get('street'),
-            desc: this.model.get('desc_html'),
+            title: poi.get('name_fr'),
+            general_type: poi.get('general_type').toJSON(),
+            visitTime: this.model.get('visit_time'),
+            image: poi.get('url_img1'),
+            creditPhoto: poi.get('photo_credit_html'),
+            open_hour: poi.get('period').get('open_hour'),
+            address: poi.get('street'),
+            desc: poi.get('desc_html'),
             openingDays: openingDays.join(' ')
         };
     }
