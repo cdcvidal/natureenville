@@ -29,6 +29,11 @@
 }
 #distance-form .slider.slider-horizontal .slider-handle {
     margin-top: -7px;
+    background-color: #EEE;
+    background-image: none;
+    border: 1px solid #FFF;
+    -webkit-box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.5);
 }
 #distance-form .slider .slider-selection {
     background: #8BE129;

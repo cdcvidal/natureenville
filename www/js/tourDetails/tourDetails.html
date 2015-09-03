@@ -28,10 +28,12 @@
             <div id="collapse-poi-<%= itemIndex %>" class="panel-collapse collapse">
                 <div class="container">
                     <% if ( step.image ) { %>
-                    <div class="row photo">
-                        <img src="<%= step.image %>" />
-                        <span class="credit"><%= step.creditPhoto %></span>
-                    </div>
+                    <a href="#fiche/<%= step.poiId %>">
+                        <div class="row photo">
+                            <img src="<%= step.image %>" />
+                            <span class="credit"><%= step.creditPhoto %></span>
+                        </div>
+                    </a>
                     <% } %>
                     <div class="row description">
                         <%= step.desc %>
