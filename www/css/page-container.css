@@ -582,6 +582,38 @@ body.section-contribution .app-header .btn-sidenav {
     bottom: 0;
 }
 
+/* Splash screen */
+
+.splashscreen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: url("../images/splash_bg.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.splashscreen .logo {
+    position: absolute;
+    width: 50%;
+    height: 75%;
+    left: 25%;
+    top: 0;
+    background: url(../images/logo.png) center no-repeat;
+    background-size: contain;
+}
+
+.splashscreen .bottom {
+    position: absolute;
+    width: 100%;
+    height: 25%;
+    left: 0;
+    bottom: 0;
+    background: url("../images/splash_bottom.png") no-repeat center;
+    background-size: cover;
+}
+
 
 /* PAGES */
 
@@ -607,7 +639,6 @@ body.section-contribution .app-header .btn-sidenav {
 .page.scrollable.with-footer {
     padding-bottom: 65px;
 }
-
 
 /* HOME */
 

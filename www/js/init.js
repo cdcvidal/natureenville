@@ -56,7 +56,14 @@ function init() {
 }
 
 if (window.cordova) {
-    document.addEventListener("deviceready", init, false);
+    setTimeout(function() {
+        $('.splashscreen').remove();
+        document.addEventListener("deviceready", init, false);
+    }, 3000);
+
 } else {
-    $(document).ready(init);
+    setTimeout(function() {
+        $('.splashscreen').remove();
+        $(document).ready(init);
+    }, 500);
 }
