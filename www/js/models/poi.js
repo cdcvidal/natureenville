@@ -43,6 +43,10 @@ var Poi = Backbone.Model.extend({
     get: function (attr) {
         if (attr in this.attributes) {
             return Backbone.Model.prototype.get.apply(this, arguments);
+        } else if (attr === 'desc_html') {
+            return this._descHTML();
+        } else if (attr === 'photo_credit_html') {
+            return this._creditHTML();
         } else if (attr === 'general_type') {
             return this._generalType();
         }
@@ -59,6 +63,24 @@ var Poi = Backbone.Model.extend({
             });
             return generalType;
         }
+    },
+
+    _descHTML: function() {
+        return this._trimURL(this.get('desc_fr') || '');
+    },
+
+    _creditHTML: function() {
+        return this._trimURL(this.get('photo_credit') || '');
+    },
+
+    _trimURL: function(s) {
+        return s.replace(
+            /[A-Za-z]+:\/\/([A-Za-z0-9-_]+([-:%&;\?#=.][A-Za-z0-9\/_]+)+)/g,
+            function(url, capt) {
+                var shortUrl = capt.length < 20 ? capt : capt.slice(0, 17) + '...';
+                return '<a href="' + url + '">' + shortUrl + '</a>';
+            }
+        );
     },
 
     // Ensure that each poi created has name, longitude, latitude, type_id, street, postal_code.

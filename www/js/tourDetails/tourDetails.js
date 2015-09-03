@@ -28,9 +28,9 @@ var TourDetailsView = BaseView.extend({
                         type: step.get('type')
                     };
                 if (data.isPoi) {
-                    data.desc = poi.get('desc_fr');
+                    data.desc = poi.get('desc_html');
                     data.image = poi.get('url_img1');
-                    data.creditPhoto = poi.get('photo_credit');
+                    data.creditPhoto = poi.get('photo_credit_html');
                     data.poiId = poi.id;
                     data.generalType = poi.get('general_type').get('id');
                 }
