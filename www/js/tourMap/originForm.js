@@ -13,7 +13,7 @@ var PositionFormView = DialogView.extend({
     changed: false,
 
     dialogOptions: {
-        title: '<span class="glyphicon glyphicon-map-marker"></span> Point de départ',
+        title: '<span class="material-icons">place</span> Point de départ',
         cssClass: 'bottom-sheet theme-magenta has-close-btn-ok'
     },
 

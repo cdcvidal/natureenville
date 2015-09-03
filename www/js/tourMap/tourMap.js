@@ -33,35 +33,35 @@ function styleFromType(poiGenType) {
     switch (poiGenType) {
         case 1:
             style.color = [96, 140, 51];
-            style.icon = 'images/general_types/1-avenue_tree.png';
+            style.icon = 'images/general_types/1-avenue_tree_100x100.png';
             break;
         case 2:
             style.color = [206, 0, 127];
-            style.icon = 'images/general_types/2-remarkable_tree.png';
+            style.icon = 'images/general_types/2-remarkable_tree_100x100.png';
             break;
         case 3:
             style.color = [111, 165, 28];
-            style.icon = 'images/general_types/3-park_garden.png';
+            style.icon = 'images/general_types/3-park_garden_100x100.png';
             break;
         case 4:
             style.color = [243, 152, 27];
-            style.icon = 'images/general_types/4-strange_place.png';
+            style.icon = 'images/general_types/4-strange_place_100x100.png';
             break;
         case 5:
             style.color = [121, 33, 129];
-            style.icon = 'images/general_types/5-revegetated_street.png';
+            style.icon = 'images/general_types/5-revegetated_street_100x100.png';
             break;
         case 6:
             style.color = [227, 1, 55];
-            style.icon = 'images/general_types/6-wild_plant.png';
+            style.icon = 'images/general_types/6-wild_plant_100x100.png';
             break;
         case 7:
             style.color = [0, 104, 132];
-            style.icon = 'images/general_types/7-vegetable_garden.png';
+            style.icon = 'images/general_types/7-vegetable_garden_100x100.png';
             break;
         case 8:
             style.color = [60, 165, 148];
-            style.icon = 'images/general_types/8-landscaping.png';
+            style.icon = 'images/general_types/8-landscaping_100x100.png';
             break;
     }
     return style;

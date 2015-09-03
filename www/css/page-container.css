@@ -493,6 +493,14 @@ body.section-contribution .app-header .btn-sidenav {
 }
 
 
+.bootstrap-dialog.has-close-btn-ok .modal-header {
+    padding: 0;
+}
+
+.bootstrap-dialog.has-close-btn-ok .modal-header .bootstrap-dialog-title {
+    padding: 11px 15px;
+}
+
 .bootstrap-dialog.has-close-btn-ok .modal-header .close {
     font-size: 0;
     margin-top: 0;
@@ -501,11 +509,18 @@ body.section-contribution .app-header .btn-sidenav {
     filter: alpha(opacity=100);
     opacity: 1;
     font-weight: 400;
+    padding: 15px;
+    background-color: rgba(0,0,0,.3);
+    border-left: 1px solid rgba(255,255,255,.7);
 }
 
 .bootstrap-dialog.has-close-btn-ok .modal-header .close:before {
     content: "OK";
     font-size: 16px;
+}
+
+.bootstrap-dialog .modal-header .material-icons {
+    vertical-align: top;
 }
 
 .bootstrap-dialog.body-no-padding .modal-body {

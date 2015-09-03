@@ -18,7 +18,7 @@ var TimeFormView = DialogView.extend({
     changed: false,
 
     dialogOptions: {
-        title: '<span class="glyphicon glyphicon-time"></span> Durée maximale',
+        title: '<span class="material-icons">access_time</span> Durée maximale',
         cssClass: 'bottom-sheet theme-yellow has-close-btn-ok body-no-padding',
     },
 
