@@ -8,6 +8,14 @@ var $ = require('jquery'),
 var ContainerView = BaseView.extend({
     template: require('./app-container.html'),
 
+    initialize: function() {
+        var self = this;
+
+        router.on('route', function(route, params) {
+            self.closeSideNav();
+        });
+    },
+
     serialize: function () {
         return {};
     },
@@ -24,6 +32,10 @@ var ContainerView = BaseView.extend({
     },
 
     onSideNavClick: function(){
+        this.closeSideNav();
+    },
+
+    closeSideNav: function() {
         $('body').removeClass('show-sidenav');
     },
 
