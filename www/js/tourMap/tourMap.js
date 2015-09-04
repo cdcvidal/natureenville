@@ -386,7 +386,7 @@ var TourMapView = BaseView.extend({
 
         self.dialogError = Dialog.confirm({
             title: "Position introuvable",
-            message: "Vérifier les paramétres et réessayer ou annuler pour utiliser le mode manuel.",
+            message: "Vérifier les paramétres de géolocalisation de votre téléphone et réessayer.<br /><b>OU</b><br />Annuler pour saisir manuellement votre point de départ.",
             btnOKLabel: 'Réessayer',
             btnCancelLabel: 'Annuler',
             callback: function(result) {
