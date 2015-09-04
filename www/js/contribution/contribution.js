@@ -27,6 +27,7 @@ var ContributionView = BaseView.extend({
     events: {
         'click .submit' : 'onSubmit',
         'click #take-picture': 'capturePhoto',
+        'click .icon-camera': 'capturePhoto',
         'change #input-picture': 'loadPhoto',
         'focusin .has-error input': 'clearError',
         'click .cancel-js': 'historyBack'

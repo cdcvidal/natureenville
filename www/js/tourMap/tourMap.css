@@ -23,16 +23,25 @@
     color: #6E6E6E;
     text-transform: uppercase;
 }
-#poi-popup .credit {
+#poi-popup .row.photo {
     position: relative;
-    left: .5rem;
-    bottom: 2rem;
-    color: #FFF;
-    font-size: 1rem;
 }
 #poi-popup .row.photo img {
     width: 100%;
     height: auto;
+}
+#poi-popup .credit {
+    position: absolute;
+    right: .5rem;
+    bottom: .5rem;
+    color: #FFF;
+    font-size: 1rem;
+    text-align: right;
+}
+#poi-popup .row.description {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 /* Slider for distance form */
