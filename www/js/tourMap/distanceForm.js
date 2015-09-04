@@ -13,8 +13,6 @@ var DistanceFormView = DialogView.extend({
     tagName: 'p',
     id: 'distance-form',
 
-    changed: false,
-
     dialogOptions: {
         title: '<span class="material-icons">gesture</span> Distance maximale',
         cssClass: 'bottom-sheet theme-lime has-close-btn-ok'
@@ -35,18 +33,15 @@ var DistanceFormView = DialogView.extend({
                 return val + ' Km';
             }
         });
-        this.slider.on('slideStop', _.bind(this.onSlide, this));
 
         DialogView.prototype.initialize.apply(this, arguments);
     },
 
-    onSlide: function(val) {
-        this.changed = true;
-        this.model.set('option_distance', val*1000);
-    },
-
     onClose: function (dialog) {
-        if (this.changed) {
+        var oldValue = this.model.get('option_distance');
+        var newValue = this.slider.getValue()*1000;
+        if (this.isSubmit && oldValue != newValue ) {
+            this.model.set('option_distance', newValue);
             this.model.trigger('reload');
         }
     },
@@ -58,6 +53,8 @@ var DistanceFormView = DialogView.extend({
          * hence, set the value (trigger tooltip positionning) on event shown.bs.modal
          */
         this.slider.setValue(this.model.getDistanceKm());
+
+        DialogView.prototype.afterRender.apply(this, arguments);
     }
 });
 

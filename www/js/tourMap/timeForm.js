@@ -15,8 +15,6 @@ var TimeFormView = DialogView.extend({
     id: 'time-form',
     className: 'swiper-container',
 
-    changed: false,
-
     dialogOptions: {
         title: '<span class="material-icons">access_time</span> Durée maximale',
         cssClass: 'bottom-sheet theme-yellow has-close-btn-ok body-no-padding',
@@ -36,7 +34,10 @@ var TimeFormView = DialogView.extend({
     },
 
     onClose: function (dialog) {
-        if (this.changed) {
+        var oldValue = this.model.get('option_temps');
+        var newValue = this.model.timeSteps[this.swiper.activeIndex].value;
+        if (this.isSubmit && newValue != oldValue) {
+            this.model.set('option_temps', newValue);
             this.model.trigger('reload');
         }
     },
@@ -66,12 +67,10 @@ var TimeFormView = DialogView.extend({
                 modifier: -1,
                 slideShadows : false
             },
-            runCallbacksOnInit: false,
-            onSlideChangeEnd: _.bind(function(swiper) {
-                this.changed = true;
-                this.model.set('option_temps', this.model.timeSteps[swiper.activeIndex].value);
-            }, this)
+            runCallbacksOnInit: false
         });
+
+        DialogView.prototype.afterRender.apply(this, arguments);
     }
 });
 

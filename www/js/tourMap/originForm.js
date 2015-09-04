@@ -25,7 +25,7 @@ var PositionFormView = DialogView.extend({
     },
 
     onClose: function (dialog) {
-        if (this.changed) {
+        if (this.isSubmit && this.changed) {
             this.model.trigger('reload');
         }
     },
@@ -59,6 +59,8 @@ var PositionFormView = DialogView.extend({
          * Hence, the weird CSS quickfix : min-width on position-form + z-index on .pac-container
          */
         //$('.pac-container').appendTo(this.$el);
+
+        DialogView.prototype.afterRender.apply(this, arguments);
     }
 });
 

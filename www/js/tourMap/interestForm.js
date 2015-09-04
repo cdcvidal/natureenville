@@ -41,7 +41,8 @@ var InterestFormView = DialogView.extend({
     },
 
     onClose: function (dialog) {
-        if (this.changed) {
+        console.log(this.isSubmit, this.changed);
+        if (this.isSubmit && this.changed) {
             this.model.set('etype_einflu', JSON.stringify(this.req));
             this.model.trigger('reload');
         }

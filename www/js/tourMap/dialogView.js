@@ -22,7 +22,12 @@ var DialogView = Backbone.View.extend({
 
     // Can be overridden by child classes
     beforeRender: function () {},
-    afterRender: function () {},
+    afterRender: function () {
+        var self = this;
+        this.dialog.getModalHeader().find('.bootstrap-dialog-close-button').click(function() {
+            self.isSubmit = true;
+        });
+    },
     onClose: function (dialog) {},
 
     render: function() {
