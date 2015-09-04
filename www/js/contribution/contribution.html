@@ -21,7 +21,6 @@
                 <div class="form-group required">
                     <span class="icon-field material-icons">filter_vintage</span>
                     <select id="type_id" name="type_id" class="form-control">
-                        <option value="" disabled>Type</option>
                         <% data.typepoiinstance.each(function(poitype, key){ %>
                             <option value="<%= poitype.type_id %>">
                                 <%= poitype.get('name_fr') %>

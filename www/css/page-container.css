@@ -464,6 +464,7 @@ body.section-contribution .app-header .btn-sidenav {
     box-shadow: none;
     border: none;
     display: block;
+    min-width: auto;
     visibility: hidden;
     opacity: 0;
     -webkit-transition: visibility 0s linear 0.2s,opacity 0.2s ease-out;
