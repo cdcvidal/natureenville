@@ -45,15 +45,21 @@ Controller.prototype.profileViewDisplay = function() {
 Controller.prototype.tourContainerViewDisplay = function(mode, tab, poiId) {
     if (magicTour.isVirgin) {
         // Load a tour with default values if none exists
-        currentPos.promise().done(function() {
-            var lat = currentPos.get('latitude'),
-                lon = currentPos.get('longitude');
+        if (currentPos.has('latitude')) {
             magicTour.request.set({
-                dep_x: lon,
-                dep_y: lat
+                dep_x: currentPos.get('longitude'),
+                dep_y: currentPos.get('latitude')
             });
             magicTour.setMode(mode);
-        });
+        } else {
+            currentPos.once('change', function() {
+                magicTour.request.set({
+                    dep_x: currentPos.get('longitude'),
+                    dep_y: currentPos.get('latitude')
+                });
+                magicTour.setMode(mode);
+            });
+        }
     } else {
         magicTour.setMode(mode);
     }

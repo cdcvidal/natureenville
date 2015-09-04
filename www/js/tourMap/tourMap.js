@@ -7,6 +7,8 @@ var BaseView = require('../baseview'),
     currentPos = require('../current-position'),
     magicTour = require('../models/magictour'),
     PoiSummaryView = require('./poiSummary'),
+    bootstrap = require('bootstrap'),
+    Dialog = require('bootstrap-dialog'),
     ol = require('planet-maps/dist/ol-base');
 
 /*
@@ -377,6 +379,29 @@ var TourMapView = BaseView.extend({
         }
     },
 
+    handleGeolocError: function() {
+        var self = this;
+        if ( self.dialogError )
+            return;
+
+        self.dialogError = Dialog.confirm({
+            title: "Position introuvable",
+            message: "Vérifier les paramétres et réessayer ou annuler pour utiliser le mode manuel.",
+            btnOKLabel: 'Réessayer',
+            btnCancelLabel: 'Annuler',
+            callback: function(result) {
+                if ( result ) {
+                    currentPos.watch();
+                    window.location.reload();
+                } else {
+                    setTimeout(function() {
+                        self.onBtnPositionClick();
+                    }, 500);
+                }
+            }
+        });
+    },
+
     centerOnCurrentPosition: function () {
         currentPos.promise().done(function() {
             view.setZoom(15);
@@ -430,6 +455,11 @@ var TourMapView = BaseView.extend({
                 this.centerOnCurrentPosition();
             }
         }
+
+        if (currentPos.isError) {
+            this.handleGeolocError();
+        }
+        this.listenTo(currentPos, 'error', this.handleGeolocError);
     },
 
     serialize: function () {
@@ -446,7 +476,8 @@ var TourMapView = BaseView.extend({
     },
 
     onBtnPositionClick: function(e) {
-        e.preventDefault();
+        if ( e )
+            e.preventDefault();
         var PositionFormView = require('./originForm.js'),
             dialog = new PositionFormView({model: this.model.request, mode: this.mode});
         dialog.render();
@@ -464,6 +495,13 @@ var TourMapView = BaseView.extend({
         var TimeFormView = require('./timeForm.js'),
             dialog = new TimeFormView({model: this.model.request});
         dialog.render();
+    },
+
+    remove: function() {
+        if ( this.dialogError )
+            this.dialogError.close();
+
+        BaseView.prototype.remove.apply(this, arguments);
     }
 });
 

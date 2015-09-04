@@ -12,7 +12,7 @@ var GeoModel = Backbone.Model.extend({
     defaultOptions: {
         enableHighAccuracy: false,
         maximumAge: 10000,
-        timeout: 60000
+        timeout: 5000
     },
 
     initialize: function(options) {
@@ -27,14 +27,20 @@ var GeoModel = Backbone.Model.extend({
         this.once('change', function() {
             this._dfd.resolve(this.attributes);
         });
+        this.once('error', function(model, error) {
+            this._dfd.reject(error);
+        });
     },
 
     _success: function(position) {
+        this.isError = false;
         this.set(position.coords);
     },
 
     _error: function(error) {
         console.log('ERROR(' + error.code + '): ' + error.message);
+        this.isError = true;
+        this.trigger('error', this, error);
         this.clear(); // Erase position data
         this.unwatch(); // Stop watching because something went wrong
     },
