@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget android-versionCode="1" id="eu.naturalsolutions.natureenville" ios-CFBundleVersion="0.1.0" version="0.1.0" xmlns="http://www.w3.org/ns/widgets">
-    <name>Nature en ville</name>
+    <name>Mon jardin en ville</name>
     <description>
     </description>
     <author email="contact@natural-solutions.eu" href="http://www.natural-solutions.eu/">Natural Solutions</author>
@@ -24,4 +24,18 @@
     <plugin name="cordova-plugin-inappbrowser" spec="^1.0.1" />
     <plugin name="nl.x-services.plugins.socialsharing" spec="^4.3.19" />
     <plugin name="cordova-plugin-network-information" spec="^1.0.1" />
+
+    <!-- default icon -->
+    <icon src="icon.png" />
+
+        <!-- Android icons -->
+    <platform name="android">
+        <icon src="res/android/AppIcon36x36.png" density="ldpi" />
+        <icon src="res/android/AppIcon48x48.png" density="mdpi" />
+        <icon src="res/android/AppIcon72x72.png" density="hdpi" />
+        <icon src="res/android/AppIcon96x96.png" density="xhdpi" />
+        <icon src="res/android/AppIcon144x144.png" density="xxhdpi" />
+        <icon src="res/android/AppIcon192x192.png" density="xxxhdpi" />
+    </platform>
+
 </widget>
