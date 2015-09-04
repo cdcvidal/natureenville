@@ -65,6 +65,12 @@ function styleFromType(poiGenType) {
             style.color = [60, 165, 148];
             style.icon = 'images/general_types/8-landscaping_100x100.png';
             break;
+        case -1: // Special type: departure
+            style.icon = 'images/map_departure.png';
+            break;
+        case -2: // Special type: arrival
+            style.icon = 'images/map_arrival.png';
+            break;
     }
     return style;
 }
@@ -143,21 +149,13 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
                 source: poiSource,
                 style: function(feature, resolution) {
                     var sf = getScaleFactor(resolution),
-                        styleParams = styleFromType(parseInt(feature.l.place_type)); // FIXME: why using this ".l"??? Looks like a bug in OL? Or in planet-maps build?
+                        isPoi = feature.get('isPoi'),
+                        isDeparture = feature.get('isDeparture'),
+                        iconType = isPoi ? parseInt(feature.get('place_type')) : isDeparture ? -1 : -2,
+                        styleParams = styleFromType(iconType);
                     if (resolution > 50) {
                         // Do not display POI
                         return [];
-                    } else if (! feature.l.isPoi) {
-                        return [new ol.style.Style({
-                            text: new ol.style.Text({
-                                text: '\ue55f',
-                                font: 'normal ' + (10*sf) + 'px \'Material Icons\'',
-                                textBaseline: 'Bottom',
-                                fill: new ol.style.Fill({
-                                    color: feature.l.isDeparture ? '#3FB48D' : 'red'
-                                })
-                            })
-                        })];
                     } else if (resolution > 5) {
                         // Display POI as a simple small circle
                         return [new ol.style.Style({
@@ -205,16 +203,12 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
             new ol.layer.Vector({
                 source: currentPosSource,
                 style: function(feature, resolution) {
-                    var size = getScaleFactor(resolution) * 10;
+                    var sf = getScaleFactor(resolution);
                     return [new ol.style.Style({
-                        text: new ol.style.Text({
-                            text: '\ue55c',
-                            font: 'normal ' + size + 'px \'Material Icons\'',
-                            textBaseline: 'Bottom',
-                            offsetY: Math.round(size/2),
-                            fill: new ol.style.Fill({
-                                color: '#02A8F3'
-                            })
+                        image: new ol.style.Icon({
+                            anchor: [0.5, 0.5],
+                            scale: sf/6,
+                            src: 'images/current_pos.png'
                         })
                     })];
                 }
