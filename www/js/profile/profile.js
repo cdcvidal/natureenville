@@ -18,8 +18,6 @@ var ProfileView = BaseView.extend({
             model: this.model,
             collection: this.collection,
             nbContribution: this.contribution.length
-            //TODO remove if using poi methods
-            //contribution: this.contribution
         };
     },
     beforeRender: function(){
