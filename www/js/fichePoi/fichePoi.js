@@ -30,7 +30,7 @@ var FichePoiView = BaseView.extend({
             endStep = magictour.get('stops').last(),
             isLoop = ol.extent.equals(startStep.get('geom').getExtent(), endStep.get('geom').getExtent());*/
         // route user to the corresponding map
-        router.navigate((isLoop ? 'loop' : 'direction') + '/map/' + this.model.id, {trigger: true});
+        router.navigate((isLoop ? 'loop' : 'direction') + '/map/' + this.model.get('poi').id, {trigger: true});
     },
 
     serialize: function () {
