@@ -79,13 +79,18 @@ var ContributionView = BaseView.extend({
         if (this.model.isValid()) {
             var self =this;
             Dialog.show({
-                    title: 'Merci pour votre contribution!',
-                    message:'Votre contribution sera ajoutée après validation par nos équipes.',
+                    title: 'Merci pour votre participation !',
+                    message:'Votre contribution sera ajoutée par nos équipes après validation.'+'<br>'+' Retrouvez vos badges dans la rubrique profil de l\'application.',
                     onhidden: function(){
                         self.historyBack();
                     },
                     type: 'type-success',
-                    size: 'size-large'
+                    buttons: [{
+                        label: 'Fermer',
+                        action: function(dialogItself){
+                            dialogItself.close();
+                        }
+                    }]
                 });
         }else{
             var msg= "";
@@ -96,8 +101,7 @@ var ContributionView = BaseView.extend({
             Dialog.alert({
                 title: "Formulaire incomplet",
                 message: msg,
-                type: 'type-danger',
-                //size: 'size-large'
+                type: 'type-danger'
             });
         }
 
