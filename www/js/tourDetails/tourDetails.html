@@ -5,7 +5,7 @@
         <% var iconClassname = 'icon-'+ (step.isPoi ? 'generaltype' : 'step-'+step.type+' material-icons' ) %>
         <% var textClassname = 'text-'+ (step.isPoi ? poiTypeClassname : 'step-'+step.type) %>
         <div class="panel panel-default step-<%= step.type %> <%= poiTypeClassname %>">
-            <div class="row-icon <%= iconClassname %> <%= textClassname %>"><% if(!step.isPoi){%>pin_drop<%} %></div>
+            <div class="row-icon <%= iconClassname %> <%= textClassname %>"><%= step.isDeparture ? 'explore' : (step.isArrival ? 'pin_drop' : '') %></div>
             <div class="panel-heading" data-toggle="collapse">
                 <a class="panel-title clearfix" role="button" data-toggle="collapse" href="#collapse-poi-<%= itemIndex %>">
                     <span class="pull-left title">
