@@ -87,13 +87,13 @@ var Poi = Backbone.Model.extend({
     validate: function(attrs, options) {
         var errors = {};
         if (!attrs.name) {
-            errors.name = "L'information nom est obligatoire.";
+            errors.name = "Le nom est obligatoire.";
          // return "L'information nom est obligatoire.";
         }
         //TODO validate adresse, street and postal code instead of longitude
         if (!attrs.longitude) {
          // return "L'information adresse est obligatoire.";
-            errors.geoloc = "L'information adresse est obligatoire.";
+            errors.geoloc = "L'adresse est obligatoire.";
         }
         // if (!attrs.latitude) {
         //   return "L'information latitude est manquante";

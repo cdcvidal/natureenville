@@ -80,7 +80,7 @@ var ContributionView = BaseView.extend({
             var self =this;
             Dialog.show({
                     title: 'Merci pour votre participation !',
-                    message:'Votre contribution sera ajoutée par nos équipes après validation.'+'<br>'+' Retrouvez vos badges dans la rubrique profil de l\'application.',
+                    message:'Ce lieu sera bientôt présent dans vos parcours.'+'<br>'+' Visitez votre profil et découvrez vos nouveaux badges !',
                     onhidden: function(){
                         self.historyBack();
                     },
