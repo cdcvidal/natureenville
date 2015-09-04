@@ -69,6 +69,15 @@
     background-color: transparent;
     border-radius: initial;
 }
+#distance-form .slider .slider-handle.custom {
+    border-width: 2px;
+    background: url("../images/pilgrim.png") #fff no-repeat center;
+    border-radius: 10px;
+    background-size: contain;
+}
+#distance-form .slider .slider-handle.custom::before {
+    content: '';
+}
 
 /* Interest form */
 

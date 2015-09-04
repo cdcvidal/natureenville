@@ -29,6 +29,7 @@ var DistanceFormView = DialogView.extend({
             min: 1,
             max: 20,
             tooltip: 'always',
+            handle: 'custom',
             tooltip_position: 'bottom',
             formatter: function(val) {
                 return val + ' Km';
@@ -61,10 +62,3 @@ var DistanceFormView = DialogView.extend({
 });
 
 module.exports = DistanceFormView;
-
-/*
- * TODO:
- * - set up icons
- *      .bootstrap-dialog-title span
- *      .slider-handle.custom + handle: 'custom'
- */
