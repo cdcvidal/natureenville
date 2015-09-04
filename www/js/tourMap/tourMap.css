@@ -13,6 +13,27 @@
     right: 0;
 }
 
+/* POI popup */
+
+#poi-popup {
+    width: 200px;
+    left: -100px;
+}
+#poi-popup .popover-title {
+    color: #6E6E6E;
+    text-transform: uppercase;
+}
+#poi-popup .credit {
+    position: relative;
+    left: .5rem;
+    bottom: 2rem;
+    color: #FFF;
+    font-size: 1rem;
+}
+#poi-popup .row.photo img {
+    width: 100%;
+    height: auto;
+}
 
 /* Slider for distance form */
 

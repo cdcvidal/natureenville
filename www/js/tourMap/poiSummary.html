@@ -1,0 +1,20 @@
+﻿<div class="popover bottom" id="poi-popup">
+    <div class="arrow"></div>
+    <h3 class="popover-title"><%= data.name %></h3>
+    <div class="popover-content">
+        <div class="container">
+            <div class="row photo">
+                <a href="#fiche/<%= data.id %>">
+                    <img src="<%= data.image || "images/placeholder.jpg" %>" />
+                </a>
+                <span class="credit"><%= data.creditPhoto %></span>
+            </div>
+            <div class="row description">
+                <%= data.desc %>
+            </div>
+            <div class="row actions">
+                <a class="btn btn-block bg-duck-egg" href="#fiche/<%= data.id %>" role="button">Voir le détail</a>
+            </div>
+        </div>
+    </div>
+</div>

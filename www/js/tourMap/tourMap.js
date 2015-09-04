@@ -5,6 +5,8 @@
  */
 var BaseView = require('../baseview'),
     currentPos = require('../current-position'),
+    magicTour = require('../models/magictour'),
+    PoiSummaryView = require('./poiSummary'),
     ol = require('planet-maps/dist/ol-base');
 
 /*
@@ -220,6 +222,48 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
         ],
         view: view
     });
+
+// Popup configuration
+poiSource.set('sourceId', 'poi');
+var popup, popupView;
+map.on('click', function(evt) {
+    // Clear any previous popup
+    if (popup) {
+        popupView.remove();
+        map.removeOverlay(popup);
+        popup = void 0;
+        popupView = void 0;
+    }
+    // Find clicked feature
+    var feature = map.forEachFeatureAtPixel(evt.pixel, function(feature, layer) {
+            if (layer.getSource().get('sourceId') === 'poi') {
+                return feature;
+            }
+        });
+    // Display a popup
+    if (feature && feature.get('isPoi')) {
+        // Find Poi model
+        var clickedStep = magicTour.attributes.stops.find(function(step) {
+            return step.isPoi() && step.get('poi').id === feature.getId();
+        });
+        // Obtain Poi HTML from a view
+        popupView = new PoiSummaryView({
+            model: clickedStep.get('poi')
+        });
+        // Attach this HTML to the DOM
+        popupView.render();
+        map.getTargetElement().appendChild(popupView.el);
+        // Package this in an ol.Overlay (e.g. a DOM element which is pinned to the map, move with the map)
+        popup = new ol.Overlay({
+            position: feature.getGeometry().getCoordinates(),
+            positioning: 'top-center',
+            element: popupView.el
+        });
+        map.addOverlay(popup);
+        // Tadaa! Show all this to the user!
+        popupView.$el.show();
+    }
+});
 
 /*
  * Current position management
