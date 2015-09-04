@@ -159,6 +159,19 @@ body.keyboardshow .hidden-by-keyboard {
 
 /* Colors */
 
+.bg-duck-egg,
+.btn-default:hover.bg-duck-egg,
+.open>.dropdown-toggle.btn-default.bg-duck-egg,
+.open>.dropdown-toggle.btn-default.bg-duck-egg:hover,
+.btn-default.bg-duck-egg:active:focus, .btn-default.bg-duck-egg:active:hover {
+    color: #FFF;
+    background-color: #42A391;
+}
+
+.text-duck-egg {
+    color: #42A391;
+}
+
 .bg-blue,
 .btn-default:hover.bg-blue,
 .open>.dropdown-toggle.btn-default.bg-blue,
@@ -404,6 +417,14 @@ body.section-contribution .app-header .btn-back {
 body.section-poi .app-header .btn-sidenav,
 body.section-contribution .app-header .btn-sidenav {
     display: none;
+}
+
+body.section-magictour-is-loop .app-header {
+    background: #D35B3C;
+}
+
+body.section-magictour-is-direction .app-header {
+    background: #88468D;
 }
 
 .btn-fab {

@@ -31,6 +31,8 @@ var TourContainerView = BaseView.extend({
         this.mode = options.mode;
         this.title = options.mode === 'loop' ? 'Boucle' : 'Itinéraire';
 
+        this.sectionClass += ' section-magictour-is-'+ options.mode;
+
         BaseView.prototype.initialize.apply(this, arguments);
     },
 

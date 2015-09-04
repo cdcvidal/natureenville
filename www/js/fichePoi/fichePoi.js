@@ -13,14 +13,22 @@ var FichePoiView = BaseView.extend({
         'click #see-on-map': 'seeOnMap'
     },
 
+    initialize: function() {
+        var magictour = require('../models/magictour'),
+            isLoop = magictour.get('isLoop');
+
+        this.sectionClass += ' section-magictour-is-'+ (isLoop ? 'loop': 'direction');
+    },
+
     seeOnMap: function() {
         var router = require('../router'),
             // Analyze magictour to detect whether it's a loop or not
             magictour = require('../models/magictour'),
-            ol = require('planet-maps/dist/ol-base'),
+            isLoop = magictour.get('isLoop');
+            /*ol = require('planet-maps/dist/ol-base'),
             startStep = magictour.get('stops').first(),
             endStep = magictour.get('stops').last(),
-            isLoop = ol.extent.equals(startStep.get('geom').getExtent(), endStep.get('geom').getExtent());
+            isLoop = ol.extent.equals(startStep.get('geom').getExtent(), endStep.get('geom').getExtent());*/
         // route user to the corresponding map
         router.navigate((isLoop ? 'loop' : 'direction') + '/map/' + this.model.id, {trigger: true});
     },
@@ -28,7 +36,7 @@ var FichePoiView = BaseView.extend({
     serialize: function () {
         var openingDays = [];
         var poi = this.model.get('poi');
-        console.log(this.model.attributes);
+
         _.forEach(poi.get('period').get('interval'), function(isOpen, index) {
             if ( isOpen )
                 openingDays.push(_.capitalize(moment().day(index).format('ddd')));

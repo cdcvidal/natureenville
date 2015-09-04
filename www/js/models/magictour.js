@@ -29,6 +29,25 @@ var MagicTour = Backbone.Model.extend({
         this.listenTo(this.request, 'reload', this.reload);
     },
 
+    get: function (attr) {
+        if (attr in this.attributes) {
+            return Backbone.Model.prototype.get.apply(this, arguments);
+        } else if (attr === 'isLoop') {
+            return this._isLoop();
+        }
+    },
+
+    _isLoop: function() {
+        if ( !this.get('stops') )
+            return false;
+
+        var ol = require('planet-maps/dist/ol-base'),
+            startStep = this.get('stops').first(),
+            endStep = this.get('stops').last();
+
+        return ol.extent.equals(startStep.get('geom').getExtent(), endStep.get('geom').getExtent());
+    },
+
     reload: function() {
         this.fetch();
     },

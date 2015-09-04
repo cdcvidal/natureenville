@@ -1,3 +1,14 @@
+body.section-contribution .app-header {
+    background: #F28D1A;
+}
+
+body.section-contribution .app-header .btn-back {
+    display: inline-block;
+}
+body.section-contribution .app-header .btn-sidenav {
+    display: none;
+}
+
 .page-contribution {
     background-color: #F4F5F6;
     padding-bottom: 15px;
@@ -121,11 +132,4 @@
     border: none;
     text-transform: uppercase;
     font-size: 1.1rem;
-}
-
-body.section-contribution .app-header .btn-back {
-    display: inline-block;
-}
-body.section-contribution .app-header .btn-sidenav {
-    display: none;
 }
