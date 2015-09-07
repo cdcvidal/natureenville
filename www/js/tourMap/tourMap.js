@@ -18,9 +18,11 @@ function getScaleFactor(resolution) {
     // Compute a scale factor depending on resolution
     if (resolution > 10) {
         return 2;
-    } else if (resolution > 2) {
+    } else if (resolution > 5) {
         return 3;
-    } else if (resolution > 0.1) {
+    } else if (resolution > 1) {
+        return 4;
+    } else if (resolution > 0.2) {
         return 5;
     } else if (resolution > 0.05) {
         return 6;
@@ -122,7 +124,7 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
 
                         // Compute cumulative length
                         dist += Math.sqrt(dx*dx + dy*dy);
-                        if (dist < 3000/(sf*sf)) {
+                        if (dist < 4500/(sf*sf)) {
                             // Do not draw before a certain distance threshold 
                             return;
                         } else {
@@ -158,11 +160,20 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
                     if (resolution > 50) {
                         // Do not display POI
                         return [];
-                    } else if (resolution > 5) {
+                    } else if (! isPoi) {
+                        // Special case of departure/arrival icons
+                        return [new ol.style.Style({
+                            image: new ol.style.Icon({
+                                anchor: [0.5, 0.5],
+                                scale: sf/8,
+                                src: styleParams.icon
+                            })
+                        })];
+                    } else if (resolution > 10) {
                         // Display POI as a simple small circle
                         return [new ol.style.Style({
                             image: new ol.style.Circle({
-                                radius: 2*sf,
+                                radius: 2.5*sf,
                                 fill: new ol.style.Fill({
                                     color: styleParams.color.concat(1)
                                 })
@@ -172,7 +183,7 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
                         // Display POI with semi-opaque fill + plain edge
                         return [new ol.style.Style({
                             image: new ol.style.Circle({
-                                radius: 2*sf,
+                                radius: 2.5*sf,
                                 fill: new ol.style.Fill({
                                     color: styleParams.color.concat(0.5)
                                 }),
@@ -183,18 +194,10 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
                             })
                         })];
                     } else {
-                        var scale = 1;
-                        if (resolution > 0.5) {
-                            scale = 0.4;
-                        } else if (resolution > 0.1) {
-                            scale = 0.6;
-                        } else if (resolution > 0.02) {
-                            scale = 0.8;
-                        }
                         return [new ol.style.Style({
                             image: new ol.style.Icon({
                                 anchor: [0.5, 0.5],
-                                scale: scale,
+                                scale: sf/8,
                                 src: styleParams.icon
                             })
                         })];
@@ -209,7 +212,7 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
                     return [new ol.style.Style({
                         image: new ol.style.Icon({
                             anchor: [0.5, 0.5],
-                            scale: sf/6,
+                            scale: sf/8,
                             src: 'images/current_pos.png'
                         })
                     })];
