@@ -33,6 +33,7 @@ function getScaleFactor(resolution) {
 function styleFromType(poiGenType) {
     // Assign a color for a POI type
     var style = {
+        anchor: [0.5, 0.5], // Defaults to centered
         color: [0,0,0], // Defaults to black
         icon: '' // FIXME: any default?
     };
@@ -71,9 +72,11 @@ function styleFromType(poiGenType) {
             break;
         case -1: // Special type: departure
             style.icon = 'images/map_departure.png';
+            style.anchor = [0.31, 0.92];
             break;
         case -2: // Special type: arrival
             style.icon = 'images/map_arrival.png';
+            style.anchor = [0.17, 0.94];
             break;
     }
     return style;
@@ -164,7 +167,7 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
                         // Special case of departure/arrival icons
                         return [new ol.style.Style({
                             image: new ol.style.Icon({
-                                anchor: [0.5, 0.5],
+                                anchor: styleParams.anchor,
                                 scale: sf/8,
                                 src: styleParams.icon
                             })
@@ -196,7 +199,7 @@ var view = new ol.View(), // Map visible area (parameters will be set during vie
                     } else {
                         return [new ol.style.Style({
                             image: new ol.style.Icon({
-                                anchor: [0.5, 0.5],
+                                anchor: styleParams.anchor,
                                 scale: sf/8,
                                 src: styleParams.icon
                             })
