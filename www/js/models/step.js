@@ -47,7 +47,7 @@ var Step = Backbone.Model.extend({
                 id: parseInt(attrs.poi_id),
                 desc_fr: desc,
                 photo_credit: cred,
-                url_img1: attrs.image ? 'http://dev.optitour.fr'+ attrs.image : '',
+                url_img1: attrs.image ? 'http://visitmoov.com'+ attrs.image : '',
                 name_fr: attrs.place_name,
                 type_id: parseInt(attrs.place_type),
                 longitude: coords[0],

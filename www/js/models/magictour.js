@@ -19,7 +19,7 @@ var MagicTour = Backbone.Model.extend({
         }
     */
 
-    url: 'http://dev.optitour.fr/magic/naturalsolution/magictour/',
+    url: 'http://visitmoov.com/magic/naturalsolution/magictour/',
 
     initialize: function() {
         this.isVirgin = true;
