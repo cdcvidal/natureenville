@@ -41,8 +41,10 @@ var GeoModel = Backbone.Model.extend({
         console.log('ERROR(' + error.code + '): ' + error.message);
         this.isError = true;
         this.trigger('error', this, error);
-        this.clear(); // Erase position data
-        this.unwatch(); // Stop watching because something went wrong
+        if( error.code !== 3){
+            this.clear(); // Erase position data
+            this.unwatch(); // Stop watching because something went wrong
+        }
     },
 
     promise: function() {
